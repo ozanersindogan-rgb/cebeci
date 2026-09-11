@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title id="siteTitleTag">Cebeci Yapı | Mimarlık & İnşaat</title>
-    <!-- Fonts: Cinzel (Lüks Mimari Başlıklar) & Montserrat / Inter -->
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -13,9 +13,8 @@
     
     <style>
         :root {
-            --primary: #c5a880;        /* Lüks Mimari Şampanya Sarısı / Gold */
-            --primary-dark: #9e7f53;
-            --bg-dark: #0f1218;        /* Tunalar Yapı Koyu Antrasit Zemin */
+            --primary: #c5a880;
+            --bg-dark: #0f1218;
             --card-dark: #161b22;
             --card-border: rgba(197, 168, 128, 0.2);
             --text-light: #f1f5f9;
@@ -34,7 +33,7 @@
             letter-spacing: 1px;
         }
 
-        /* Navbar (Lüks & Şeffaf) */
+        /* Navbar */
         .navbar {
             background: rgba(15, 18, 24, 0.92);
             backdrop-filter: blur(10px);
@@ -42,11 +41,7 @@
             padding: 18px 0;
             transition: all 0.3s;
         }
-        .navbar-brand {
-            font-size: 1.4rem;
-            color: #fff !important;
-            font-weight: 700;
-        }
+        .navbar-brand { font-size: 1.4rem; color: #fff !important; font-weight: 700; }
         .navbar-brand span { color: var(--primary); }
         .nav-link {
             font-weight: 500;
@@ -59,7 +54,7 @@
         .nav-link:hover, .nav-link.active { color: var(--primary) !important; }
         .site-logo-img { max-height: 48px; width: auto; object-fit: contain; }
 
-        /* Hero (Giriş) */
+        /* Hero */
         .hero {
             position: relative;
             min-height: 90vh;
@@ -82,7 +77,7 @@
             font-weight: 300;
         }
 
-        /* Tunalar Tarzı Proje Kartları */
+        /* Proje Kartları */
         .project-card {
             background: var(--card-dark);
             border: 1px solid var(--card-border);
@@ -168,7 +163,7 @@
             background: rgba(197, 168, 128, 0.1);
         }
 
-        /* Buton Stilleri */
+        /* Butonlar */
         .btn-gold {
             background: var(--primary);
             color: #000;
@@ -187,6 +182,22 @@
             box-shadow: 0 0 20px rgba(197, 168, 128, 0.4);
         }
 
+        /* Harita Alanı */
+        .map-wrapper {
+            position: relative;
+            width: 100%;
+            height: 380px;
+            border-radius: 6px;
+            overflow: hidden;
+            border: 1px solid var(--card-border);
+            filter: grayscale(0.2) contrast(1.1);
+        }
+        .map-wrapper iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
         /* WhatsApp */
         .wa-float {
             position: fixed; bottom: 25px; right: 25px; background: #25d366;
@@ -195,48 +206,18 @@
             z-index: 999; text-decoration: none; box-shadow: 0 4px 20px rgba(0,0,0,0.5);
         }
 
-        /* Proje Detay Pop-Up */
-        .modal-content {
-            background: #13171f;
-            border: 1px solid var(--card-border);
-            color: #fff;
-        }
-        .detail-carousel-img {
-            width: 100%;
-            height: 480px;
-            object-fit: cover;
-        }
-        .thumbnail-gallery img {
-            width: 80px;
-            height: 55px;
-            object-fit: cover;
-            border-radius: 4px;
-            cursor: pointer;
-            border: 2px solid transparent;
-            opacity: 0.6;
-        }
-        .thumbnail-gallery img.active {
-            border-color: var(--primary);
-            opacity: 1;
-        }
+        /* Modal */
+        .modal-content { background: #13171f; border: 1px solid var(--card-border); color: #fff; }
+        .detail-carousel-img { width: 100%; height: 480px; object-fit: cover; }
+        .thumbnail-gallery img { width: 80px; height: 55px; object-fit: cover; border-radius: 4px; cursor: pointer; border: 2px solid transparent; opacity: 0.6; }
+        .thumbnail-gallery img.active { border-color: var(--primary); opacity: 1; }
 
-        /* Panel Görsel Kartı */
-        .admin-img-preview-card {
-            position: relative; display: inline-block; margin: 6px; border-radius: 4px;
-            overflow: hidden; border: 2px solid #334155; background: #000;
-        }
+        /* Panel */
+        .admin-img-preview-card { position: relative; display: inline-block; margin: 6px; border-radius: 4px; overflow: hidden; border: 2px solid #334155; background: #000; }
         .admin-img-preview-card.is-cover { border-color: var(--primary); }
         .admin-img-preview-card img { width: 95px; height: 70px; object-fit: cover; }
-        .remove-single-photo-btn {
-            position: absolute; top: 3px; right: 3px; background: rgba(220, 38, 38, 0.9);
-            color: #fff; border: none; width: 20px; height: 20px; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center; font-size: 11px; cursor: pointer;
-        }
-        .set-cover-btn {
-            position: absolute; bottom: 3px; left: 50%; transform: translateX(-50%);
-            background: rgba(0,0,0,0.8); color: #fff; border: none; font-size: 9px;
-            padding: 2px 5px; border-radius: 3px; cursor: pointer; white-space: nowrap;
-        }
+        .remove-single-photo-btn { position: absolute; top: 3px; right: 3px; background: rgba(220, 38, 38, 0.9); color: #fff; border: none; width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; cursor: pointer; }
+        .set-cover-btn { position: absolute; bottom: 3px; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.8); color: #fff; border: none; font-size: 9px; padding: 2px 5px; border-radius: 3px; cursor: pointer; white-space: nowrap; }
     </style>
 </head>
 <body>
@@ -257,8 +238,9 @@
             <div class="collapse navbar-collapse" id="nav">
                 <ul class="navbar-nav ms-auto align-items-center">
                     <li class="nav-item"><a class="nav-link" href="#anasayfa">Ana Sayfa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#bizkimiz">Biz Kimiz</a></li>
                     <li class="nav-item"><a class="nav-link" href="#projeler">Projelerimiz</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#hakkimizda">Kurumsal</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#konum">Konum & Ofis</a></li>
                     <li class="nav-item"><a class="nav-link" href="#iletisim">İletişim</a></li>
                     <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
                         <button class="btn btn-outline-light btn-sm px-3" style="font-size: 0.8rem; letter-spacing: 1px;" data-bs-toggle="modal" data-bs-target="#loginModal">
@@ -275,7 +257,7 @@
         <div class="container py-5">
             <span class="text-uppercase" style="color: var(--primary); letter-spacing: 3px; font-weight: 600; font-size: 0.85rem;">MİMARİDE MÜKEMMELLİK & GÜVEN</span>
             <h1 class="hero-title mt-3 mb-4" id="heroTitle">Seçkin Yaşam Alanları İnşa Ediyoruz</h1>
-            <p class="hero-subtitle mb-5" id="heroSubtitle">Tunalar Yapı mimari vizyonuyla; depreme dayanıklı, çağdaş ve değer katan lüks konut projeleri sunuyoruz.</p>
+            <p class="hero-subtitle mb-5" id="heroSubtitle">Mimari vizyonumuzla; depreme dayanıklı, çağdaş ve değer katan lüks konut projeleri üretiyoruz.</p>
             <div class="d-flex justify-content-center gap-3">
                 <a href="#projeler" class="btn btn-gold">Projeleri Keşfet</a>
                 <a href="#iletisim" class="btn btn-outline-light" style="letter-spacing: 1px; padding: 12px 28px; text-transform: uppercase; font-size: 0.85rem;">Bize Ulaşın</a>
@@ -283,7 +265,39 @@
         </div>
     </section>
 
-    <!-- Projelerimiz (Tunalar Yapı Tarzı Kartlar) -->
+    <!-- BİZ KİMİZ / HAKKIMIZDA BÖLÜMÜ -->
+    <section id="bizkimiz" class="py-5" style="background: #13171f; border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05);">
+        <div class="container py-5">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6">
+                    <span id="displayAboutSub" style="color: var(--primary); letter-spacing: 2px; font-size: 0.8rem; font-weight: 600; text-transform: uppercase;">BİZ KİMİZ?</span>
+                    <h2 class="mt-2 mb-4 text-white" id="displayAboutTitle">Sağlam Temeller, Çağdaş ve Zamansız Mimari</h2>
+                    <p class="text-secondary" id="displayAboutText" style="line-height: 1.8; white-space: pre-line;">
+                        Yılların kazandırdığı müteahhitlik tecrübesiyle, kent dokusuna değer katan projeler üretiyoruz. Tüm yapılarımızda deprem güvenliğini ve yüksek mühendislik standartlarını birinci öncelik kabul ediyor, malzeme kalitesinden ödün vermeden anahtar teslim yaşam alanları sunuyoruz.
+                    </p>
+                    <div class="row g-3 mt-3">
+                        <div class="col-sm-6">
+                            <div class="p-3" style="background: rgba(255,255,255,0.02); border-left: 2px solid var(--primary);">
+                                <h6 class="text-white mb-1">A+ Yapı Malzemesi</h6>
+                                <small class="text-secondary">TSE ve Avrupa normlarında C35/40 sınıfı beton.</small>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="p-3" style="background: rgba(255,255,255,0.02); border-left: 2px solid var(--primary);">
+                                <h6 class="text-white mb-1">Zamanında Teslim</h6>
+                                <small class="text-secondary">Sözleşme şartlarına ve taahhütlere tam sadakat.</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <img id="displayAboutImg" src="https://images.unsplash.com/photo-1541888946425-d0fbb186156f?q=80&w=1000&auto=format&fit=crop" class="img-fluid rounded shadow" style="border: 1px solid var(--card-border); max-height: 480px; width: 100%; object-fit: cover;" alt="Biz Kimiz Görseli">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJELERİMİZ -->
     <section id="projeler" class="py-5">
         <div class="container py-4">
             <div class="text-center mb-5">
@@ -299,56 +313,32 @@
                 <button class="filter-btn" onclick="filterProjects('tamamlanan', this)">Tamamlananlar</button>
             </div>
 
-            <!-- Dinamik Proje Kartları -->
+            <!-- Proje Kartları -->
             <div class="row g-4" id="projectList">
                 <div class="text-center py-5"><div class="spinner-border text-warning" role="status"></div></div>
             </div>
         </div>
     </section>
 
-    <!-- Kurumsal / Hakkımızda Blok -->
-    <section id="hakkimizda" class="py-5" style="background: #13171f; border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05);">
+    <!-- İLETİŞİM & KONUM (HARİTA) BÖLÜMÜ -->
+    <section id="iletisim" class="py-5" style="background: #11141b;">
         <div class="container py-4">
-            <div class="row align-items-center g-5">
-                <div class="col-lg-6">
-                    <span style="color: var(--primary); letter-spacing: 2px; font-size: 0.8rem; font-weight: 600; text-transform: uppercase;">KURUMSAL VİZYONUMUZ</span>
-                    <h2 class="mt-2 mb-4 text-white">Sağlam Temeller, Çağdaş ve Zamansız Mimari</h2>
-                    <p class="text-secondary" style="line-height: 1.8;">Yılların kazandırdığı müteahhitlik tecrübesiyle, kent dokusuna değer katan projeler üretiyoruz. Tüm yapılarımızda deprem güvenliğini ve yüksek mühendislik standartlarını birinci öncelik kabul ediyor, malzeme kalitesinden ödün vermeden anahtar teslim yaşam alanları sunuyoruz.</p>
-                    <div class="row g-3 mt-3">
-                        <div class="col-sm-6">
-                            <div class="p-3" style="background: rgba(255,255,255,0.02); border-left: 2px solid var(--primary);">
-                                <h6 class="text-white mb-1">A+ Yapı Malzemesi</h6>
-                                <small class="text-secondary">TSE ve Avrupa normlarında C35/40 beton.</small>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="p-3" style="background: rgba(255,255,255,0.02); border-left: 2px solid var(--primary);">
-                                <h6 class="text-white mb-1">Zamanında Teslim</h6>
-                                <small class="text-secondary">Sözleşme şartlarına tam sadakat.</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <img src="https://images.unsplash.com/photo-1541888946425-d0fbb186156f?q=80&w=1000&auto=format&fit=crop" class="img-fluid rounded shadow" style="border: 1px solid var(--card-border);" alt="Şantiye">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- İletişim -->
-    <section id="iletisim" class="py-5">
-        <div class="container py-4">
-            <div class="row g-5">
-                <div class="col-md-5">
+            <div class="row g-5 align-items-center">
+                <div class="col-lg-5">
                     <span style="color: var(--primary); letter-spacing: 2px; font-size: 0.8rem; font-weight: 600; text-transform: uppercase;">BİZE ULAŞIN</span>
-                    <h2 class="mt-2 mb-4 text-white">İletişim & Ofis</h2>
-                    <p class="text-secondary mb-4">Arsanız için kat karşılığı teklif almak veya projelerimizi yerinde görmek için satış ofisimizi ziyaret edebilirsiniz.</p>
-                    <p class="mb-3"><i class="bi bi-telephone text-warning me-2"></i> <span id="displayPhone">+90 (532) 000 00 00</span></p>
-                    <p class="mb-3"><i class="bi bi-envelope text-warning me-2"></i> <span id="displayEmail">info@cebeciyapi.com</span></p>
-                    <p class="mb-3"><i class="bi bi-geo-alt text-warning me-2"></i> <span id="displayAddress">İzmir / Türkiye</span></p>
+                    <h2 class="mt-2 mb-4 text-white">İletişim & Satış Ofisi</h2>
+                    <p class="text-secondary mb-4">Arsanız için kat karşılığı teklif almak veya projelerimizi incelemek için ofisimizi ziyaret edebilirsiniz.</p>
+                    
+                    <p class="mb-3"><i class="bi bi-telephone text-warning me-2 fs-5"></i> <span id="displayPhone">+90 (532) 000 00 00</span></p>
+                    <p class="mb-3"><i class="bi bi-envelope text-warning me-2 fs-5"></i> <span id="displayEmail">info@cebeciyapi.com</span></p>
+                    <p class="mb-4"><i class="bi bi-geo-alt text-warning me-2 fs-5"></i> <span id="displayAddress">İzmir / Türkiye</span></p>
+
+                    <a id="displayMapsBtn" href="https://maps.google.com" target="_blank" class="btn btn-outline-light btn-sm px-3 py-2" style="letter-spacing: 1px;">
+                        <i class="bi bi-map me-1"></i> Google Haritalarda Aç
+                    </a>
                 </div>
-                <div class="col-md-7">
+
+                <div class="col-lg-7">
                     <div class="p-4 rounded" style="background: var(--card-dark); border: 1px solid var(--card-border);">
                         <h4 class="text-white mb-3 brand-font">Bilgi ve Teklif Alın</h4>
                         <form action="https://formspree.io/f/ornek" method="POST">
@@ -360,13 +350,27 @@
                                     <input type="tel" class="form-control bg-dark text-light border-secondary" placeholder="Telefon Numaranız" required>
                                 </div>
                                 <div class="col-12">
-                                    <textarea class="form-control bg-dark text-light border-secondary" rows="3" placeholder="Mesajınız / İlgilendiğiniz proje..."></textarea>
+                                    <textarea class="form-control bg-dark text-light border-secondary" rows="3" placeholder="Mesajınız / İlgilendiğiniz proje veya talebiniz..."></textarea>
                                 </div>
                                 <div class="col-12">
                                     <button type="submit" class="btn btn-gold w-100 py-3">Talep Formunu İlet</button>
                                 </div>
                             </div>
                         </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CANLI GOOGLE HARİTASI (PANELDEN DEĞİŞTİRİLEBİLİR) -->
+            <div class="row mt-5" id="konum">
+                <div class="col-12">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <span style="color: var(--primary); letter-spacing: 2px; font-size: 0.8rem; font-weight: 600; text-transform: uppercase;">
+                            <i class="bi bi-geo-alt-fill me-1"></i> OFİS KONUMUMUZ
+                        </span>
+                    </div>
+                    <div class="map-wrapper" id="mapIframeContainer">
+                        <!-- JS ile iframe buraya basılır -->
                     </div>
                 </div>
             </div>
@@ -382,7 +386,7 @@
 
     <!-- ================= MODALLER ================= -->
 
-    <!-- Proje Detay Pop-Up (Tunalar Yapı Galeri Stili) -->
+    <!-- Proje Detay Pop-Up -->
     <div class="modal fade" id="projectDetailModal" tabindex="-1">
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
@@ -397,12 +401,8 @@
                 <div class="modal-body">
                     <div id="projectCarousel" class="carousel slide mb-3" data-bs-ride="carousel">
                         <div class="carousel-inner rounded" id="carouselInner"></div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#projectCarousel" data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon"></span>
-                        </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#projectCarousel" data-bs-slide="next">
-                            <span class="carousel-control-next-icon"></span>
-                        </button>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#projectCarousel" data-bs-slide="prev"><span class="carousel-control-prev-icon"></span></button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#projectCarousel" data-bs-slide="next"><span class="carousel-control-next-icon"></span></button>
                     </div>
                     <div class="d-flex gap-2 flex-wrap mb-4 thumbnail-gallery" id="thumbnailBox"></div>
                     <h5 class="text-white brand-font">Proje Detayları & Donatıları</h5>
@@ -434,12 +434,12 @@
         </div>
     </div>
 
-    <!-- Yönetim Paneli Modalı -->
+    <!-- Yönetim Paneli Modalı (Biz Kimiz & Konum Düzenleme Eklenmiş) -->
     <div class="modal fade" id="adminPanelModal" tabindex="-1" data-bs-backdrop="static">
         <div class="modal-dialog modal-xl modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header bg-black text-white border-bottom border-secondary">
-                    <h5 class="modal-title"><i class="bi bi-cloud-check text-success me-2"></i>Bulut Yönetim Paneli</h5>
+                    <h5 class="modal-title"><i class="bi bi-cloud-check text-success me-2"></i>Cebeci Yapı Bulut Yönetim Paneli</h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
@@ -448,15 +448,18 @@
                             <button class="nav-link active bg-transparent text-light" data-bs-toggle="tab" data-bs-target="#tab-projects">Projeleri Yönet</button>
                         </li>
                         <li class="nav-item">
-                            <button class="nav-link bg-transparent text-light" data-bs-toggle="tab" data-bs-target="#tab-design">Logo & Tasarım</button>
+                            <button class="nav-link bg-transparent text-light" data-bs-toggle="tab" data-bs-target="#tab-about">Biz Kimiz (Hakkımızda)</button>
                         </li>
                         <li class="nav-item">
-                            <button class="nav-link bg-transparent text-light" data-bs-toggle="tab" data-bs-target="#tab-info">İletişim Bilgileri</button>
+                            <button class="nav-link bg-transparent text-light" data-bs-toggle="tab" data-bs-target="#tab-design">Logo & Giriş Banner</button>
+                        </li>
+                        <li class="nav-item">
+                            <button class="nav-link bg-transparent text-light" data-bs-toggle="tab" data-bs-target="#tab-info">İletişim & Harita Konumu</button>
                         </li>
                     </ul>
 
                     <div class="tab-content">
-                        <!-- Proje Yönetimi -->
+                        <!-- 1. Projeleri Yönet -->
                         <div class="tab-pane fade show active" id="tab-projects">
                             <div class="row">
                                 <div class="col-lg-5 mb-4">
@@ -482,17 +485,17 @@
                                             <input type="text" id="pLocation" class="form-control bg-dark text-light border-secondary" placeholder="Örn: Kuşadası, Aydın">
                                         </div>
                                         <div class="mb-2">
-                                            <label class="form-label small fw-bold">Detaylı Açıklama (m2, daire özellikleri)</label>
-                                            <textarea id="pDesc" class="form-control bg-dark text-light border-secondary" rows="3" placeholder="32 dairelik lüks rezidans..."></textarea>
+                                            <label class="form-label small fw-bold">Detaylı Açıklama</label>
+                                            <textarea id="pDesc" class="form-control bg-dark text-light border-secondary" rows="3" placeholder="Proje özellikleri, daire tipi vb."></textarea>
                                         </div>
                                         <div class="mb-2">
-                                            <label class="form-label small fw-bold">Fotoğraf Yükle (Otomatik Sıkıştırılır)</label>
+                                            <label class="form-label small fw-bold">Fotoğraflar Yükle (Çoklu)</label>
                                             <input type="file" id="pImageFiles" class="form-control bg-dark text-light border-secondary mb-1" accept="image/*" multiple>
                                             <input type="url" id="pImageUrl" class="form-control bg-dark text-light border-secondary form-control-sm" placeholder="veya görsel linki ekle: https://...">
                                         </div>
 
                                         <div class="mb-3" id="photoSelectorArea" style="display:none;">
-                                            <small class="text-success d-block mb-1">Fotoğraflar (<span id="previewPhotoCount">0</span>):</small>
+                                            <small class="text-success d-block mb-1">Seçilen Fotoğraflar (<span id="previewPhotoCount">0</span>):</small>
                                             <div id="projectPhotosPreview" class="d-flex flex-wrap p-2 bg-dark rounded"></div>
                                         </div>
 
@@ -519,7 +522,36 @@
                             </div>
                         </div>
 
-                        <!-- Logo & Tasarım -->
+                        <!-- 2. BİZ KİMİZ (HAKKIMIZDA) YÖNETİMİ -->
+                        <div class="tab-pane fade" id="tab-about">
+                            <div class="row justify-content-center">
+                                <div class="col-md-9">
+                                    <div class="p-4 rounded" style="background: #1c222b;">
+                                        <h5 class="text-white mb-3 brand-font"><i class="bi bi-pencil-square text-warning me-2"></i>Biz Kimiz Bölümü Düzenleme</h5>
+                                        <div class="mb-3">
+                                            <label class="form-label small">Üst Küçük Başlık</label>
+                                            <input type="text" id="setAboutSub" class="form-control bg-dark text-light border-secondary" placeholder="Örn: BİZ KİMİZ?">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label small">Ana Başlık</label>
+                                            <input type="text" id="setAboutTitle" class="form-control bg-dark text-light border-secondary" placeholder="Örn: Sağlam Temeller, Çağdaş Mimari">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label small">Açıklama Metni (Şirket Tarihçesi & Vizyonu)</label>
+                                            <textarea id="setAboutText" class="form-control bg-dark text-light border-secondary" rows="5"></textarea>
+                                        </div>
+                                        <div class="mb-4">
+                                            <label class="form-label small">Biz Kimiz Görseli Değiştir</label>
+                                            <input type="file" id="setAboutImgFile" class="form-control bg-dark text-light border-secondary mb-1" accept="image/*">
+                                            <input type="url" id="setAboutImgUrl" class="form-control bg-dark text-light border-secondary form-control-sm" placeholder="veya görsel bağlantısı">
+                                        </div>
+                                        <button class="btn btn-gold px-4" onclick="saveAboutSettings()">Biz Kimiz Bilgilerini Kaydet</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 3. Logo & Banner -->
                         <div class="tab-pane fade" id="tab-design">
                             <div class="row g-4">
                                 <div class="col-md-6">
@@ -530,14 +562,14 @@
                                             <button class="btn btn-sm btn-outline-danger" onclick="removeLogo()">Logoyu Kaldır</button>
                                         </div>
                                         <input type="file" id="siteLogoFile" class="form-control bg-dark text-light border-secondary mb-1" accept="image/*">
-                                        <input type="url" id="siteLogoUrl" class="form-control bg-dark text-light border-secondary" placeholder="veya logo url linki">
+                                        <input type="url" id="siteLogoUrl" class="form-control bg-dark text-light border-secondary" placeholder="veya logo bağlantısı">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="p-3 rounded" style="background: #1c222b;">
                                         <h6 class="fw-bold mb-3 text-white">Giriş Bölümü (Hero)</h6>
-                                        <input type="text" id="setHeroTitle" class="form-control bg-dark text-light border-secondary mb-2" placeholder="Ana Başlık">
-                                        <textarea id="setHeroSubtitle" class="form-control bg-dark text-light border-secondary mb-2" rows="2" placeholder="Alt Açıklama"></textarea>
+                                        <input type="text" id="setHeroTitle" class="form-control bg-dark text-light border-secondary mb-2" placeholder="Giriş Başlığı">
+                                        <textarea id="setHeroSubtitle" class="form-control bg-dark text-light border-secondary mb-2" rows="2" placeholder="Giriş Alt Açıklaması"></textarea>
                                         <input type="file" id="setHeroBgFile" class="form-control bg-dark text-light border-secondary" accept="image/*">
                                     </div>
                                 </div>
@@ -547,31 +579,41 @@
                             </div>
                         </div>
 
-                        <!-- İletişim Bilgileri -->
+                        <!-- 4. İletişim & Konum (Harita) -->
                         <div class="tab-pane fade" id="tab-info">
                             <div class="row justify-content-center">
-                                <div class="col-md-8">
-                                    <div class="mb-3">
-                                        <label class="form-label small">Firma Adı</label>
-                                        <input type="text" id="setCompanyName" class="form-control bg-dark text-light border-secondary">
+                                <div class="col-md-9">
+                                    <div class="p-4 rounded" style="background: #1c222b;">
+                                        <h5 class="text-white mb-3 brand-font"><i class="bi bi-geo-alt-fill text-warning me-2"></i>İletişim & Google Harita Konumu</h5>
+                                        <div class="row g-3">
+                                            <div class="col-md-6">
+                                                <label class="form-label small">Firma Adı</label>
+                                                <input type="text" id="setCompanyName" class="form-control bg-dark text-light border-secondary">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label small">Telefon</label>
+                                                <input type="text" id="setCompanyPhone" class="form-control bg-dark text-light border-secondary">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label small">WhatsApp (Örn: 905xxxxxxxxx)</label>
+                                                <input type="text" id="setCompanyWhatsapp" class="form-control bg-dark text-light border-secondary">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label small">E-Posta</label>
+                                                <input type="email" id="setCompanyEmail" class="form-control bg-dark text-light border-secondary">
+                                            </div>
+                                            <div class="col-12">
+                                                <label class="form-label small">Açık Ofis Adresi</label>
+                                                <input type="text" id="setCompanyAddress" class="form-control bg-dark text-light border-secondary">
+                                            </div>
+                                            <div class="col-12">
+                                                <label class="form-label small text-warning fw-bold">Google Haritalar Yerleştirme Kodu (Embed Iframe Linki)</label>
+                                                <textarea id="setCompanyMapEmbed" class="form-control bg-dark text-light border-secondary" rows="3" placeholder="Google Haritalar'dan 'Haritayı Yerleştir' diyerek aldığınız iframe kodu veya src bağlantısı..."></textarea>
+                                                <small class="text-muted">Google Maps'e girip ofisinizi bulun > Paylaş > Haritayı Yerleştir > HTML'i Kopyala deyin ve buraya yapıştırın.</small>
+                                            </div>
+                                        </div>
+                                        <button class="btn btn-gold px-4 mt-3" onclick="saveCompanyInfo()">Tüm Bilgileri & Konumu Kaydet</button>
                                     </div>
-                                    <div class="mb-3">
-                                        <label class="form-label small">Telefon</label>
-                                        <input type="text" id="setCompanyPhone" class="form-control bg-dark text-light border-secondary">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label small">WhatsApp (Örn: 905xxxxxxxxx)</label>
-                                        <input type="text" id="setCompanyWhatsapp" class="form-control bg-dark text-light border-secondary">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label small">E-Posta</label>
-                                        <input type="email" id="setCompanyEmail" class="form-control bg-dark text-light border-secondary">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label small">Ofis Adresi</label>
-                                        <input type="text" id="setCompanyAddress" class="form-control bg-dark text-light border-secondary">
-                                    </div>
-                                    <button class="btn btn-gold px-4" onclick="saveCompanyInfo()">İletişim Bilgilerini Kaydet</button>
                                 </div>
                             </div>
                         </div>
@@ -581,7 +623,7 @@
         </div>
     </div>
 
-    <!-- Bootstrap & Firebase Kütüphaneleri -->
+    <!-- Kütüphaneler -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
@@ -606,8 +648,15 @@
         let defaultDesign = {
             logo: "",
             heroTitle: "Seçkin Yaşam Alanları İnşa Ediyoruz",
-            heroSubtitle: "Tunalar Yapı mimari vizyonuyla; depreme dayanıklı, çağdaş ve değer katan lüks konut projeleri sunuyoruz.",
+            heroSubtitle: "Mimari vizyonumuzla; depreme dayanıklı, çağdaş ve değer katan lüks konut projeleri üretiyoruz.",
             heroBg: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1920&auto=format&fit=crop"
+        };
+
+        let defaultAbout = {
+            subTitle: "BİZ KİMİZ?",
+            title: "Sağlam Temeller, Çağdaş ve Zamansız Mimari",
+            text: "Yılların kazandırdığı müteahhitlik tecrübesiyle, kent dokusuna değer katan projeler üretiyoruz. Tüm yapılarımızda deprem güvenliğini ve yüksek mühendislik standartlarını birinci öncelik kabul ediyor, malzeme kalitesinden ödün vermeden anahtar teslim yaşam alanları sunuyoruz.",
+            image: "https://images.unsplash.com/photo-1541888946425-d0fbb186156f?q=80&w=1000&auto=format&fit=crop"
         };
 
         let defaultInfo = {
@@ -615,17 +664,18 @@
             phone: "+90 (532) 000 00 00",
             whatsapp: "905320000000",
             email: "info@cebeciyapi.com",
-            address: "Kuşadası / Aydın"
+            address: "İzmir / Türkiye",
+            mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d200000!2d27.14!3d38.42!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14bbd862a7620491%3A0xd76119597713aa68!2zxLB6bWly!5e0!3m2!1str!2str!4v1"
         };
 
         let design = defaultDesign;
+        let about = defaultAbout;
         let projects = [];
         let companyInfo = defaultInfo;
 
         let currentEditingPhotos = [];
         let currentCoverIndex = 0;
 
-        // Görsel Sıkıştırıcı (1MB Aşımını Engeller)
         function compressImage(file, maxWidth = 1280, maxHeight = 720, quality = 0.7) {
             return new Promise((resolve) => {
                 const reader = new FileReader();
@@ -661,9 +711,11 @@
                 if (doc.exists) {
                     const data = doc.data();
                     if (data.design) design = data.design;
+                    if (data.about) about = data.about;
                     if (data.companyInfo) companyInfo = data.companyInfo;
                 }
                 applyDesignSettings();
+                renderAbout();
                 renderCompanyInfo();
             });
 
@@ -696,6 +748,81 @@
             document.getElementById('setHeroSubtitle').value = design.heroSubtitle;
         }
 
+        function renderAbout() {
+            document.getElementById('displayAboutSub').innerText = about.subTitle || "BİZ KİMİZ?";
+            document.getElementById('displayAboutTitle').innerText = about.title || "Sağlam Temeller, Çağdaş Mimari";
+            document.getElementById('displayAboutText').innerText = about.text || "";
+            document.getElementById('displayAboutImg').src = about.image || defaultAbout.image;
+
+            document.getElementById('setAboutSub').value = about.subTitle || "";
+            document.getElementById('setAboutTitle').value = about.title || "";
+            document.getElementById('setAboutText').value = about.text || "";
+            document.getElementById('setAboutImgUrl').value = about.image && !about.image.startsWith('data:') ? about.image : "";
+        }
+
+        async function saveAboutSettings() {
+            const sub = document.getElementById('setAboutSub').value;
+            const title = document.getElementById('setAboutTitle').value;
+            const text = document.getElementById('setAboutText').value;
+            const imgFile = document.getElementById('setAboutImgFile');
+            const imgUrl = document.getElementById('setAboutImgUrl').value;
+
+            let finalImg = imgUrl || about.image;
+            if (imgFile.files && imgFile.files[0]) {
+                finalImg = await compressImage(imgFile.files[0], 1280, 720, 0.7);
+            }
+
+            about = { subTitle: sub, title: title, text: text, image: finalImg };
+            renderAbout();
+            syncGeneralDataToCloud();
+            alert('Biz Kimiz bilgileri buluta kaydedildi!');
+        }
+
+        function renderCompanyInfo() {
+            document.getElementById('navCompanyName').innerHTML = `${companyInfo.name.split(' ')[0]}<span> ${companyInfo.name.split(' ')[1] || ''}</span>`;
+            document.getElementById('footerCompanyName').innerText = companyInfo.name;
+            document.getElementById('siteTitleTag').innerText = companyInfo.name + " | Mimarlık & İnşaat";
+            document.getElementById('displayPhone').innerText = companyInfo.phone;
+            document.getElementById('displayEmail').innerText = companyInfo.email;
+            document.getElementById('displayAddress').innerText = companyInfo.address;
+            document.getElementById('waLink').href = `https://wa.me/${companyInfo.whatsapp}?text=Merhaba,%20bilgi%20almak%20istiyorum.`;
+
+            // Harita Yerleşimi
+            let mapSrc = companyInfo.mapEmbed || defaultInfo.mapEmbed;
+            if (mapSrc.includes('<iframe')) {
+                const match = mapSrc.match(/src=["']([^"']+)["']/);
+                if (match) mapSrc = match[1];
+            }
+            document.getElementById('mapIframeContainer').innerHTML = `<iframe src="${mapSrc}" allowfullscreen="" loading="lazy"></iframe>`;
+
+            document.getElementById('setCompanyName').value = companyInfo.name;
+            document.getElementById('setCompanyPhone').value = companyInfo.phone;
+            document.getElementById('setCompanyWhatsapp').value = companyInfo.whatsapp;
+            document.getElementById('setCompanyEmail').value = companyInfo.email;
+            document.getElementById('setCompanyAddress').value = companyInfo.address;
+            document.getElementById('setCompanyMapEmbed').value = companyInfo.mapEmbed || "";
+        }
+
+        function saveCompanyInfo() {
+            let mapVal = document.getElementById('setCompanyMapEmbed').value.trim();
+            if (mapVal.includes('<iframe')) {
+                const match = mapVal.match(/src=["']([^"']+)["']/);
+                if (match) mapVal = match[1];
+            }
+
+            companyInfo = {
+                name: document.getElementById('setCompanyName').value,
+                phone: document.getElementById('setCompanyPhone').value,
+                whatsapp: document.getElementById('setCompanyWhatsapp').value,
+                email: document.getElementById('setCompanyEmail').value,
+                address: document.getElementById('setCompanyAddress').value,
+                mapEmbed: mapVal || defaultInfo.mapEmbed
+            };
+            renderCompanyInfo();
+            syncGeneralDataToCloud();
+            alert('İletişim ve Harita Konumu başarıyla kaydedildi!');
+        }
+
         function removeLogo() {
             design.logo = "";
             applyDesignSettings();
@@ -725,43 +852,14 @@
             alert('Tasarım güncellendi!');
         }
 
-        function renderCompanyInfo() {
-            document.getElementById('navCompanyName').innerHTML = `${companyInfo.name.split(' ')[0]}<span> ${companyInfo.name.split(' ')[1] || ''}</span>`;
-            document.getElementById('footerCompanyName').innerText = companyInfo.name;
-            document.getElementById('siteTitleTag').innerText = companyInfo.name + " | Mimarlık & İnşaat";
-            document.getElementById('displayPhone').innerText = companyInfo.phone;
-            document.getElementById('displayEmail').innerText = companyInfo.email;
-            document.getElementById('displayAddress').innerText = companyInfo.address;
-            document.getElementById('waLink').href = `https://wa.me/${companyInfo.whatsapp}?text=Merhaba,%20bilgi%20almak%20istiyorum.`;
-
-            document.getElementById('setCompanyName').value = companyInfo.name;
-            document.getElementById('setCompanyPhone').value = companyInfo.phone;
-            document.getElementById('setCompanyWhatsapp').value = companyInfo.whatsapp;
-            document.getElementById('setCompanyEmail').value = companyInfo.email;
-            document.getElementById('setCompanyAddress').value = companyInfo.address;
-        }
-
-        function saveCompanyInfo() {
-            companyInfo = {
-                name: document.getElementById('setCompanyName').value,
-                phone: document.getElementById('setCompanyPhone').value,
-                whatsapp: document.getElementById('setCompanyWhatsapp').value,
-                email: document.getElementById('setCompanyEmail').value,
-                address: document.getElementById('setCompanyAddress').value
-            };
-            renderCompanyInfo();
-            syncGeneralDataToCloud();
-            alert('İletişim bilgileri kaydedildi!');
-        }
-
         function syncGeneralDataToCloud() {
             db.collection("siteData").doc("general").set({
                 design: design,
+                about: about,
                 companyInfo: companyInfo
             });
         }
 
-        // Tunalar Tarzı Kart Listeleme
         function renderProjects(filter) {
             const container = document.getElementById('projectList');
             container.innerHTML = '';
