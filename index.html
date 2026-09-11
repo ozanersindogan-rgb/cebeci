@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zirve İnşaat & Taahhüt | Geleceği İnşa Ediyoruz</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="images/logo.png">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    
+    <style>
+        :root {
+            --primary-color: #f59e0b; /* İnşaat sarısı / kehribar */
+            --dark-color: #1e293b;    /* Koyu antrasit */
+            --light-bg: #f8fafc;
+            --text-muted: #64748b;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: #334155;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, .navbar-brand {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: #ffffff;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+        }
+        .navbar-brand {
+            font-size: 1.5rem;
+            color: var(--dark-color);
+        }
+        .navbar-brand span {
+            color: var(--primary-color);
+        }
+        .nav-link {
+            font-weight: 600;
+            color: var(--dark-color) !important;
+            padding: 0.5rem 1rem !important;
+        }
+        .nav-link:hover {
+            color: var(--primary-color) !important;
+        }
+
+        /* Hero Slider / Banner */
+        .hero-section {
+            background: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.8)), 
+                        url('https://images.unsplash.com/photo-1541888946425-d0fbb186156f?q=80&w=1920&auto=format&fit=crop') center/cover no-repeat;
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            color: #ffffff;
+        }
+
+        /* Hizmet Kartları */
+        .service-card {
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 30px;
+            background: #ffffff;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+            border-color: var(--primary-color);
+        }
+        .service-icon {
+            font-size: 2.8rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        /* Projeler Bölümü & Filtreleme */
+        .filter-btn {
+            border: 2px solid #e2e8f0;
+            background: #ffffff;
+            color: var(--dark-color);
+            font-weight: 600;
+            padding: 8px 22px;
+            border-radius: 30px;
+            margin: 5px;
+            transition: all 0.3s;
+        }
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--primary-color);
+            border-color: var(--primary-color);
+            color: #ffffff;
+        }
+
+        .project-card {
+            border-radius: 12px;
+            overflow: hidden;
+            background: #ffffff;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.06);
+            transition: transform 0.3s, box-shadow 0.3s;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+        }
+        .project-img-wrapper {
+            position: relative;
+            height: 250px;
+            overflow: hidden;
+        }
+        .project-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        .project-card:hover .project-img-wrapper img {
+            transform: scale(1.08);
+        }
+        .project-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(15, 23, 42, 0.85);
+            color: #ffffff;
+            padding: 5px 12px;
+            font-size: 0.8rem;
+            border-radius: 20px;
+            backdrop-filter: blur(4px);
+        }
+
+        /* Sayaçlar */
+        .stat-box {
+            background: var(--dark-color);
+            color: #ffffff;
+            padding: 50px 0;
+        }
+        .stat-number {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: var(--primary-color);
+        }
+
+        /* WhatsApp Butonu */
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background-color: #25d366;
+            color: #ffffff;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            z-index: 1000;
+            text-decoration: none;
+            transition: transform 0.3s;
+        }
+        .whatsapp-btn:hover {
+            transform: scale(1.1);
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- WhatsApp Butonu (Telefon numaranızı ekleyin) -->
+    <a href="https://wa.me/905000000000?text=Merhaba,%20projeleriniz%20hakkında%20bilgi%20almak%20istiyorum." 
+       target="_blank" class="whatsapp-btn" title="WhatsApp'tan Yazın">
+        <i class="bi bi-whatsapp"></i>
+    </a>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="bi bi-buildings-fill me-2 text-warning"></i>ZİRVE<span> İNŞAAT</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navMenu">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item"><a class="nav-link" href="#anasayfa">Ana Sayfa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#kurumsal">Hakkımızda</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#hizmetler">Hizmetler</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#projeler">Projelerimiz</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#iletisim">İletişim</a></li>
+                    <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+                        <a href="#iletisim" class="btn btn-warning fw-bold px-4 rounded-pill">Teklif Alın</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Bölümü -->
+    <header id="anasayfa" class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <span class="badge bg-warning text-dark px-3 py-2 rounded-pill fw-bold mb-3">Güvenli & Modern Yapılar</span>
+                    <h1 class="display-4 fw-bold mb-4">Geleceğin Yaşam Alanlarını Sağlam Temeller Üzerine Kuruyoruz.</h1>
+                    <p class="lead mb-4 text-light">Müteahhitlik, konut projeleri ve kentsel dönüşümde 15 yılı aşkın tecrübe, mimari estetik ve mühendislik disiplini ile hizmetinizdeyiz.</p>
+                    <div class="d-flex flex-wrap gap-3">
+                        <a href="#projeler" class="btn btn-warning btn-lg fw-bold px-4 rounded-pill">Projelerimizi İnceleyin</a>
+                        <a href="#iletisim" class="btn btn-outline-light btn-lg fw-bold px-4 rounded-pill">Bize Ulaşın</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Kurumsal / Hakkımızda -->
+    <section id="kurumsal" class="py-5">
+        <div class="container py-4">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6">
+                    <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=1000&auto=format&fit=crop" 
+                         alt="İnşaat Sahası" class="img-fluid rounded-4 shadow">
+                </div>
+                <div class="col-lg-6">
+                    <h6 class="text-warning fw-bold text-uppercase">Hakkımızda</h6>
+                    <h2 class="mb-4">Kaliteden Ödün Vermeyen Çözüm Ortağınız</h2>
+                    <p class="text-secondary">Zirve İnşaat olarak, hayata geçirdiğimiz her projede güvenliği, mimari zarafeti ve çevre dostu yapı teknolojilerini harmanlıyoruz. İster kat karşılığı arsa değerlendirmesi olsun ister lüks konut taahhütleri; söz verdiğimiz tarihte ve kalitede teslim ediyoruz.</p>
+                    <div class="row g-3 mt-2">
+                        <div class="col-sm-6">
+                            <div class="d-flex align-items-center">
+                                <i class="bi bi-shield-check text-warning fs-3 me-2"></i>
+                                <span class="fw-semibold">Deprem Yönetmeliğine Uygun</span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="d-flex align-items-center">
+                                <i class="bi bi-clock-history text-warning fs-3 me-2"></i>
+                                <span class="fw-semibold">Zamanında Teslim Garantisi</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sayaçlar -->
+    <section class="stat-box">
+        <div class="container text-center">
+            <div class="row g-4">
+                <div class="col-md-3 col-6">
+                    <div class="stat-number">15+</div>
+                    <div class="text-light">Yıllık Tecrübe</div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="stat-number">85+</div>
+                    <div class="text-light">Tamamlanan Proje</div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="stat-number">1200+</div>
+                    <div class="text-light">Mutlu Aile / Müşteri</div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="stat-number">4</div>
+                    <div class="text-light">Devam Eden Şantiye</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hizmetler -->
+    <section id="hizmetler" class="py-5 bg-light">
+        <div class="container py-4">
+            <div class="text-center mb-5">
+                <h6 class="text-warning fw-bold text-uppercase">Neler Yapıyoruz?</h6>
+                <h2 class="fw-bold">Faaliyet Alanlarımız</h2>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="service-card text-center">
+                        <i class="bi bi-house-door service-icon"></i>
+                        <h4>Konut & Villa İnşaatı</h4>
+                        <p class="text-secondary">Lüks konut komplekslerinden butik villa projelerine kadar modern yaşam alanları üretiyoruz.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="service-card text-center">
+                        <i class="bi bi-arrow-repeat service-icon"></i>
+                        <h4>Kentsel Dönüşüm</h4>
+                        <p class="text-secondary">Eski ve riskli yapılarınızı güncel deprem mevzuatına uygun, güvenli yapılara dönüştürüyoruz.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="service-card text-center">
+                        <i class="bi bi-briefcase service-icon"></i>
+                        <h4>Taahhüt & Projelendirme</h4>
+                        <p class="text-secondary">Ruhsat, statik ve mimari planlama dahil olmak üzere anahtar teslim taahhüt hizmeti veriyoruz.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= PROJELERİMİZ BÖLÜMÜ (FOTOĞRAF EKLEME ALANI) ================= -->
+    <section id="projeler" class="py-5">
+        <div class="container py-4">
+            <div class="text-center mb-4">
+                <h6 class="text-warning fw-bold text-uppercase">Portföyümüz</h6>
+                <h2 class="fw-bold">Hayata Geçirdiğimiz Projeler</h2>
+                <p class="text-secondary">Devam eden ve başarıyla teslim ettiğimiz projelerimizi filtreleyerek inceleyebilirsiniz.</p>
+            </div>
+
+            <!-- Filtre Butonları -->
+            <div class="d-flex justify-content-center flex-wrap mb-4">
+                <button class="filter-btn active" data-filter="all">Tüm Projeler</button>
+                <button class="filter-btn" data-filter="devam-eden">Devam Edenler</button>
+                <button class="filter-btn" data-filter="tamamlanan">Tamamlananlar</button>
+                <button class="filter-btn" data-filter="villa">Villa Projeleri</button>
+            </div>
+
+            <!-- Proje Listesi -->
+            <div class="row g-4" id="projectContainer">
+
+                <!-- Proje 1 (Tamamlanan) -->
+                <div class="col-lg-4 col-md-6 project-item" data-category="tamamlanan">
+                    <div class="project-card">
+                        <div class="project-img-wrapper">
+                            <!-- FOTOĞRAFI DEĞİŞTİRMEK İÇİN: src="images/proje1.jpg" YAPIN -->
+                            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800&auto=format&fit=crop" alt="Doğa Konakları">
+                            <span class="project-badge bg-success">Tamamlandı</span>
+                        </div>
+                        <div class="p-4 flex-grow-1 d-flex flex-direction-column justify-content-between">
+                            <div>
+                                <span class="text-muted small"><i class="bi bi-geo-alt me-1"></i>Kadıköy, İstanbul</span>
+                                <h4 class="mt-1 mb-2">Doğa Konakları</h4>
+                                <p class="text-secondary small">32 dairelik akıllı ev donanımlı butik site projesi.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Proje 2 (Devam Eden) -->
+                <div class="col-lg-4 col-md-6 project-item" data-category="devam-eden">
+                    <div class="project-card">
+                        <div class="project-img-wrapper">
+                            <!-- FOTOĞRAFI DEĞİŞTİRMEK İÇİN: src="images/proje2.jpg" YAPIN -->
+                            <img src="https://images.unsplash.com/photo-1541888946425-d0fbb186156f?q=80&w=800&auto=format&fit=crop" alt="Vadi Rezidans">
+                            <span class="project-badge bg-warning text-dark">Devam Ediyor</span>
+                        </div>
+                        <div class="p-4 flex-grow-1 d-flex flex-direction-column justify-content-between">
+                            <div>
+                                <span class="text-muted small"><i class="bi bi-geo-alt me-1"></i>Bornova, İzmir</span>
+                                <h4 class="mt-1 mb-2">Vadi Rezidans</h4>
+                                <p class="text-secondary small">Kaba inşaatı bitmiş, ince işçilik aşamasında olan lüks yaşam alanı.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Proje 3 (Villa) -->
+                <div class="col-lg-4 col-md-6 project-item" data-category="villa tamamlanan">
+                    <div class="project-card">
+                        <div class="project-img-wrapper">
+                            <!-- FOTOĞRAFI DEĞİŞTİRMEK İÇİN: src="images/proje3.jpg" YAPIN -->
+                            <img src="https://images.unsplash.com/photo-1613977257363-707ba9348227?q=80&w=800&auto=format&fit=crop" alt="Mavi Koy Villaları">
+                            <span class="project-badge bg-success">Tamamlandı</span>
+                        </div>
+                        <div class="p-4 flex-grow-1 d-flex flex-direction-column justify-content-between">
+                            <div>
+                                <span class="text-muted small"><i class="bi bi-geo-alt me-1"></i>Çeşme, İzmir</span>
+                                <h4 class="mt-1 mb-2">Mavi Koy Villaları</h4>
+                                <p class="text-secondary small">6 adet müstakil havuzlu lüks villa projesi.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- YENİ BİR PROJE EKLEMEK İÇİN YUKARIDAKİ BLOKLARDAN BİRİNİ KOPYALAYIP BURAYA YAPIŞTIRMANIZ YETERLİDİR -->
+
+            </div>
+        </div>
+    </section>
+
+    <!-- İletişim & Teklif Formu -->
+    <section id="iletisim" class="py-5 bg-light">
+        <div class="container py-4">
+            <div class="row g-5">
+                <div class="col-lg-5">
+                    <h6 class="text-warning fw-bold text-uppercase">Bize Ulaşın</h6>
+                    <h2 class="fw-bold mb-4">Projenizi Birlikte Planlayalım</h2>
+                    <p class="text-secondary mb-4">Arsanız mı var veya dairenizi yenilemek mi istiyorsunuz? Hemen bize mesaj bırakın, mühendislerimiz size dönsün.</p>
+                    
+                    <div class="d-flex mb-3">
+                        <i class="bi bi-geo-alt-fill text-warning fs-4 me-3"></i>
+                        <div>
+                            <h6 class="mb-0 fw-bold">Ofis Adresi</h6>
+                            <span class="text-secondary">Barbaros Bulvarı No: 124, Beşiktaş / İstanbul</span>
+                        </div>
+                    </div>
+                    <div class="d-flex mb-3">
+                        <i class="bi bi-telephone-fill text-warning fs-4 me-3"></i>
+                        <div>
+                            <h6 class="mb-0 fw-bold">Telefon</h6>
+                            <span class="text-secondary">+90 (212) 000 00 00 / +90 (500) 000 00 00</span>
+                        </div>
+                    </div>
+                    <div class="d-flex">
+                        <i class="bi bi-envelope-fill text-warning fs-4 me-3"></i>
+                        <div>
+                            <h6 class="mb-0 fw-bold">E-Posta</h6>
+                            <span class="text-secondary">info@zirveinsaat.com</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-7">
+                    <div class="card border-0 shadow-sm p-4 rounded-4">
+                        <!-- Formspree ID'nizi action kısmına yapıştırın (Ücretsizdir) -->
+                        <form action="https://formspree.io/f/ornek_id" method="POST">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="form-label fw-semibold">Adınız Soyadınız</label>
+                                    <input type="text" name="name" class="form-control" required placeholder="Adınız Soyadınız">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label fw-semibold">Telefon Numaranız</label>
+                                    <input type="tel" name="phone" class="form-control" required placeholder="05xx xxx xx xx">
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label fw-semibold">Talep Türü</label>
+                                    <select class="form-select" name="subject">
+                                        <option value="Kat Karsiligi Teklifi">Kat Karşılığı Teklifi</option>
+                                        <option value="Kentsel Donusum">Kentsel Dönüşüm</option>
+                                        <option value="Proje Bilgi Talebi">Proje Bilgi Talebi</option>
+                                        <option value="Diger">Diğer</option>
+                                    </select>
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label fw-semibold">Mesajınız / Notunuz</label>
+                                    <textarea class="form-control" name="message" rows="4" placeholder="Projeniz veya talebiniz hakkında kısa bilgi verin..."></textarea>
+                                </div>
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-warning fw-bold w-100 py-3 rounded-pill">Teklif Talebini İlet</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-light py-4 text-center">
+        <div class="container">
+            <p class="mb-0 small text-secondary">© 2026 Zirve İnşaat San. ve Tic. Ltd. Şti. Tüm Hakları Saklıdır.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Proje Filtreleme Scripti -->
+    <script>
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const projectItems = document.querySelectorAll('.project-item');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Aktif buton stilini değiştir
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                const filterValue = button.getAttribute('data-filter');
+
+                // Projeleri gizle/göster
+                projectItems.forEach(item => {
+                    const categories = item.getAttribute('data-category');
+                    if (filterValue === 'all' || categories.includes(filterValue)) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
