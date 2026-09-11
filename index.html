@@ -17,6 +17,15 @@
         body { font-family: 'Open Sans', sans-serif; color: #334155; }
         h1, h2, h3, h4, .navbar-brand { font-family: 'Montserrat', sans-serif; }
         
+        .text-theme { color: var(--primary) !important; }
+        .bg-theme { background-color: var(--primary) !important; color: #fff !important; }
+        .btn-theme { 
+            background-color: var(--primary) !important; 
+            border-color: var(--primary) !important; 
+            color: #fff !important; 
+        }
+        .btn-theme:hover { filter: brightness(0.9); }
+
         /* Navbar */
         .navbar { background: #ffffff; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
         .nav-link { font-weight: 600; color: var(--dark) !important; }
@@ -24,10 +33,11 @@
 
         /* Hero */
         .hero {
-            background: linear-gradient(rgba(15,23,42,0.8), rgba(15,23,42,0.85)), 
-                        url('https://images.unsplash.com/photo-1541888946425-d0fbb186156f?q=80&w=1920&auto=format&fit=crop') center/cover;
-            padding: 100px 0;
+            background-size: cover !important;
+            background-position: center !important;
+            padding: 120px 0;
             color: #fff;
+            position: relative;
         }
 
         /* Proje Kartları */
@@ -40,9 +50,34 @@
             height: 100%;
             display: flex;
             flex-direction: column;
+            cursor: pointer;
         }
-        .project-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
-        .project-img { width: 100%; height: 230px; object-fit: cover; }
+        .project-card:hover { transform: translateY(-6px); box-shadow: 0 12px 30px rgba(0,0,0,0.12); }
+        .project-img-box {
+            position: relative;
+            overflow: hidden;
+            height: 240px;
+        }
+        .project-img { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+            transition: transform 0.5s;
+        }
+        .project-card:hover .project-img {
+            transform: scale(1.06);
+        }
+        .photo-count-badge {
+            position: absolute;
+            bottom: 12px;
+            left: 12px;
+            background: rgba(15, 23, 42, 0.75);
+            color: #fff;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            backdrop-filter: blur(4px);
+        }
 
         /* Filtre Butonları */
         .filter-btn {
@@ -52,28 +87,63 @@
             border-radius: 20px;
             font-weight: 600;
             margin: 4px;
+            transition: 0.2s;
         }
-        .filter-btn.active, .filter-btn:hover { background: var(--primary); border-color: var(--primary); color: #fff; }
+        .filter-btn.active, .filter-btn:hover { 
+            background: var(--primary); 
+            border-color: var(--primary); 
+            color: #fff; 
+        }
 
-        /* WhatsApp Butonu */
+        /* WhatsApp */
         .wa-float {
             position: fixed; bottom: 25px; right: 25px; background: #25d366;
             color: #fff; width: 55px; height: 55px; border-radius: 50%;
             display: flex; align-items: center; justify-content: center; font-size: 28px;
             z-index: 999; text-decoration: none; box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
+
+        .color-preset-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: 2px solid #fff;
+            box-shadow: 0 0 5px rgba(0,0,0,0.2);
+            display: inline-block;
+            cursor: pointer;
+            margin-right: 8px;
+        }
+
+        /* Detay Modal Slider */
+        .detail-carousel-img {
+            width: 100%;
+            height: 440px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        .thumbnail-gallery img {
+            width: 70px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 6px;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+        .thumbnail-gallery img.active {
+            border-color: var(--primary);
+        }
     </style>
 </head>
 <body>
 
-    <!-- WhatsApp Butonu -->
+    <!-- WhatsApp -->
     <a id="waLink" href="#" target="_blank" class="wa-float" title="WhatsApp"><i class="bi bi-whatsapp"></i></a>
 
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg sticky-top">
         <div class="container">
             <a class="navbar-brand fw-bold" href="#">
-                <i class="bi bi-buildings-fill text-warning me-2"></i><span id="navCompanyName">ZİRVE İNŞAAT</span>
+                <i class="bi bi-buildings-fill text-theme me-2"></i><span id="navCompanyName">ZİRVE İNŞAAT</span>
             </a>
             <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nav"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="nav">
@@ -83,7 +153,7 @@
                     <li class="nav-item"><a class="nav-link" href="#iletisim">İletişim</a></li>
                     <li class="nav-item ms-lg-3">
                         <button class="btn btn-dark btn-sm rounded-pill px-3" data-bs-toggle="modal" data-bs-target="#loginModal">
-                            <i class="bi bi-shield-lock me-1"></i> Panel Girişi
+                            <i class="bi bi-sliders me-1"></i> Yönetim Paneli
                         </button>
                     </li>
                 </ul>
@@ -93,10 +163,10 @@
 
     <!-- Hero -->
     <section id="anasayfa" class="hero text-center">
-        <div class="container">
+        <div class="container position-relative" style="z-index: 2;">
             <h1 class="display-4 fw-bold mb-3" id="heroTitle">Sağlam Temeller, Güvenli Yapılar</h1>
             <p class="lead mb-4 text-light max-w-600 mx-auto" id="heroSubtitle">Müteahhitlik ve konut projelerinde estetik ve mühendislik disipliniyle hizmetinizdeyiz.</p>
-            <a href="#projeler" class="btn btn-warning btn-lg fw-bold rounded-pill px-4">Projeleri İncele</a>
+            <a href="#projeler" class="btn btn-theme btn-lg fw-bold rounded-pill px-4">Projeleri İncele</a>
         </div>
     </section>
 
@@ -104,8 +174,9 @@
     <section id="projeler" class="py-5 bg-light">
         <div class="container py-4">
             <div class="text-center mb-4">
-                <h6 class="text-warning fw-bold text-uppercase">Portföyümüz</h6>
+                <h6 class="text-theme fw-bold text-uppercase">Portföyümüz</h6>
                 <h2 class="fw-bold">Projelerimiz</h2>
+                <p class="text-muted">Projenin üzerine tıklayarak tüm fotoğrafları ve detayları inceleyebilirsiniz.</p>
             </div>
 
             <!-- Filtreler -->
@@ -117,7 +188,7 @@
 
             <!-- Dinamik Proje Kartları -->
             <div class="row g-4" id="projectList">
-                <!-- JS ile buraya yüklenecek -->
+                <!-- JS ile dolar -->
             </div>
         </div>
     </section>
@@ -128,19 +199,19 @@
             <div class="row g-4">
                 <div class="col-md-6">
                     <h3 class="fw-bold mb-3">İletişim Bilgileri</h3>
-                    <p class="text-muted">Projeniz hakkında teklif veya bilgi almak için bize ulaşabilirsiniz.</p>
-                    <p><i class="bi bi-telephone-fill text-warning me-2"></i> <span id="displayPhone">+90 (532) 000 00 00</span></p>
-                    <p><i class="bi bi-envelope-fill text-warning me-2"></i> <span id="displayEmail">info@sirketiniz.com</span></p>
-                    <p><i class="bi bi-geo-alt-fill text-warning me-2"></i> <span id="displayAddress">İzmir / Türkiye</span></p>
+                    <p class="text-muted">Projeniz hakkında bilgi almak veya yerinde inceleme talep etmek için bize ulaşabilirsiniz.</p>
+                    <p><i class="bi bi-telephone-fill text-theme me-2"></i> <span id="displayPhone">+90 (532) 000 00 00</span></p>
+                    <p><i class="bi bi-envelope-fill text-theme me-2"></i> <span id="displayEmail">info@zirveinsaat.com</span></p>
+                    <p><i class="bi bi-geo-alt-fill text-theme me-2"></i> <span id="displayAddress">İzmir / Türkiye</span></p>
                 </div>
                 <div class="col-md-6">
                     <div class="card p-4 border-0 shadow-sm rounded-4">
-                        <h5 class="fw-bold mb-3">Teklif Formu</h5>
+                        <h5 class="fw-bold mb-3">Teklif Talep Formu</h5>
                         <form action="https://formspree.io/f/ornek" method="POST">
                             <input type="text" class="form-control mb-2" placeholder="Adınız Soyadınız" required>
-                            <input type="tel" class="form-control mb-2" placeholder="Telefonunuz" required>
-                            <textarea class="form-control mb-3" rows="3" placeholder="Mesajınız..."></textarea>
-                            <button type="submit" class="btn btn-warning fw-bold w-100">Gönder</button>
+                            <input type="tel" class="form-control mb-2" placeholder="Telefon Numaranız" required>
+                            <textarea class="form-control mb-3" rows="3" placeholder="Projeniz veya arsanız hakkında kısa bilgi verin..."></textarea>
+                            <button type="submit" class="btn btn-theme fw-bold w-100">Talep Gönder</button>
                         </form>
                     </div>
                 </div>
@@ -153,9 +224,50 @@
         <p class="mb-0">© 2026 <span id="footerCompanyName">Zirve İnşaat</span>. Tüm hakları saklıdır.</p>
     </footer>
 
-    <!-- ================= MODALLER (GİRİŞ & YÖNETİCİ PANELİ) ================= -->
+    <!-- ================= MODALLER ================= -->
 
-    <!-- 1. Şifre Giriş Modalı -->
+    <!-- 1. PROJE DETAY & ÇOKLU FOTOĞRAF GALERİSİ MODALI -->
+    <div class="modal fade" id="projectDetailModal" tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content border-0 shadow-lg">
+                <div class="modal-header border-bottom-0 pb-0">
+                    <div>
+                        <span id="detailBadge" class="badge bg-success mb-1">Tamamlandı</span>
+                        <h4 class="modal-title fw-bold" id="detailTitle">Proje Başlığı</h4>
+                        <small class="text-muted"><i class="bi bi-geo-alt me-1"></i><span id="detailLocation">Konum</span></small>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Fotoğraf Carousel (Slider) -->
+                    <div id="projectCarousel" class="carousel slide mb-3" data-bs-ride="carousel">
+                        <div class="carousel-inner rounded-3" id="carouselInner">
+                            <!-- JS ile fotoğraflar buraya basılır -->
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#projectCarousel" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon"></span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#projectCarousel" data-bs-slide="next">
+                            <span class="carousel-control-next-icon"></span>
+                        </button>
+                    </div>
+
+                    <!-- Küçük Önizleme Resimleri (Thumbnail) -->
+                    <div class="d-flex gap-2 flex-wrap mb-4 thumbnail-gallery" id="thumbnailBox"></div>
+
+                    <h6 class="fw-bold">Proje Detayları & Özellikleri</h6>
+                    <p class="text-secondary" id="detailDescription" style="white-space: pre-line;">Proje açıklaması buraya gelecek.</p>
+                </div>
+                <div class="modal-footer border-top-0 pt-0">
+                    <a id="detailWhatsappBtn" href="#" target="_blank" class="btn btn-success fw-bold">
+                        <i class="bi bi-whatsapp me-1"></i> Bu Proje Hakkında Bilgi Al
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. Giriş Modalı -->
     <div class="modal fade" id="loginModal" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered modal-sm">
             <div class="modal-content">
@@ -164,40 +276,42 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
-                    <input type="password" id="adminPasswordInput" class="form-control mb-2" placeholder="Yönetici Şifresi">
+                    <input type="password" id="adminPasswordInput" class="form-control mb-2" placeholder="Şifrenizi Girin">
                     <small class="text-muted d-block mb-3">Varsayılan şifre: <strong>admin123</strong></small>
-                    <button class="btn btn-warning fw-bold w-100" onclick="checkAdminPassword()">Giriş Yap</button>
+                    <button class="btn btn-theme fw-bold w-100" onclick="checkAdminPassword()">Giriş Yap</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- 2. Yönetim Paneli Modalı -->
+    <!-- 3. Yönetim Paneli Modalı -->
     <div class="modal fade" id="adminPanelModal" tabindex="-1" data-bs-backdrop="static">
         <div class="modal-dialog modal-xl modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header bg-dark text-white">
-                    <h5 class="modal-title"><i class="bi bi-sliders me-2"></i>Firma & Proje Yönetim Paneli</h5>
+                    <h5 class="modal-title"><i class="bi bi-sliders me-2"></i>Site & Tasarım Yönetim Paneli</h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
                     <ul class="nav nav-tabs mb-4" id="adminTab">
                         <li class="nav-item">
-                            <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#tab-projects">Projeleri Yönet</button>
+                            <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#tab-projects"><i class="bi bi-building me-1"></i> Projeleri Yönet</button>
                         </li>
                         <li class="nav-item">
-                            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-info">Firma Bilgilerini Değiştir</button>
+                            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-design"><i class="bi bi-palette me-1"></i> Tasarım & Renkler</button>
+                        </li>
+                        <li class="nav-item">
+                            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-info"><i class="bi bi-info-circle me-1"></i> İletişim Bilgileri</button>
                         </li>
                     </ul>
 
                     <div class="tab-content">
-                        <!-- Sekme 1: Proje Ekle / Sil -->
+                        <!-- Sekme 1: Projeler & Çoklu Fotoğraf Ekleme -->
                         <div class="tab-pane fade show active" id="tab-projects">
                             <div class="row">
-                                <!-- Yeni Proje Ekle Formu -->
                                 <div class="col-lg-5 mb-4">
                                     <div class="card p-3 bg-light border-0">
-                                        <h6 class="fw-bold mb-3 text-warning"><i class="bi bi-plus-circle me-1"></i> Yeni Proje Ekle</h6>
+                                        <h6 class="fw-bold mb-3 text-theme"><i class="bi bi-plus-circle me-1"></i> Yeni Proje Ekle</h6>
                                         <div class="mb-2">
                                             <label class="form-label small fw-bold">Proje Adı</label>
                                             <input type="text" id="pTitle" class="form-control" placeholder="Örn: Güneş Konakları">
@@ -211,50 +325,93 @@
                                         </div>
                                         <div class="mb-2">
                                             <label class="form-label small fw-bold">Konum / Şehir</label>
-                                            <input type="text" id="pLocation" class="form-control" placeholder="Örn: Karşıyaka, İzmir">
+                                            <input type="text" id="pLocation" class="form-control" placeholder="Örn: Bornova, İzmir">
                                         </div>
                                         <div class="mb-2">
-                                            <label class="form-label small fw-bold">Kısa Açıklama</label>
-                                            <textarea id="pDesc" class="form-control" rows="2" placeholder="Örn: 24 dairelik modern yaşam kompleksi."></textarea>
+                                            <label class="form-label small fw-bold">Detaylı Açıklama (Oda sayısı, m2, teslim tarihi vb.)</label>
+                                            <textarea id="pDesc" class="form-control" rows="3" placeholder="Örn: 32 adet 3+1 ve 4+1 daire, akıllı ev altyapısı, kapalı otopark ve açık yüzme havuzu..."></textarea>
                                         </div>
                                         <div class="mb-3">
-                                            <label class="form-label small fw-bold">Proje Fotoğrafı</label>
-                                            <input type="file" id="pImageFile" class="form-control mb-1" accept="image/*">
-                                            <small class="text-muted">Veya doğrudan resim linki:</small>
-                                            <input type="url" id="pImageUrl" class="form-control mt-1" placeholder="https://...">
+                                            <label class="form-label small fw-bold">Çoklu Fotoğraf Yükle (Birden Fazla Seçebilirsiniz)</label>
+                                            <input type="file" id="pImageFiles" class="form-control mb-1" accept="image/*" multiple>
+                                            <small class="text-muted d-block mt-1">Veya Resim Linkleri (Virgülle ayırarak yazabilirsiniz):</small>
+                                            <textarea id="pImageUrl" class="form-control mt-1" rows="2" placeholder="https://link1.jpg, https://link2.jpg"></textarea>
                                         </div>
-                                        <button class="btn btn-warning fw-bold w-100" onclick="addNewProject()">Projeyi Kaydet</button>
+                                        <button class="btn btn-theme fw-bold w-100" onclick="addNewProject()">Projeyi ve Fotoğrafları Kaydet</button>
                                     </div>
                                 </div>
 
-                                <!-- Mevcut Projeler Listesi & Silme -->
                                 <div class="col-lg-7">
                                     <h6 class="fw-bold mb-3">Yayındaki Projeler (<span id="totalProjCount">0</span>)</h6>
                                     <div class="table-responsive">
                                         <table class="table table-bordered align-middle">
                                             <thead class="table-light">
                                                 <tr>
-                                                    <th>Görsel</th>
+                                                    <th>Kapak</th>
                                                     <th>Proje</th>
+                                                    <th>Fotoğraf</th>
                                                     <th>Durum</th>
                                                     <th>İşlem</th>
                                                 </tr>
                                             </thead>
-                                            <tbody id="adminProjectsTable">
-                                                <!-- JS ile dolar -->
-                                            </tbody>
+                                            <tbody id="adminProjectsTable"></tbody>
                                         </table>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Sekme 2: Firma Bilgileri Düzenleme -->
+                        <!-- Sekme 2: Tasarım & Renkler -->
+                        <div class="tab-pane fade" id="tab-design">
+                            <div class="row g-4">
+                                <div class="col-md-6">
+                                    <div class="card p-3 border-0 bg-light">
+                                        <h6 class="fw-bold mb-3"><i class="bi bi-paint-bucket me-1"></i> Ana Vurgu Rengi</h6>
+                                        <div class="d-flex align-items-center mb-3">
+                                            <input type="color" id="themeColorPicker" class="form-control form-control-color me-3" value="#f59e0b">
+                                            <span id="themeColorCode" class="fw-bold">#f59e0b</span>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label small fw-bold">Hızlı Renk Paleti:</label><br>
+                                            <span class="color-preset-btn" style="background:#f59e0b;" onclick="setThemePreset('#f59e0b')" title="İnşaat Sarısı"></span>
+                                            <span class="color-preset-btn" style="background:#0284c7;" onclick="setThemePreset('#0284c7')" title="Mühendislik Mavisi"></span>
+                                            <span class="color-preset-btn" style="background:#10b981;" onclick="setThemePreset('#10b981')" title="Eko Yeşil"></span>
+                                            <span class="color-preset-btn" style="background:#ea580c;" onclick="setThemePreset('#ea580c')" title="Tuğla Turuncusu"></span>
+                                            <span class="color-preset-btn" style="background:#6366f1;" onclick="setThemePreset('#6366f1')" title="Modern İndigo"></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="card p-3 border-0 bg-light">
+                                        <h6 class="fw-bold mb-3"><i class="bi bi-card-heading me-1"></i> Kapak Bölümü (Hero)</h6>
+                                        <div class="mb-2">
+                                            <label class="form-label small fw-bold">Ana Karşılama Başlığı</label>
+                                            <input type="text" id="setHeroTitle" class="form-control">
+                                        </div>
+                                        <div class="mb-2">
+                                            <label class="form-label small fw-bold">Alt Açıklama Metni</label>
+                                            <textarea id="setHeroSubtitle" class="form-control" rows="2"></textarea>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label small fw-bold">Kapak Fotoğrafı Yükle</label>
+                                            <input type="file" id="setHeroBgFile" class="form-control mb-1" accept="image/*">
+                                            <input type="url" id="setHeroBgUrl" class="form-control mt-1" placeholder="veya resim linki: https://...">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 text-end">
+                                    <button class="btn btn-success fw-bold px-4" onclick="saveDesignSettings()">Tasarım Değişikliklerini Kaydet</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Sekme 3: Firma Bilgileri -->
                         <div class="tab-pane fade" id="tab-info">
                             <div class="row justify-content-center">
                                 <div class="col-md-8">
                                     <div class="mb-3">
-                                        <label class="form-label fw-bold">Şirket / Firma Adı</label>
+                                        <label class="form-label fw-bold">Firma Adı</label>
                                         <input type="text" id="setCompanyName" class="form-control">
                                     </div>
                                     <div class="mb-3">
@@ -262,7 +419,7 @@
                                         <input type="text" id="setCompanyPhone" class="form-control">
                                     </div>
                                     <div class="mb-3">
-                                        <label class="form-label fw-bold">WhatsApp Numarası (Başında 0 olmadan, örn: 90532xxxxxxx)</label>
+                                        <label class="form-label fw-bold">WhatsApp Numarası (Başında 0 olmadan: örn. 90532xxxxxxx)</label>
                                         <input type="text" id="setCompanyWhatsapp" class="form-control">
                                     </div>
                                     <div class="mb-3">
@@ -273,7 +430,7 @@
                                         <label class="form-label fw-bold">Ofis Adresi</label>
                                         <input type="text" id="setCompanyAddress" class="form-control">
                                     </div>
-                                    <button class="btn btn-success fw-bold px-4" onclick="saveCompanyInfo()">Bilgileri Güncelle</button>
+                                    <button class="btn btn-success fw-bold px-4" onclick="saveCompanyInfo()">İletişim Bilgilerini Kaydet</button>
                                 </div>
                             </div>
                         </div>
@@ -287,30 +444,42 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
-        // Sabit Yönetici Şifresi (Buradan istediğiniz gibi değiştirebilirsiniz)
         const ADMIN_PASS = "admin123";
 
-        // Varsayılan Projeler
+        const defaultDesign = {
+            themeColor: "#f59e0b",
+            heroTitle: "Sağlam Temeller, Güvenli Yapılar",
+            heroSubtitle: "Müteahhitlik ve konut projelerinde estetik ve mühendislik disipliniyle hizmetinizdeyiz.",
+            heroBg: "https://images.unsplash.com/photo-1541888946425-d0fbb186156f?q=80&w=1920&auto=format&fit=crop"
+        };
+
+        // Örnek Çoklu Fotoğraflı Projeler
         const defaultProjects = [
             {
                 id: 1,
                 title: "Doğa Konakları",
                 status: "tamamlanan",
                 location: "Bornova, İzmir",
-                desc: "32 dairelik akıllı ev donanımlı site projesi.",
-                image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=600&auto=format&fit=crop"
+                desc: "32 dairelik akıllı ev donanımlı butik site projesi.\n\n• 3+1 ve 4+1 lüks daireler\n• 24 saat güvenlik & kapalı otopark\n• Yarı olimpik açık yüzme havuzu\n• Çocuk oyun alanları ve peyzaj alanları.",
+                images: [
+                    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1000&auto=format&fit=crop",
+                    "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=1000&auto=format&fit=crop",
+                    "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=1000&auto=format&fit=crop"
+                ]
             },
             {
                 id: 2,
                 title: "Vadi Rezidans",
                 status: "devam-eden",
                 location: "Karşıyaka, İzmir",
-                desc: "Kaba inşaatı tamamlanmış modern lüks konutlar.",
-                image: "https://images.unsplash.com/photo-1541888946425-d0fbb186156f?q=80&w=600&auto=format&fit=crop"
+                desc: "Kaba inşaatı tamamlanmış, ince işçilik aşamasındaki lüks konutlar.\n\n• Merkezi lokasyon, metroya 5 dakika\n• C35/40 sınıfı yüksek mukavemetli beton\n• Radye temel & deprem yönetmeliğine tam uyum.",
+                images: [
+                    "https://images.unsplash.com/photo-1541888946425-d0fbb186156f?q=80&w=1000&auto=format&fit=crop",
+                    "https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=1000&auto=format&fit=crop"
+                ]
             }
         ];
 
-        // Varsayılan Firma Bilgileri
         const defaultInfo = {
             name: "Zirve İnşaat",
             phone: "+90 (532) 000 00 00",
@@ -319,17 +488,64 @@
             address: "Mansuroğlu Mah. Ankara Cad. No:12 Bayraklı / İzmir"
         };
 
-        // Hafızadan çek veya varsayılanları yükle
+        let design = JSON.parse(localStorage.getItem('my_site_design')) || defaultDesign;
         let projects = JSON.parse(localStorage.getItem('my_projects')) || defaultProjects;
         let companyInfo = JSON.parse(localStorage.getItem('my_company_info')) || defaultInfo;
 
-        // Sayfa Yüklendiğinde Çalıştır
         window.onload = function() {
+            applyDesignSettings();
             renderProjects('all');
             renderCompanyInfo();
         };
 
-        // Bilgileri Ekrana Bas
+        function applyDesignSettings() {
+            document.documentElement.style.setProperty('--primary', design.themeColor);
+            document.getElementById('themeColorPicker').value = design.themeColor;
+            document.getElementById('themeColorCode').innerText = design.themeColor;
+
+            document.getElementById('heroTitle').innerText = design.heroTitle;
+            document.getElementById('heroSubtitle').innerText = design.heroSubtitle;
+            document.getElementById('anasayfa').style.background = `linear-gradient(rgba(15,23,42,0.8), rgba(15,23,42,0.85)), url('${design.heroBg}')`;
+
+            document.getElementById('setHeroTitle').value = design.heroTitle;
+            document.getElementById('setHeroSubtitle').value = design.heroSubtitle;
+            document.getElementById('setHeroBgUrl').value = design.heroBg.startsWith('data:') ? '' : design.heroBg;
+        }
+
+        function setThemePreset(color) {
+            document.getElementById('themeColorPicker').value = color;
+            document.getElementById('themeColorCode').innerText = color;
+        }
+
+        document.getElementById('themeColorPicker').addEventListener('input', function(e) {
+            document.getElementById('themeColorCode').innerText = e.target.value;
+        });
+
+        function saveDesignSettings() {
+            const color = document.getElementById('themeColorPicker').value;
+            const title = document.getElementById('setHeroTitle').value;
+            const subtitle = document.getElementById('setHeroSubtitle').value;
+            const bgFile = document.getElementById('setHeroBgFile');
+            const bgUrl = document.getElementById('setHeroBgUrl').value;
+
+            if (bgFile.files && bgFile.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    commitDesign(color, title, subtitle, e.target.result);
+                };
+                reader.readAsDataURL(bgFile.files[0]);
+            } else {
+                commitDesign(color, title, subtitle, bgUrl || design.heroBg);
+            }
+        }
+
+        function commitDesign(color, title, subtitle, bg) {
+            design = { themeColor: color, heroTitle: title, heroSubtitle: subtitle, heroBg: bg };
+            localStorage.setItem('my_site_design', JSON.stringify(design));
+            applyDesignSettings();
+            alert('Tasarım başarıyla güncellendi!');
+        }
+
         function renderCompanyInfo() {
             document.getElementById('navCompanyName').innerText = companyInfo.name;
             document.getElementById('footerCompanyName').innerText = companyInfo.name;
@@ -339,7 +555,6 @@
             document.getElementById('displayAddress').innerText = companyInfo.address;
             document.getElementById('waLink').href = `https://wa.me/${companyInfo.whatsapp}?text=Merhaba,%20bilgi%20almak%20istiyorum.`;
 
-            // Paneldeki inputları doldur
             document.getElementById('setCompanyName').value = companyInfo.name;
             document.getElementById('setCompanyPhone').value = companyInfo.phone;
             document.getElementById('setCompanyWhatsapp').value = companyInfo.whatsapp;
@@ -347,7 +562,7 @@
             document.getElementById('setCompanyAddress').value = companyInfo.address;
         }
 
-        // Projeleri Ekrana Bas
+        // Projeleri Listeleme
         function renderProjects(filter) {
             const container = document.getElementById('projectList');
             container.innerHTML = '';
@@ -355,27 +570,35 @@
             const filtered = filter === 'all' ? projects : projects.filter(p => p.status === filter);
 
             if (filtered.length === 0) {
-                container.innerHTML = '<div class="col-12 text-center text-muted py-5">Bu kategoride henüz proje eklenmemiş.</div>';
+                container.innerHTML = '<div class="col-12 text-center text-muted py-5">Bu alanda henüz proje bulunmuyor.</div>';
                 return;
             }
 
             filtered.forEach(p => {
                 const badge = p.status === 'tamamlanan' 
                     ? '<span class="badge bg-success position-absolute top-0 end-0 m-3">Tamamlandı</span>' 
-                    : '<span class="badge bg-warning text-dark position-absolute top-0 end-0 m-3">Devam Ediyor</span>';
+                    : '<span class="badge bg-theme position-absolute top-0 end-0 m-3">Devam Ediyor</span>';
+
+                // Kapak resmi olarak ilk resmi kullan
+                const coverImg = (p.images && p.images.length > 0) ? p.images[0] : (p.image || "https://images.unsplash.com/photo-1541888946425-d0fbb186156f?q=80&w=600");
+                const imgCount = (p.images && p.images.length > 0) ? p.images.length : 1;
 
                 container.innerHTML += `
                     <div class="col-lg-4 col-md-6">
-                        <div class="project-card">
-                            <div class="position-relative">
-                                <img src="${p.image}" class="project-img" alt="${p.title}">
+                        <div class="project-card" onclick="openProjectDetail(${p.id})">
+                            <div class="project-img-box">
+                                <img src="${coverImg}" class="project-img" alt="${p.title}">
                                 ${badge}
+                                <span class="photo-count-badge"><i class="bi bi-camera me-1"></i>${imgCount} Fotoğraf</span>
                             </div>
                             <div class="p-4 d-flex flex-column justify-content-between flex-grow-1">
                                 <div>
                                     <small class="text-muted"><i class="bi bi-geo-alt me-1"></i>${p.location}</small>
                                     <h5 class="fw-bold mt-1">${p.title}</h5>
-                                    <p class="text-secondary small">${p.desc}</p>
+                                    <p class="text-secondary small text-truncate-2">${p.desc.split('\n')[0]}</p>
+                                </div>
+                                <div class="mt-3">
+                                    <span class="text-theme fw-bold small">Detayları & Fotoğrafları İncele <i class="bi bi-arrow-right"></i></span>
                                 </div>
                             </div>
                         </div>
@@ -384,46 +607,101 @@
             });
         }
 
-        // Proje Filtreleme Tıklaması
+        // PROJE DETAY MODALINI AÇ
+        function openProjectDetail(id) {
+            const p = projects.find(item => item.id === id);
+            if (!p) return;
+
+            document.getElementById('detailTitle').innerText = p.title;
+            document.getElementById('detailLocation').innerText = p.location;
+            document.getElementById('detailDescription').innerText = p.desc;
+
+            const badge = document.getElementById('detailBadge');
+            if (p.status === 'tamamlanan') {
+                badge.innerText = "Tamamlandı";
+                badge.className = "badge bg-success mb-1";
+            } else {
+                badge.innerText = "Devam Ediyor";
+                badge.className = "badge bg-theme mb-1";
+            }
+
+            document.getElementById('detailWhatsappBtn').href = `https://wa.me/${companyInfo.whatsapp}?text=Merhaba,%20${encodeURIComponent(p.title)}%20projeniz%20hakkında%20bilgi%20almak%20istiyorum.`;
+
+            // Fotoğrafları Doldur
+            const imgList = (p.images && p.images.length > 0) ? p.images : [p.image];
+            const carouselInner = document.getElementById('carouselInner');
+            const thumbnailBox = document.getElementById('thumbnailBox');
+            carouselInner.innerHTML = '';
+            thumbnailBox.innerHTML = '';
+
+            imgList.forEach((src, idx) => {
+                // Carousel Item
+                carouselInner.innerHTML += `
+                    <div class="carousel-item ${idx === 0 ? 'active' : ''}">
+                        <img src="${src}" class="detail-carousel-img" alt="${p.title}">
+                    </div>
+                `;
+                // Thumbnail
+                thumbnailBox.innerHTML += `
+                    <img src="${src}" class="${idx === 0 ? 'active' : ''}" onclick="goToSlide(${idx})" id="thumb-${idx}">
+                `;
+            });
+
+            // Carousel Slide değiştiğinde thumbnail aktifliğini güncelle
+            const myCarousel = document.getElementById('projectCarousel');
+            myCarousel.addEventListener('slid.bs.carousel', function(e) {
+                document.querySelectorAll('.thumbnail-gallery img').forEach(img => img.classList.remove('active'));
+                const activeThumb = document.getElementById(`thumb-${e.to}`);
+                if (activeThumb) activeThumb.classList.add('active');
+            });
+
+            new bootstrap.Modal(document.getElementById('projectDetailModal')).show();
+        }
+
+        function goToSlide(index) {
+            const carouselEl = document.getElementById('projectCarousel');
+            const carousel = bootstrap.Carousel.getOrCreateInstance(carouselEl);
+            carousel.to(index);
+        }
+
         function filterProjects(cat, btn) {
             document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
             renderProjects(cat);
         }
 
-        // Şifre Kontrolü
+        // Panel Giriş
         function checkAdminPassword() {
             const pass = document.getElementById('adminPasswordInput').value;
             if (pass === ADMIN_PASS) {
-                // Giriş modalını kapat, paneli aç
-                const loginModal = bootstrap.Modal.getInstance(document.getElementById('loginModal'));
-                loginModal.hide();
+                bootstrap.Modal.getInstance(document.getElementById('loginModal')).hide();
                 document.getElementById('adminPasswordInput').value = '';
 
                 renderAdminTable();
-                const adminModal = new bootstrap.Modal(document.getElementById('adminPanelModal'));
-                adminModal.show();
+                new bootstrap.Modal(document.getElementById('adminPanelModal')).show();
             } else {
-                alert('Hatalı Şifre! Lütfen tekrar deneyin.');
+                alert('Hatalı Şifre!');
             }
         }
 
-        // Panel Tablosunu Doldur
         function renderAdminTable() {
             const tbody = document.getElementById('adminProjectsTable');
             document.getElementById('totalProjCount').innerText = projects.length;
             tbody.innerHTML = '';
 
             projects.forEach(p => {
+                const cover = (p.images && p.images.length > 0) ? p.images[0] : (p.image || '');
+                const count = (p.images && p.images.length > 0) ? p.images.length : 1;
                 tbody.innerHTML += `
                     <tr>
                         <td style="width: 70px;">
-                            <img src="${p.image}" style="width: 60px; height: 45px; object-fit: cover; border-radius: 4px;">
+                            <img src="${cover}" style="width: 60px; height: 45px; object-fit: cover; border-radius: 4px;">
                         </td>
                         <td>
                             <strong>${p.title}</strong><br>
                             <small class="text-muted">${p.location}</small>
                         </td>
+                        <td><span class="badge bg-secondary">${count} Adet</span></td>
                         <td>${p.status === 'tamamlanan' ? '<span class="text-success fw-bold">Tamamlandı</span>' : '<span class="text-warning fw-bold">Devam Ediyor</span>'}</td>
                         <td style="width: 80px;">
                             <button class="btn btn-outline-danger btn-sm" onclick="deleteProject(${p.id})"><i class="bi bi-trash"></i> Sil</button>
@@ -433,13 +711,13 @@
             });
         }
 
-        // Yeni Proje Ekle
+        // ÇOKLU FOTOĞRAFLI YENİ PROJE EKLE
         function addNewProject() {
             const title = document.getElementById('pTitle').value;
             const status = document.getElementById('pStatus').value;
             const location = document.getElementById('pLocation').value;
             const desc = document.getElementById('pDesc').value;
-            const fileInput = document.getElementById('pImageFile');
+            const fileInput = document.getElementById('pImageFiles');
             const urlInput = document.getElementById('pImageUrl').value;
 
             if (!title) {
@@ -447,45 +725,58 @@
                 return;
             }
 
-            // Fotoğraf kontrolü (Dosya yüklendiyse Base64'e çevirir, yoksa URL alır)
-            if (fileInput.files && fileInput.files[0]) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    saveProjectData(title, status, location, desc, e.target.result);
-                };
-                reader.readAsDataURL(fileInput.files[0]);
+            const uploadedImages = [];
+
+            // Dosya seçildiyse oku
+            if (fileInput.files && fileInput.files.length > 0) {
+                let loadedCount = 0;
+                const totalFiles = fileInput.files.length;
+
+                for (let i = 0; i < totalFiles; i++) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        uploadedImages.push(e.target.result);
+                        loadedCount++;
+                        if (loadedCount === totalFiles) {
+                            saveMultiProjectData(title, status, location, desc, uploadedImages);
+                        }
+                    };
+                    reader.readAsDataURL(fileInput.files[i]);
+                }
+            } else if (urlInput.trim() !== '') {
+                // Virgülle ayrılmış linkleri al
+                const urls = urlInput.split(',').map(u => u.trim()).filter(u => u !== '');
+                saveMultiProjectData(title, status, location, desc, urls);
             } else {
-                const img = urlInput || "https://images.unsplash.com/photo-1541888946425-d0fbb186156f?q=80&w=600";
-                saveProjectData(title, status, location, desc, img);
+                // Varsayılan resim
+                saveMultiProjectData(title, status, location, desc, ["https://images.unsplash.com/photo-1541888946425-d0fbb186156f?q=80&w=1000"]);
             }
         }
 
-        function saveProjectData(title, status, location, desc, image) {
-            const newProj = {
+        function saveMultiProjectData(title, status, location, desc, images) {
+            projects.unshift({
                 id: Date.now(),
                 title: title,
                 status: status,
                 location: location || "Türkiye",
                 desc: desc || "",
-                image: image
-            };
+                images: images
+            });
 
-            projects.unshift(newProj);
             localStorage.setItem('my_projects', JSON.stringify(projects));
-
-            // Formu temizle
+            
+            // Form Temizle
             document.getElementById('pTitle').value = '';
             document.getElementById('pLocation').value = '';
             document.getElementById('pDesc').value = '';
-            document.getElementById('pImageFile').value = '';
+            document.getElementById('pImageFiles').value = '';
             document.getElementById('pImageUrl').value = '';
 
             renderAdminTable();
             renderProjects('all');
-            alert('Proje başarıyla eklendi!');
+            alert('Proje ve fotoğraflar başarıyla yüklendi!');
         }
 
-        // Proje Sil
         function deleteProject(id) {
             if (confirm('Bu projeyi silmek istediğinize emin misiniz?')) {
                 projects = projects.filter(p => p.id !== id);
@@ -495,7 +786,6 @@
             }
         }
 
-        // Firma Bilgilerini Kaydet
         function saveCompanyInfo() {
             companyInfo = {
                 name: document.getElementById('setCompanyName').value,
@@ -507,7 +797,7 @@
 
             localStorage.setItem('my_company_info', JSON.stringify(companyInfo));
             renderCompanyInfo();
-            alert('Firma bilgileri başarıyla güncellendi!');
+            alert('İletişim bilgileri güncellendi!');
         }
     </script>
 </body>
