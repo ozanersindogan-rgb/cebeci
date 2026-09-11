@@ -91,18 +91,36 @@
         }
         .section-title span { color: var(--primary); font-weight: 300; }
 
-        /* Hero */
+        /* ================= AKICI ARKA PLAN SLIDER ALANI ================= */
         .hero {
             position: relative;
-            min-height: 85vh;
-            background-size: cover !important;
-            background-position: center !important;
+            min-height: 90vh;
             display: flex;
             align-items: center;
+            overflow: hidden;
+        }
+        .hero-slides-container {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 0;
+        }
+        .hero-slide-bg {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out, transform 8s ease-out;
+            transform: scale(1);
+        }
+        .hero-slide-bg.active {
+            opacity: 1;
+            transform: scale(1.05); /* Yavaşça yaklaşan sinematik mimari efekt */
         }
         .hero-overlay {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(180deg, rgba(18,21,27,0.7) 0%, rgba(18,21,27,0.95) 100%);
+            background: linear-gradient(180deg, rgba(18,21,27,0.72) 0%, rgba(18,21,27,0.95) 100%);
+            z-index: 1;
         }
         .button-light {
             font-family: 'Oswald', sans-serif;
@@ -118,6 +136,29 @@
             margin-top: 20px;
         }
         .button-light:hover { background: var(--primary); color: #000; }
+
+        /* Slider Sayfa Göstergeleri (Dots) */
+        .slider-dots {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            display: flex;
+            gap: 10px;
+        }
+        .slider-dot {
+            width: 32px;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.3);
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .slider-dot.active {
+            background: var(--primary);
+            width: 48px;
+        }
 
         /* Hakkımızda / 11+ Yıl Alanı */
         .states ul { list-style: none; padding: 0; margin: 25px 0 0 0; }
@@ -200,12 +241,12 @@
         .thumbnail-gallery img { width: 75px; height: 50px; object-fit: cover; border-radius: 3px; cursor: pointer; border: 2px solid transparent; opacity: 0.6; }
         .thumbnail-gallery img.active { border-color: var(--primary); opacity: 1; }
 
-        /* Panel Görsel */
-        .admin-img-preview-card { position: relative; display: inline-block; margin: 5px; border: 2px solid #334155; background: #000; border-radius: 4px; overflow: hidden; }
+        /* Panel Kartları */
+        .admin-img-preview-card { position: relative; display: inline-block; margin: 6px; border: 2px solid #334155; background: #000; border-radius: 4px; overflow: hidden; }
         .admin-img-preview-card.is-cover { border-color: var(--primary); }
-        .admin-img-preview-card img { width: 90px; height: 65px; object-fit: cover; }
-        .remove-single-photo-btn { position: absolute; top: 2px; right: 2px; background: #dc2626; color: #fff; border: none; width: 18px; height: 18px; border-radius: 50%; font-size: 10px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
-        .set-cover-btn { position: absolute; bottom: 2px; left: 50%; transform: translateX(-50%); background: #000; color: #fff; border: none; font-size: 9px; padding: 1px 4px; border-radius: 2px; cursor: pointer; white-space: nowrap; }
+        .admin-img-preview-card img { width: 110px; height: 75px; object-fit: cover; display: block; }
+        .remove-single-photo-btn { position: absolute; top: 3px; right: 3px; background: #dc2626; color: #fff; border: none; width: 20px; height: 20px; border-radius: 50%; font-size: 11px; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 2; }
+        .set-cover-btn { position: absolute; bottom: 3px; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.85); color: #fff; border: none; font-size: 9px; padding: 2px 6px; border-radius: 2px; cursor: pointer; white-space: nowrap; }
     </style>
 </head>
 <body>
@@ -244,9 +285,12 @@
         </div>
     </nav>
 
-    <!-- Header / Hero Bölümü -->
+    <!-- Header / Sürekli Değişen Akan Arka Planlı Hero -->
     <header id="anasayfa" class="hero">
+        <!-- Otomatik Değişen Arka Plan Katmanları -->
+        <div class="hero-slides-container" id="heroSlidesContainer"></div>
         <div class="hero-overlay"></div>
+
         <div class="container position-relative" style="z-index: 2; padding: 100px 0;">
             <div class="row">
                 <div class="col-lg-8 col-md-12">
@@ -257,6 +301,9 @@
                 </div>
             </div>
         </div>
+
+        <!-- Slider Çizgi Göstergeleri -->
+        <div class="slider-dots" id="sliderDotsContainer"></div>
     </header>
 
     <!-- Hakkımızda / Biz Kimiz -->
@@ -439,7 +486,7 @@
         </div>
     </section>
 
-    <!-- Orijinal Kodsis Formatlı Footer -->
+    <!-- Footer -->
     <footer class="footer">
         <div class="top">
             <div class="container position-relative" style="z-index: 2;">
@@ -529,7 +576,7 @@
         </div>
     </div>
 
-    <!-- Yönetim Paneli Modalı (Kodsis Entegreli) -->
+    <!-- Yönetim Paneli Modalı (Hero Slider Sekmesi Eklenmiş) -->
     <div class="modal fade" id="adminPanelModal" tabindex="-1" data-bs-backdrop="static">
         <div class="modal-dialog modal-xl modal-dialog-scrollable">
             <div class="modal-content">
@@ -540,22 +587,56 @@
                 <div class="modal-body">
                     <ul class="nav nav-tabs mb-4 border-secondary" id="adminTab">
                         <li class="nav-item">
-                            <button class="nav-link active bg-transparent text-light" data-bs-toggle="tab" data-bs-target="#tab-projects">Projeleri Yönet</button>
+                            <button class="nav-link active bg-transparent text-light" data-bs-toggle="tab" data-bs-target="#tab-slides"><i class="bi bi-images me-1"></i> Hero Slider (Akan Resimler)</button>
                         </li>
                         <li class="nav-item">
-                            <button class="nav-link bg-transparent text-light" data-bs-toggle="tab" data-bs-target="#tab-about">Hakkımızda (Biz Kimiz)</button>
+                            <button class="nav-link bg-transparent text-light" data-bs-toggle="tab" data-bs-target="#tab-projects"><i class="bi bi-building me-1"></i> Projeleri Yönet</button>
                         </li>
                         <li class="nav-item">
-                            <button class="nav-link bg-transparent text-light" data-bs-toggle="tab" data-bs-target="#tab-design">Header &amp; Logo</button>
+                            <button class="nav-link bg-transparent text-light" data-bs-toggle="tab" data-bs-target="#tab-about"><i class="bi bi-file-text me-1"></i> Hakkımızda (Biz Kimiz)</button>
                         </li>
                         <li class="nav-item">
-                            <button class="nav-link bg-transparent text-light" data-bs-toggle="tab" data-bs-target="#tab-info">İletişim &amp; Harita Konumu</button>
+                            <button class="nav-link bg-transparent text-light" data-bs-toggle="tab" data-bs-target="#tab-design"><i class="bi bi-type-h1 me-1"></i> Başlık &amp; Logo</button>
+                        </li>
+                        <li class="nav-item">
+                            <button class="nav-link bg-transparent text-light" data-bs-toggle="tab" data-bs-target="#tab-info"><i class="bi bi-geo-alt me-1"></i> İletişim &amp; Harita</button>
                         </li>
                     </ul>
 
                     <div class="tab-content">
-                        <!-- Projeler -->
-                        <div class="tab-pane fade show active" id="tab-projects">
+                        <!-- 1. HERO SLIDER (AKAN ARKA PLAN RESİMLERİ) -->
+                        <div class="tab-pane fade show active" id="tab-slides">
+                            <div class="p-4 rounded mb-4" style="background: #1c222b;">
+                                <h5 class="text-white mb-2 oswald-font"><i class="bi bi-collection-play text-warning me-2"></i>Arka Planda Akan Resimleri Yönet</h5>
+                                <p class="text-secondary small mb-3">Buraya ekleyeceğiniz tüm proje fotoğrafları anasayfanın arka planında otomatik ve kesintisiz olarak akar. İstemediğiniz resmin çarpısına basarak silebilirsiniz.</p>
+
+                                <div class="row g-3 align-items-end mb-4">
+                                    <div class="col-md-6">
+                                        <label class="form-label small fw-bold">Yeni Resimler Yükle (Çoklu Seçebilirsiniz)</label>
+                                        <input type="file" id="newSlideFiles" class="form-control bg-dark text-light border-secondary" accept="image/*" multiple>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="form-label small fw-bold">veya Resim URL Linki</label>
+                                        <input type="url" id="newSlideUrl" class="form-control bg-dark text-light border-secondary" placeholder="https://...">
+                                    </div>
+                                    <div class="col-md-2">
+                                        <button class="button-light w-100 text-center m-0" style="background: var(--primary); color:#000; border:none;" onclick="addSlideUrlAction()">Ekle</button>
+                                    </div>
+                                </div>
+
+                                <h6 class="text-white oswald-font mb-2">Şu Anda Sitede Akan Arka Plan Resimleri (<span id="totalSlideCount">0</span>)</h6>
+                                <div id="adminSlidesPreview" class="d-flex flex-wrap p-3 rounded bg-dark border border-secondary"></div>
+                                
+                                <div class="mt-3 text-end">
+                                    <button class="button-light px-4" style="background: var(--primary); color:#000; border:none;" onclick="saveSlidesAction()">
+                                        <i class="bi bi-cloud-upload me-1"></i> Slayt Listesini Buluta Kaydet
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 2. Projeler -->
+                        <div class="tab-pane fade" id="tab-projects">
                             <div class="row">
                                 <div class="col-lg-5 mb-4">
                                     <div class="p-3 rounded" style="background: #1c222b;">
@@ -617,7 +698,7 @@
                             </div>
                         </div>
 
-                        <!-- Hakkımızda -->
+                        <!-- 3. Hakkımızda -->
                         <div class="tab-pane fade" id="tab-about">
                             <div class="row justify-content-center">
                                 <div class="col-md-9">
@@ -645,7 +726,7 @@
                             </div>
                         </div>
 
-                        <!-- Header & Logo -->
+                        <!-- 4. Header & Logo -->
                         <div class="tab-pane fade" id="tab-design">
                             <div class="row g-4">
                                 <div class="col-md-6">
@@ -661,20 +742,18 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="p-3 rounded" style="background: #1c222b;">
-                                        <h6 class="fw-bold mb-3 text-white">Anasayfa Karşılama Alanı (Hero)</h6>
+                                        <h6 class="fw-bold mb-3 text-white">Giriş Alanı Yazıları (Hero)</h6>
                                         <input type="text" id="setHeroTitle" class="form-control bg-dark text-light border-secondary mb-2" placeholder="Giriş Başlığı">
-                                        <textarea id="setHeroSubtitle" class="form-control bg-dark text-light border-secondary mb-2" rows="2" placeholder="Giriş Açıklaması"></textarea>
-                                        <label class="form-label small">Arka Plan Fotoğrafı Yükle</label>
-                                        <input type="file" id="setHeroBgFile" class="form-control bg-dark text-light border-secondary" accept="image/*">
+                                        <textarea id="setHeroSubtitle" class="form-control bg-dark text-light border-secondary mb-2" rows="3" placeholder="Giriş Açıklaması"></textarea>
                                     </div>
                                 </div>
                                 <div class="col-12 text-end">
-                                    <button class="button-light px-4" style="background: var(--primary); color:#000; border:none;" onclick="saveDesignSettings()">Header Ayarlarını Kaydet</button>
+                                    <button class="button-light px-4" style="background: var(--primary); color:#000; border:none;" onclick="saveDesignSettings()">Başlık &amp; Logo Ayarlarını Kaydet</button>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- İletişim & Harita -->
+                        <!-- 5. İletişim & Harita -->
                         <div class="tab-pane fade" id="tab-info">
                             <div class="row justify-content-center">
                                 <div class="col-md-9">
@@ -723,7 +802,7 @@
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 
     <script>
-        // SİZİN FIREBASE BAĞLANTINIZ
+        // FIREBASE BAĞLANTISI
         const firebaseConfig = {
             apiKey: "AIzaSyCi7qiP0toVJP7hOW76tlbZX4VG3GPPs0M",
             authDomain: "cebeci-68ed8.firebaseapp.com",
@@ -739,11 +818,20 @@
 
         const ADMIN_PASS = "admin123";
 
+        // Varsayılan Akan Resimler Listesi (Kodsis Orijinal Görselleri)
+        let defaultHeroSlides = [
+            "https://cebeci.kodsis.com.tr/storage/28f96670-3422-40aa-b95d-01086cc4992f.jpeg",
+            "https://cebeci.kodsis.com.tr/storage/f865280a-cc59-4841-9f4a-d9753ac06feb.jpg",
+            "https://cebeci.kodsis.com.tr/storage/6d3033ce-3e80-4431-8abf-23668ee876d2.jpg",
+            "https://cebeci.kodsis.com.tr/storage/f1de9bc3-126d-40b0-b3a9-a1f18ddea69b.jpg",
+            "https://cebeci.kodsis.com.tr/storage/481b31a6-3f5e-481e-935d-6c8fe338accc.jpg"
+        ];
+
         let defaultDesign = {
             logo: "https://cebeci.kodsis.com.tr/storage/724d9af2-1def-49c7-b2c9-f0fbe42338ee.png",
             heroTitle: "Cebeci Royal Homes Davutlar",
             heroSubtitle: "Zarif çizgiler ve doğal dokuların uyumuyla şekillenen modern yaşam alanları. Doğru planlama, titiz işçilik ve güvenli yapılar.",
-            heroBg: "https://cebeci.kodsis.com.tr/storage/28f96670-3422-40aa-b95d-01086cc4992f.jpeg"
+            heroSlides: defaultHeroSlides
         };
 
         let defaultAbout = {
@@ -769,6 +857,10 @@
 
         let currentEditingPhotos = [];
         let currentCoverIndex = 0;
+
+        // Akan Slayt Değişkenleri
+        let currentSlideIndex = 0;
+        let slideInterval = null;
 
         // Görsel Optimize Edici (1MB Sınırını Korur)
         function compressImage(file, maxWidth = 1280, maxHeight = 720, quality = 0.7) {
@@ -806,12 +898,17 @@
                 if (doc.exists) {
                     const data = doc.data();
                     if (data.design) design = data.design;
+                    if (!design.heroSlides || design.heroSlides.length === 0) {
+                        design.heroSlides = defaultHeroSlides;
+                    }
                     if (data.about) about = data.about;
                     if (data.companyInfo) companyInfo = data.companyInfo;
                 }
                 applyDesignSettings();
+                initHeroSlider();
                 renderAbout();
                 renderCompanyInfo();
+                renderAdminSlidesList();
             });
 
             db.collection("projects").orderBy("updatedAt", "desc").onSnapshot(snapshot => {
@@ -824,6 +921,120 @@
             });
         }
 
+        // ================= AKICI SLIDER ÇALIŞMA MOTORU ================= //
+        function initHeroSlider() {
+            const container = document.getElementById('heroSlidesContainer');
+            const dotsContainer = document.getElementById('sliderDotsContainer');
+            const slides = (design.heroSlides && design.heroSlides.length > 0) ? design.heroSlides : defaultHeroSlides;
+
+            container.innerHTML = '';
+            dotsContainer.innerHTML = '';
+
+            slides.forEach((imgUrl, idx) => {
+                container.innerHTML += `
+                    <div class="hero-slide-bg ${idx === 0 ? 'active' : ''}" id="heroSlide-${idx}" style="background-image: url('${imgUrl}');"></div>
+                `;
+                dotsContainer.innerHTML += `
+                    <button type="button" class="slider-dot ${idx === 0 ? 'active' : ''}" onclick="goToHeroSlide(${idx})"></button>
+                `;
+            });
+
+            if (slideInterval) clearInterval(slideInterval);
+            currentSlideIndex = 0;
+
+            // Her 5 saniyede bir sonraki resme yumuşak geçiş yapar
+            slideInterval = setInterval(() => {
+                nextHeroSlide();
+            }, 5000);
+        }
+
+        function goToHeroSlide(index) {
+            const slides = (design.heroSlides && design.heroSlides.length > 0) ? design.heroSlides : defaultHeroSlides;
+            document.querySelectorAll('.hero-slide-bg').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.slider-dot').forEach(el => el.classList.remove('active'));
+
+            currentSlideIndex = index;
+            const targetSlide = document.getElementById(`heroSlide-${currentSlideIndex}`);
+            const dots = document.querySelectorAll('.slider-dot');
+
+            if (targetSlide) targetSlide.classList.add('active');
+            if (dots[currentSlideIndex]) dots[currentSlideIndex].classList.add('active');
+        }
+
+        function nextHeroSlide() {
+            const slides = (design.heroSlides && design.heroSlides.length > 0) ? design.heroSlides : defaultHeroSlides;
+            if (slides.length <= 1) return;
+            currentSlideIndex = (currentSlideIndex + 1) % slides.length;
+            goToHeroSlide(currentSlideIndex);
+        }
+
+        // ================= PANEL: SLİDER RESİMLERİ YÖNETİMİ ================= //
+        function renderAdminSlidesList() {
+            const container = document.getElementById('adminSlidesPreview');
+            const countTag = document.getElementById('totalSlideCount');
+            const slides = design.heroSlides || [];
+            countTag.innerText = slides.length;
+            container.innerHTML = '';
+
+            if (slides.length === 0) {
+                container.innerHTML = '<span class="text-muted small">Henüz slayt eklenmemiş. Yukarıdan ekleyebilirsiniz.</span>';
+                return;
+            }
+
+            slides.forEach((url, idx) => {
+                container.innerHTML += `
+                    <div class="admin-img-preview-card">
+                        <button type="button" class="remove-single-photo-btn" onclick="removeSlideByIndex(${idx})" title="Slayttan çıkar">
+                            <i class="bi bi-x"></i>
+                        </button>
+                        <img src="${url}">
+                        <div class="small text-center py-1 bg-black text-muted" style="font-size:10px;">Sıra: ${idx + 1}</div>
+                    </div>
+                `;
+            });
+        }
+
+        function removeSlideByIndex(idx) {
+            if (confirm("Bu fotoğrafı arka plan slaytından kaldırmak istiyor musunuz?")) {
+                design.heroSlides.splice(idx, 1);
+                renderAdminSlidesList();
+            }
+        }
+
+        function addSlideUrlAction() {
+            const urlInput = document.getElementById('newSlideUrl');
+            const val = urlInput.value.trim();
+            if (val) {
+                if (!design.heroSlides) design.heroSlides = [];
+                design.heroSlides.push(val);
+                urlInput.value = '';
+                renderAdminSlidesList();
+            }
+        }
+
+        document.getElementById('newSlideFiles').addEventListener('change', async function(e) {
+            if (e.target.files && e.target.files.length > 0) {
+                if (!design.heroSlides) design.heroSlides = [];
+                for (let i = 0; i < e.target.files.length; i++) {
+                    const compressed = await compressImage(e.target.files[i], 1920, 1080, 0.75);
+                    design.heroSlides.push(compressed);
+                }
+                renderAdminSlidesList();
+                e.target.value = '';
+            }
+        });
+
+        function saveSlidesAction() {
+            if (!design.heroSlides || design.heroSlides.length === 0) {
+                alert("Lütfen en az 1 adet slayt resmi bırakın.");
+                return;
+            }
+            syncGeneralDataToCloud();
+            initHeroSlider();
+            alert("Akan arka plan resimleri buluta kaydedildi ve anında yayına alındı!");
+        }
+
+        // ================= DİĞER ALANLAR ================= //
         function applyDesignSettings() {
             const logoWrapper = document.getElementById('navLogoWrapper');
             const previewBox = document.getElementById('currentLogoPreview');
@@ -837,8 +1048,6 @@
 
             document.getElementById('heroTitle').innerText = design.heroTitle;
             document.getElementById('heroSubtitle').innerText = design.heroSubtitle;
-            document.getElementById('anasayfa').style.background = `linear-gradient(180deg, rgba(18,21,27,0.7) 0%, rgba(18,21,27,0.95) 100%), url('${design.heroBg}') center/cover`;
-
             document.getElementById('setHeroTitle').value = design.heroTitle;
             document.getElementById('setHeroSubtitle').value = design.heroSubtitle;
         }
@@ -930,24 +1139,22 @@
         async function saveDesignSettings() {
             const title = document.getElementById('setHeroTitle').value;
             const subtitle = document.getElementById('setHeroSubtitle').value;
-            const bgFile = document.getElementById('setHeroBgFile');
             const logoFile = document.getElementById('siteLogoFile');
             const logoUrl = document.getElementById('siteLogoUrl').value;
 
-            let finalBg = design.heroBg;
             let finalLogo = logoUrl !== '' ? logoUrl : design.logo;
 
-            if (bgFile.files && bgFile.files[0]) {
-                finalBg = await compressImage(bgFile.files[0], 1920, 1080, 0.75);
-            }
             if (logoFile.files && logoFile.files[0]) {
                 finalLogo = await compressImage(logoFile.files[0], 400, 200, 0.85);
             }
 
-            design = { heroTitle: title, heroSubtitle: subtitle, heroBg: finalBg, logo: finalLogo };
+            design.heroTitle = title;
+            design.heroSubtitle = subtitle;
+            design.logo = finalLogo;
+
             applyDesignSettings();
             syncGeneralDataToCloud();
-            alert('Header ve Logo kaydedildi!');
+            alert('Başlık ve Logo güncellendi!');
         }
 
         function syncGeneralDataToCloud() {
@@ -974,7 +1181,7 @@
                                 <span class="text-warning small text-uppercase">2024</span>
                                 <h3 class="mt-1">Cebeci Royal Homes Davutlar</h3>
                                 <p class="text-secondary small">Modern mimari, konfor ve prestiji bir araya getiren ayrıcalıklı bir yaşam.</p>
-                                <button class="button-light mt-1" onclick="alert('Lütfen panelden ilk projenizi ekleyin veya düzenleyin.')">Projeyi İncele</button>
+                                <button class="button-light mt-1" onclick="alert('Lütfen panelden ilk projenizi ekleyin.')">Projeyi İncele</button>
                             </div>
                         </div>
                     </div>
@@ -1053,6 +1260,7 @@
                 bootstrap.Modal.getInstance(document.getElementById('loginModal')).hide();
                 document.getElementById('adminPasswordInput').value = '';
                 renderAdminTable();
+                renderAdminSlidesList();
                 new bootstrap.Modal(document.getElementById('adminPanelModal')).show();
             } else {
                 alert('Hatalı Şifre!');
