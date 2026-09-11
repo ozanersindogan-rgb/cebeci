@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="siteTitleTag">İnşaat & Taahhüt Firması</title>
+    <title id="siteTitleTag">Cebeci Yapı | İnşaat & Taahhüt</title>
     <!-- Fonts & CSS -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -167,7 +167,6 @@
             font-weight: bold;
             z-index: 2;
         }
-        /* Tekil Fotoğraf Silme Çarpı Butonu */
         .remove-single-photo-btn {
             position: absolute;
             top: 3px;
@@ -205,9 +204,6 @@
             white-space: nowrap;
             z-index: 2;
         }
-        .set-cover-btn:hover {
-            background: #000;
-        }
     </style>
 </head>
 <body>
@@ -220,7 +216,7 @@
         <div class="container">
             <a class="navbar-brand d-flex align-items-center" href="#">
                 <span id="navLogoWrapper"></span>
-                <span id="navCompanyName" class="fw-bold ms-2">ZİRVE İNŞAAT</span>
+                <span id="navCompanyName" class="fw-bold ms-2">CEBECİ YAPI</span>
             </a>
             <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nav"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="nav">
@@ -276,7 +272,7 @@
                     <h3 class="fw-bold mb-3">İletişim Bilgileri</h3>
                     <p class="text-muted">Projeniz hakkında bilgi almak veya yerinde inceleme talep etmek için bize ulaşabilirsiniz.</p>
                     <p><i class="bi bi-telephone-fill text-theme me-2"></i> <span id="displayPhone">+90 (532) 000 00 00</span></p>
-                    <p><i class="bi bi-envelope-fill text-theme me-2"></i> <span id="displayEmail">info@zirveinsaat.com</span></p>
+                    <p><i class="bi bi-envelope-fill text-theme me-2"></i> <span id="displayEmail">info@cebeciyapi.com</span></p>
                     <p><i class="bi bi-geo-alt-fill text-theme me-2"></i> <span id="displayAddress">İzmir / Türkiye</span></p>
                 </div>
                 <div class="col-md-6">
@@ -296,7 +292,7 @@
 
     <!-- Footer -->
     <footer class="bg-dark text-white py-3 text-center small">
-        <p class="mb-0">© 2026 <span id="footerCompanyName">Zirve İnşaat</span>. Tüm hakları saklıdır.</p>
+        <p class="mb-0">© 2026 <span id="footerCompanyName">Cebeci Yapı</span>. Tüm hakları saklıdır.</p>
     </footer>
 
     <!-- ================= MODALLER ================= -->
@@ -358,10 +354,22 @@
         <div class="modal-dialog modal-xl modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header bg-dark text-white">
-                    <h5 class="modal-title"><i class="bi bi-sliders me-2"></i>Site & Tasarım Yönetim Paneli</h5>
+                    <h5 class="modal-title"><i class="bi bi-sliders me-2"></i>Cebeci Yapı Yönetim Paneli</h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
+                    
+                    <!-- CANLIYA ALMA / GITHUB'A KAYDETME KUTUSU -->
+                    <div class="alert alert-warning d-flex justify-content-between align-items-center mb-4 shadow-sm border-warning">
+                        <div>
+                            <strong><i class="bi bi-cloud-arrow-up-fill me-1"></i> Değişiklikleri Herkes İçin Kalıcı Yap:</strong>
+                            <div class="small text-muted">Paneldeki düzenlemeleri bitirdikten sonra bu butona basıp GitHub'a yapıştırın.</div>
+                        </div>
+                        <button class="btn btn-dark fw-bold btn-sm text-nowrap px-3" onclick="exportSiteHTML()">
+                            <i class="bi bi-clipboard-check me-1"></i> Kodu Panoya Kopyala
+                        </button>
+                    </div>
+
                     <ul class="nav nav-tabs mb-4" id="adminTab">
                         <li class="nav-item">
                             <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#tab-projects"><i class="bi bi-building me-1"></i> Projeleri Yönet</button>
@@ -375,7 +383,7 @@
                     </ul>
 
                     <div class="tab-content">
-                        <!-- Projeleri Yönet (Ekle / Düzenle) -->
+                        <!-- Projeleri Yönet (Ekle / Düzenle / Sil) -->
                         <div class="tab-pane fade show active" id="tab-projects">
                             <div class="row">
                                 <div class="col-lg-5 mb-4">
@@ -389,7 +397,7 @@
                                         <input type="hidden" id="editingProjectId" value="">
                                         <div class="mb-2">
                                             <label class="form-label small fw-bold">Proje Adı</label>
-                                            <input type="text" id="pTitle" class="form-control" placeholder="Örn: Güneş Konakları">
+                                            <input type="text" id="pTitle" class="form-control" placeholder="Örn: Cebeci Park Evleri">
                                         </div>
                                         <div class="mb-2">
                                             <label class="form-label small fw-bold">Durumu</label>
@@ -404,15 +412,14 @@
                                         </div>
                                         <div class="mb-2">
                                             <label class="form-label small fw-bold">Detaylı Açıklama</label>
-                                            <textarea id="pDesc" class="form-control" rows="3" placeholder="Örn: 32 adet 3+1 daire..."></textarea>
+                                            <textarea id="pDesc" class="form-control" rows="3" placeholder="Örn: 24 dairelik modern yaşam alanı..."></textarea>
                                         </div>
                                         <div class="mb-2">
                                             <label class="form-label small fw-bold">Fotoğraf Yükle (Çoklu Seçebilirsiniz)</label>
                                             <input type="file" id="pImageFiles" class="form-control mb-1" accept="image/*" multiple>
-                                            <small class="text-muted d-block">Veya Resim Linkleri (Virgülle ayırın):</small>
                                             <div class="input-group mt-1">
-                                                <input type="url" id="pImageUrl" class="form-control form-control-sm" placeholder="https://resim-linki.jpg">
-                                                <button class="btn btn-secondary btn-sm" type="button" onclick="addUrlImage()">Linki Ekle</button>
+                                                <input type="url" id="pImageUrl" class="form-control form-control-sm" placeholder="veya görsel linki ekle: https://...">
+                                                <button class="btn btn-secondary btn-sm" type="button" onclick="addUrlImage()">Ekle</button>
                                             </div>
                                         </div>
 
@@ -420,7 +427,7 @@
                                         <div class="mb-3" id="photoSelectorArea" style="display:none;">
                                             <div class="d-flex justify-content-between align-items-center mb-1">
                                                 <label class="form-label small fw-bold text-success mb-0">
-                                                    <i class="bi bi-images me-1"></i> Yüklenen Fotoğraflar (<span id="previewPhotoCount">0</span>):
+                                                    <i class="bi bi-images me-1"></i> Fotoğraflar (<span id="previewPhotoCount">0</span>):
                                                 </label>
                                                 <small class="text-muted" style="font-size: 11px;">Çarpıdan silebilirsiniz</small>
                                             </div>
@@ -439,7 +446,7 @@
                                                 <tr>
                                                     <th>Kapak</th>
                                                     <th>Proje</th>
-                                                    <th>Fotoğraf</th>
+                                                    <th>Foto</th>
                                                     <th>Durum</th>
                                                     <th style="width: 140px;">İşlem</th>
                                                 </tr>
@@ -464,7 +471,7 @@
                                         <div class="mb-2">
                                             <label class="form-label small fw-bold">Logo Yükle (PNG / SVG / JPG)</label>
                                             <input type="file" id="siteLogoFile" class="form-control mb-1" accept="image/*">
-                                            <input type="url" id="siteLogoUrl" class="form-control mt-1" placeholder="veya görsel linki: https://...">
+                                            <input type="url" id="siteLogoUrl" class="form-control mt-1" placeholder="veya logo web linki: https://...">
                                         </div>
                                     </div>
 
@@ -521,7 +528,7 @@
                                         <input type="text" id="setCompanyPhone" class="form-control">
                                     </div>
                                     <div class="mb-3">
-                                        <label class="form-label fw-bold">WhatsApp Numarası (Başında 0 olmadan: örn. 90532xxxxxxx)</label>
+                                        <label class="form-label fw-bold">WhatsApp Numarası (Başında 0 olmadan: 905xxxxxxxxx)</label>
                                         <input type="text" id="setCompanyWhatsapp" class="form-control">
                                     </div>
                                     <div class="mb-3">
@@ -548,21 +555,22 @@
     <script>
         const ADMIN_PASS = "admin123";
 
-        const defaultDesign = {
+        // Varsayılan Ayarlar (Cebeci Yapı)
+        let defaultDesign = {
             logo: "",
             themeColor: "#f59e0b",
-            heroTitle: "Sağlam Temeller, Güvenli Yapılar",
+            heroTitle: "Cebeci Yapı ile Güvenli Gelecek",
             heroSubtitle: "Müteahhitlik ve konut projelerinde estetik ve mühendislik disipliniyle hizmetinizdeyiz.",
             heroBg: "https://images.unsplash.com/photo-1541888946425-d0fbb186156f?q=80&w=1920&auto=format&fit=crop"
         };
 
-        const defaultProjects = [
+        let defaultProjects = [
             {
                 id: 1,
-                title: "Doğa Konakları",
+                title: "Cebeci Park Evleri",
                 status: "tamamlanan",
                 location: "Bornova, İzmir",
-                desc: "32 dairelik akıllı ev donanımlı butik site projesi.\n\n• 3+1 ve 4+1 lüks daireler\n• 24 saat güvenlik & kapalı otopark\n• Yarı olimpik açık yüzme havuzu.",
+                desc: "32 dairelik akıllı ev donanımlı butik site projesi.\n\n• 3+1 ve 4+1 lüks daireler\n• 24 saat güvenlik & kapalı otopark\n• Yarı olimpik yüzme havuzu.",
                 coverIndex: 0,
                 images: [
                     "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1000&auto=format&fit=crop",
@@ -572,7 +580,7 @@
             },
             {
                 id: 2,
-                title: "Vadi Rezidans",
+                title: "Cebeci Rezidans",
                 status: "devam-eden",
                 location: "Karşıyaka, İzmir",
                 desc: "Kaba inşaatı tamamlanmış, ince işçilik aşamasındaki lüks konutlar.\n\n• Merkezi lokasyon, metroya 5 dakika\n• C35/40 yüksek mukavemetli beton.",
@@ -584,19 +592,18 @@
             }
         ];
 
-        const defaultInfo = {
-            name: "Zirve İnşaat",
+        let defaultInfo = {
+            name: "Cebeci Yapı",
             phone: "+90 (532) 000 00 00",
             whatsapp: "905320000000",
-            email: "info@zirveinsaat.com",
-            address: "Mansuroğlu Mah. Ankara Cad. No:12 Bayraklı / İzmir"
+            email: "info@cebeciyapi.com",
+            address: "İzmir / Türkiye"
         };
 
         let design = JSON.parse(localStorage.getItem('my_site_design')) || defaultDesign;
         let projects = JSON.parse(localStorage.getItem('my_projects')) || defaultProjects;
         let companyInfo = JSON.parse(localStorage.getItem('my_company_info')) || defaultInfo;
 
-        // Proje formunda geçici olarak listelenen fotoğraflar
         let currentEditingPhotos = [];
         let currentCoverIndex = 0;
 
@@ -888,8 +895,6 @@
             document.getElementById('photoSelectorArea').style.display = 'none';
         }
 
-        // ================= FOTOĞRAF ÖNİZLEME & TEKİL SİLME ================= //
-
         function renderPhotoCoverPicker() {
             const container = document.getElementById('projectPhotosPreview');
             const wrapper = document.getElementById('photoSelectorArea');
@@ -904,7 +909,6 @@
             countTag.innerText = currentEditingPhotos.length;
             container.innerHTML = '';
 
-            // Kapak indexi sınır dışına çıkarsa sıfırla
             if (currentCoverIndex >= currentEditingPhotos.length) {
                 currentCoverIndex = 0;
             }
@@ -913,14 +917,11 @@
                 const isCover = idx === currentCoverIndex;
                 container.innerHTML += `
                     <div class="admin-img-preview-card ${isCover ? 'is-cover' : ''}">
-                        <!-- Tekil Fotoğrafı Silme Çarpı Butonu -->
-                        <button type="button" class="remove-single-photo-btn" onclick="removeSinglePhoto(${idx})" title="Bu fotoğrafı sil">
+                        <button type="button" class="remove-single-photo-btn" onclick="removeSinglePhoto(${idx})" title="Fotoğrafı sil">
                             <i class="bi bi-x-lg"></i>
                         </button>
-                        
                         <img src="${src}">
                         ${isCover ? '<span class="cover-badge"><i class="bi bi-check"></i> Kapak</span>' : ''}
-                        
                         <button type="button" class="set-cover-btn" onclick="selectCoverPhoto(${idx})">
                             ${isCover ? 'Seçili Kapak' : 'Kapak Yap'}
                         </button>
@@ -929,17 +930,13 @@
             });
         }
 
-        // Tek bir fotoğrafı diziden çıkarma fonksiyonu
         function removeSinglePhoto(idx) {
             currentEditingPhotos.splice(idx, 1);
-
-            // Eğer silinen fotoğraf kapaksa veya kapak indeksi kaydıysa düzelt
             if (currentCoverIndex === idx) {
                 currentCoverIndex = 0;
             } else if (currentCoverIndex > idx) {
                 currentCoverIndex--;
             }
-
             renderPhotoCoverPicker();
         }
 
@@ -948,7 +945,6 @@
             renderPhotoCoverPicker();
         }
 
-        // Dosya Seçilince Listeye Ekle
         document.getElementById('pImageFiles').addEventListener('change', function(e) {
             if (e.target.files && e.target.files.length > 0) {
                 let count = 0;
@@ -967,7 +963,6 @@
             }
         });
 
-        // Link ile resim ekleme
         function addUrlImage() {
             const urlInput = document.getElementById('pImageUrl');
             const val = urlInput.value.trim();
@@ -978,7 +973,6 @@
             }
         }
 
-        // PROJEYİ KAYDET / GÜNCELLE
         function saveProjectAction() {
             const title = document.getElementById('pTitle').value;
             const status = document.getElementById('pStatus').value;
@@ -1046,6 +1040,27 @@
             localStorage.setItem('my_company_info', JSON.stringify(companyInfo));
             renderCompanyInfo();
             alert('İletişim bilgileri kaydedildi!');
+        }
+
+        // ================= CANLIYA ALMA / GITHUB'A KALICI AKTARMA ================= //
+        function exportSiteHTML() {
+            let fullHTML = document.documentElement.outerHTML;
+
+            const currentDesignStr = JSON.stringify(design, null, 4);
+            const currentProjectsStr = JSON.stringify(projects, null, 4);
+            const currentInfoStr = JSON.stringify(companyInfo, null, 4);
+
+            fullHTML = fullHTML.replace(/let defaultDesign = [\s\S]*?};/, `let defaultDesign = ${currentDesignStr};`);
+            fullHTML = fullHTML.replace(/let defaultProjects = [\s\S]*?];/, `let defaultProjects = ${currentProjectsStr};`);
+            fullHTML = fullHTML.replace(/let defaultInfo = [\s\S]*?};/, `let defaultInfo = ${currentInfoStr};`);
+
+            const cleanCode = "<!DOCTYPE html>\n<html lang=\"tr\">\n" + fullHTML + "\n</html>";
+
+            navigator.clipboard.writeText(cleanCode).then(() => {
+                alert("KOD KOPYALANDI!\n\nŞimdi GitHub'a gidin:\n1. index.html dosyasını açın ve düzenleme (kalem) butonuna basın.\n2. İçindekilerin tümünü silin (Ctrl + A ve Delete).\n3. Kopyalanan kodu yapıştırın (Ctrl + V) ve 'Commit changes' yapın.\n\nArtık linki kime atarsanız atın Cebeci Yapı olarak açılacaktır.");
+            }).catch(err => {
+                alert("Kopyalanamadı, lütfen tarayıcınızın panoya erişim iznini kontrol edin.");
+            });
         }
     </script>
 </body>
