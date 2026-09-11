@@ -134,49 +134,79 @@
             border-color: var(--primary);
         }
 
-        /* Panel Fotoğraf Listesi & Kapak Seçici */
+        /* Panel Fotoğraf Listesi & Kapak / Silme Butonları */
         .admin-img-preview-card {
             position: relative;
             display: inline-block;
-            margin: 5px;
-            border-radius: 6px;
+            margin: 6px;
+            border-radius: 8px;
             overflow: hidden;
             border: 2px solid #cbd5e1;
+            background: #000;
         }
         .admin-img-preview-card.is-cover {
             border-color: #10b981;
             box-shadow: 0 0 0 2px #10b981;
         }
         .admin-img-preview-card img {
-            width: 85px;
-            height: 60px;
+            width: 95px;
+            height: 70px;
             object-fit: cover;
             display: block;
+            opacity: 0.95;
         }
         .cover-badge {
             position: absolute;
-            top: 2px;
-            left: 2px;
+            top: 4px;
+            left: 4px;
             background: #10b981;
             color: #fff;
             font-size: 9px;
             padding: 2px 5px;
             border-radius: 4px;
             font-weight: bold;
+            z-index: 2;
+        }
+        /* Tekil Fotoğraf Silme Çarpı Butonu */
+        .remove-single-photo-btn {
+            position: absolute;
+            top: 3px;
+            right: 3px;
+            background: rgba(239, 68, 68, 0.9);
+            color: #fff;
+            border: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            cursor: pointer;
+            z-index: 3;
+            transition: transform 0.2s, background 0.2s;
+        }
+        .remove-single-photo-btn:hover {
+            background: #dc2626;
+            transform: scale(1.15);
         }
         .set-cover-btn {
             position: absolute;
-            bottom: 2px;
+            bottom: 3px;
             left: 50%;
             transform: translateX(-50%);
-            background: rgba(0,0,0,0.7);
+            background: rgba(15, 23, 42, 0.85);
             color: #fff;
             border: none;
-            font-size: 9px;
-            padding: 2px 4px;
-            border-radius: 3px;
+            font-size: 10px;
+            padding: 2px 6px;
+            border-radius: 4px;
             cursor: pointer;
             white-space: nowrap;
+            z-index: 2;
+        }
+        .set-cover-btn:hover {
+            background: #000;
         }
     </style>
 </head>
@@ -377,17 +407,23 @@
                                             <textarea id="pDesc" class="form-control" rows="3" placeholder="Örn: 32 adet 3+1 daire..."></textarea>
                                         </div>
                                         <div class="mb-2">
-                                            <label class="form-label small fw-bold">Yeni Fotoğraflar Ekle (Çoklu Seçilebilir)</label>
+                                            <label class="form-label small fw-bold">Fotoğraf Yükle (Çoklu Seçebilirsiniz)</label>
                                             <input type="file" id="pImageFiles" class="form-control mb-1" accept="image/*" multiple>
                                             <small class="text-muted d-block">Veya Resim Linkleri (Virgülle ayırın):</small>
-                                            <textarea id="pImageUrl" class="form-control mt-1" rows="1" placeholder="https://link1.jpg, https://link2.jpg"></textarea>
+                                            <div class="input-group mt-1">
+                                                <input type="url" id="pImageUrl" class="form-control form-control-sm" placeholder="https://resim-linki.jpg">
+                                                <button class="btn btn-secondary btn-sm" type="button" onclick="addUrlImage()">Linki Ekle</button>
+                                            </div>
                                         </div>
 
-                                        <!-- Kapak Fotoğrafı Seçme & Önizleme Kutusu -->
+                                        <!-- Kapak Seçimi ve Tekil Fotoğraf Silme Alanı -->
                                         <div class="mb-3" id="photoSelectorArea" style="display:none;">
-                                            <label class="form-label small fw-bold text-success d-block">
-                                                <i class="bi bi-star-fill me-1"></i> Kapak Fotoğrafı Belirleyin:
-                                            </label>
+                                            <div class="d-flex justify-content-between align-items-center mb-1">
+                                                <label class="form-label small fw-bold text-success mb-0">
+                                                    <i class="bi bi-images me-1"></i> Yüklenen Fotoğraflar (<span id="previewPhotoCount">0</span>):
+                                                </label>
+                                                <small class="text-muted" style="font-size: 11px;">Çarpıdan silebilirsiniz</small>
+                                            </div>
                                             <div id="projectPhotosPreview" class="d-flex flex-wrap p-2 bg-white border rounded"></div>
                                         </div>
 
@@ -419,24 +455,19 @@
                         <div class="tab-pane fade" id="tab-design">
                             <div class="row g-4">
                                 <div class="col-md-6">
-                                    <!-- Logo Değiştirme Kutusu -->
                                     <div class="card p-3 border-0 bg-light mb-3">
-                                        <h6 class="fw-bold mb-3"><i class="bi bi-image me-1"></i> Şirket Logosu Değiştirme</h6>
+                                        <h6 class="fw-bold mb-3"><i class="bi bi-image me-1"></i> Şirket Logosu</h6>
                                         <div class="d-flex align-items-center mb-3">
-                                            <div id="currentLogoPreview" class="p-2 bg-white border rounded me-3 text-center" style="min-width: 90px; min-height: 50px;">
-                                                <!-- Logo Önizleme -->
-                                            </div>
-                                            <button class="btn btn-sm btn-outline-danger" onclick="removeLogo()">Logoyu Kaldır (Yazıya Dön)</button>
+                                            <div id="currentLogoPreview" class="p-2 bg-white border rounded me-3 text-center" style="min-width: 90px; min-height: 50px;"></div>
+                                            <button class="btn btn-sm btn-outline-danger" onclick="removeLogo()">Logoyu Kaldır</button>
                                         </div>
                                         <div class="mb-2">
                                             <label class="form-label small fw-bold">Logo Yükle (PNG / SVG / JPG)</label>
                                             <input type="file" id="siteLogoFile" class="form-control mb-1" accept="image/*">
-                                            <small class="text-muted">Veya doğrudan logo görsel linki:</small>
-                                            <input type="url" id="siteLogoUrl" class="form-control mt-1" placeholder="https://.../logo.png">
+                                            <input type="url" id="siteLogoUrl" class="form-control mt-1" placeholder="veya görsel linki: https://...">
                                         </div>
                                     </div>
 
-                                    <!-- Vurgu Rengi -->
                                     <div class="card p-3 border-0 bg-light">
                                         <h6 class="fw-bold mb-3"><i class="bi bi-paint-bucket me-1"></i> Ana Vurgu Rengi</h6>
                                         <div class="d-flex align-items-center mb-3">
@@ -518,7 +549,7 @@
         const ADMIN_PASS = "admin123";
 
         const defaultDesign = {
-            logo: "", // Varsayılan olarak logo yok, ikon + metin
+            logo: "",
             themeColor: "#f59e0b",
             heroTitle: "Sağlam Temeller, Güvenli Yapılar",
             heroSubtitle: "Müteahhitlik ve konut projelerinde estetik ve mühendislik disipliniyle hizmetinizdeyiz.",
@@ -565,7 +596,7 @@
         let projects = JSON.parse(localStorage.getItem('my_projects')) || defaultProjects;
         let companyInfo = JSON.parse(localStorage.getItem('my_company_info')) || defaultInfo;
 
-        // Düzenleme anında geçici tutulan fotoğraflar
+        // Proje formunda geçici olarak listelenen fotoğraflar
         let currentEditingPhotos = [];
         let currentCoverIndex = 0;
 
@@ -580,7 +611,6 @@
             document.getElementById('themeColorPicker').value = design.themeColor;
             document.getElementById('themeColorCode').innerText = design.themeColor;
 
-            // Logo Kontrolü
             const logoWrapper = document.getElementById('navLogoWrapper');
             const previewBox = document.getElementById('currentLogoPreview');
             if (design.logo && design.logo.trim() !== '') {
@@ -613,7 +643,7 @@
         function removeLogo() {
             design.logo = "";
             applyDesignSettings();
-            alert('Logo kaldırıldı, metin ve ikon görünümüne dönüldü.');
+            alert('Logo kaldırıldı.');
         }
 
         function saveDesignSettings() {
@@ -625,7 +655,6 @@
             const logoFile = document.getElementById('siteLogoFile');
             const logoUrl = document.getElementById('siteLogoUrl').value;
 
-            // Arka Plan ve Logo Dosyalarını Oku
             const handleBg = new Promise(resolve => {
                 if (bgFile.files && bgFile.files[0]) {
                     const r = new FileReader();
@@ -656,7 +685,7 @@
                 };
                 localStorage.setItem('my_site_design', JSON.stringify(design));
                 applyDesignSettings();
-                alert('Logo ve tasarım ayarları kaydedildi!');
+                alert('Tasarım ayarları kaydedildi!');
             });
         }
 
@@ -676,7 +705,6 @@
             document.getElementById('setCompanyAddress').value = companyInfo.address;
         }
 
-        // Projeleri Ana Sayfada Listele
         function renderProjects(filter) {
             const container = document.getElementById('projectList');
             container.innerHTML = '';
@@ -693,7 +721,6 @@
                     ? '<span class="badge bg-success position-absolute top-0 end-0 m-3">Tamamlandı</span>' 
                     : '<span class="badge bg-theme position-absolute top-0 end-0 m-3">Devam Ediyor</span>';
 
-                // Seçili kapak fotoğrafını al (yoksa 0. indeks)
                 const cIdx = p.coverIndex || 0;
                 const coverImg = (p.images && p.images[cIdx]) ? p.images[cIdx] : (p.images && p.images[0] ? p.images[0] : "https://images.unsplash.com/photo-1541888946425-d0fbb186156f?q=80&w=600");
                 const imgCount = (p.images && p.images.length > 0) ? p.images.length : 1;
@@ -722,7 +749,6 @@
             });
         }
 
-        // Proje Detay Pop-up'ı
         function openProjectDetail(id) {
             const p = projects.find(item => item.id === id);
             if (!p) return;
@@ -742,13 +768,12 @@
 
             document.getElementById('detailWhatsappBtn').href = `https://wa.me/${companyInfo.whatsapp}?text=Merhaba,%20${encodeURIComponent(p.title)}%20projeniz%20hakkında%20bilgi%20almak%20istiyorum.`;
 
-            const imgList = (p.images && p.images.length > 0) ? p.images : [p.image];
+            const imgList = (p.images && p.images.length > 0) ? p.images : ["https://images.unsplash.com/photo-1541888946425-d0fbb186156f?q=80&w=600"];
             const carouselInner = document.getElementById('carouselInner');
             const thumbnailBox = document.getElementById('thumbnailBox');
             carouselInner.innerHTML = '';
             thumbnailBox.innerHTML = '';
 
-            // Kapak fotoğrafı ilk sırada açılsın
             const startIdx = p.coverIndex || 0;
 
             imgList.forEach((src, idx) => {
@@ -783,7 +808,6 @@
             renderProjects(cat);
         }
 
-        // Giriş Kontrolü
         function checkAdminPassword() {
             const pass = document.getElementById('adminPasswordInput').value;
             if (pass === ADMIN_PASS) {
@@ -797,7 +821,6 @@
             }
         }
 
-        // Panel Tablosu (Düzenle ve Sil Butonları)
         function renderAdminTable() {
             const tbody = document.getElementById('adminProjectsTable');
             document.getElementById('totalProjCount').innerText = projects.length;
@@ -827,7 +850,6 @@
             });
         }
 
-        // PROJE DÜZENLEME MODU
         function startEditProject(id) {
             const p = projects.find(item => item.id === id);
             if (!p) return;
@@ -866,10 +888,12 @@
             document.getElementById('photoSelectorArea').style.display = 'none';
         }
 
-        // Kapak Seçiciyi Çiz
+        // ================= FOTOĞRAF ÖNİZLEME & TEKİL SİLME ================= //
+
         function renderPhotoCoverPicker() {
             const container = document.getElementById('projectPhotosPreview');
             const wrapper = document.getElementById('photoSelectorArea');
+            const countTag = document.getElementById('previewPhotoCount');
 
             if (currentEditingPhotos.length === 0) {
                 wrapper.style.display = 'none';
@@ -877,14 +901,26 @@
             }
 
             wrapper.style.display = 'block';
+            countTag.innerText = currentEditingPhotos.length;
             container.innerHTML = '';
+
+            // Kapak indexi sınır dışına çıkarsa sıfırla
+            if (currentCoverIndex >= currentEditingPhotos.length) {
+                currentCoverIndex = 0;
+            }
 
             currentEditingPhotos.forEach((src, idx) => {
                 const isCover = idx === currentCoverIndex;
                 container.innerHTML += `
                     <div class="admin-img-preview-card ${isCover ? 'is-cover' : ''}">
+                        <!-- Tekil Fotoğrafı Silme Çarpı Butonu -->
+                        <button type="button" class="remove-single-photo-btn" onclick="removeSinglePhoto(${idx})" title="Bu fotoğrafı sil">
+                            <i class="bi bi-x-lg"></i>
+                        </button>
+                        
                         <img src="${src}">
                         ${isCover ? '<span class="cover-badge"><i class="bi bi-check"></i> Kapak</span>' : ''}
+                        
                         <button type="button" class="set-cover-btn" onclick="selectCoverPhoto(${idx})">
                             ${isCover ? 'Seçili Kapak' : 'Kapak Yap'}
                         </button>
@@ -893,12 +929,26 @@
             });
         }
 
+        // Tek bir fotoğrafı diziden çıkarma fonksiyonu
+        function removeSinglePhoto(idx) {
+            currentEditingPhotos.splice(idx, 1);
+
+            // Eğer silinen fotoğraf kapaksa veya kapak indeksi kaydıysa düzelt
+            if (currentCoverIndex === idx) {
+                currentCoverIndex = 0;
+            } else if (currentCoverIndex > idx) {
+                currentCoverIndex--;
+            }
+
+            renderPhotoCoverPicker();
+        }
+
         function selectCoverPhoto(idx) {
             currentCoverIndex = idx;
             renderPhotoCoverPicker();
         }
 
-        // Yeni Dosya Seçildiğinde Önizlemeye Ekle
+        // Dosya Seçilince Listeye Ekle
         document.getElementById('pImageFiles').addEventListener('change', function(e) {
             if (e.target.files && e.target.files.length > 0) {
                 let count = 0;
@@ -917,13 +967,23 @@
             }
         });
 
-        // PROJE KAYDET / GÜNCELLE BUTONU
+        // Link ile resim ekleme
+        function addUrlImage() {
+            const urlInput = document.getElementById('pImageUrl');
+            const val = urlInput.value.trim();
+            if (val) {
+                currentEditingPhotos.push(val);
+                urlInput.value = '';
+                renderPhotoCoverPicker();
+            }
+        }
+
+        // PROJEYİ KAYDET / GÜNCELLE
         function saveProjectAction() {
             const title = document.getElementById('pTitle').value;
             const status = document.getElementById('pStatus').value;
             const location = document.getElementById('pLocation').value;
             const desc = document.getElementById('pDesc').value;
-            const urlInput = document.getElementById('pImageUrl').value;
             const editId = document.getElementById('editingProjectId').value;
 
             if (!title) {
@@ -931,37 +991,29 @@
                 return;
             }
 
-            // Linkler varsa ekle
-            if (urlInput.trim() !== '') {
-                const urls = urlInput.split(',').map(u => u.trim()).filter(u => u !== '');
-                currentEditingPhotos.push(...urls);
-            }
-
             if (currentEditingPhotos.length === 0) {
                 currentEditingPhotos.push("https://images.unsplash.com/photo-1541888946425-d0fbb186156f?q=80&w=1000");
             }
 
             if (editId) {
-                // Güncelleme Modu
                 const p = projects.find(item => item.id == editId);
                 if (p) {
                     p.title = title;
                     p.status = status;
                     p.location = location || "Türkiye";
                     p.desc = desc || "";
-                    p.images = currentEditingPhotos;
+                    p.images = [...currentEditingPhotos];
                     p.coverIndex = currentCoverIndex;
                 }
                 alert('Proje başarıyla güncellendi!');
             } else {
-                // Yeni Ekleme Modu
                 projects.unshift({
                     id: Date.now(),
                     title: title,
                     status: status,
                     location: location || "Türkiye",
                     desc: desc || "",
-                    images: currentEditingPhotos,
+                    images: [...currentEditingPhotos],
                     coverIndex: currentCoverIndex
                 });
                 alert('Yeni proje ve fotoğraflar başarıyla kaydedildi!');
@@ -974,7 +1026,7 @@
         }
 
         function deleteProject(id) {
-            if (confirm('Bu projeyi silmek istediğinize emin misiniz?')) {
+            if (confirm('Bu projeyi tamamen silmek istediğinize emin misiniz?')) {
                 projects = projects.filter(p => p.id !== id);
                 localStorage.setItem('my_projects', JSON.stringify(projects));
                 renderAdminTable();
