@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="tr">
 <head>
@@ -7,28 +6,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title id="siteTitleTag">Cebeci Yapı - Mimarlık &amp; İnşaat | Anasayfa</title>
     
-    <!-- Orijinal Fontlar (Barlow & Oswald) -->
+    <!-- Fontlar -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Oswald:wght@300;400;500;600&display=swap">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     
     <style>
         :root {
-            --primary: #c5a880;
-            --primary-hover: #b39368;
-            --bg-dark: #1b2028;
-            --bg-section-alt: #161a22;
-            --card-dark: #242b35;
-            --card-border: rgba(197, 168, 128, 0.22);
-            --border-color: rgba(255, 255, 255, 0.1);
-            --text-main: #f1f5f9;
-            --text-muted: #94a3b8;
+            --primary: #d4af37;
+            --primary-hover: #c29d2b;
+            --bg-dark: #232832;
+            --bg-section-alt: #1a1e26;
+            --card-dark: #2c3340;
+            --card-border: rgba(212, 175, 55, 0.28);
+            --border-color: rgba(255, 255, 255, 0.12);
+            --text-main: #f8fafc;
+            --text-muted: #cbd5e1;
         }
 
         body {
             font-family: 'Barlow', sans-serif;
-            background-color: var(--bg-dark);
-            color: var(--text-main);
+            background-color: var(--bg-dark) !important;
+            color: var(--text-main) !important;
             line-height: 1.7;
             overflow-x: hidden;
         }
@@ -36,7 +35,7 @@
         h1, h2, h3, h4, h5, h6, .oswald-font {
             font-family: 'Oswald', sans-serif;
             letter-spacing: 1px;
-            color: #ffffff;
+            color: #ffffff !important;
             text-transform: uppercase;
         }
 
@@ -48,16 +47,16 @@
         .content-lines {
             position: absolute; left: 50%; transform: translateX(-50%);
             width: 1140px; max-width: 90%; height: 100%;
-            border-left: 1px solid rgba(255, 255, 255, 0.05);
-            border-right: 1px solid rgba(255, 255, 255, 0.05);
+            border-left: 1px solid rgba(255, 255, 255, 0.06);
+            border-right: 1px solid rgba(255, 255, 255, 0.06);
         }
 
         /* Navbar */
         .navbar {
-            background: rgba(27, 32, 40, 0.95);
+            background: rgba(26, 30, 38, 0.98) !important;
             backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--border-color);
-            padding: 16px 0;
+            padding: 14px 0;
             z-index: 1000;
         }
         .nav-link {
@@ -69,12 +68,21 @@
             transition: color 0.3s;
         }
         .nav-link:hover, .nav-link.active { color: var(--primary) !important; }
-        .logo-img { max-height: 52px; width: auto; object-fit: contain; }
+        
+        .logo-img { 
+            max-height: 48px; 
+            width: auto; 
+            object-fit: contain; 
+            border-radius: 4px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 3px 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+        }
 
         .sub-title {
             font-family: 'Oswald', sans-serif;
             font-size: 0.85rem;
-            color: var(--primary);
+            color: var(--primary) !important;
             text-transform: uppercase;
             letter-spacing: 2px;
             display: inline-block;
@@ -84,14 +92,15 @@
         }
         .sub-title::after {
             content: ''; position: absolute; left: 0; bottom: 0;
-            width: 35px; height: 1.5px; background: var(--primary);
+            width: 35px; height: 2px; background: var(--primary);
         }
         .section-title {
             font-size: clamp(1.8rem, 3.5vw, 2.5rem);
             margin-bottom: 25px;
             line-height: 1.2;
+            color: #ffffff !important;
         }
-        .section-title span { color: var(--primary); font-weight: 300; }
+        .section-title span { color: var(--primary) !important; font-weight: 300; }
 
         /* Hero */
         .hero {
@@ -121,7 +130,7 @@
         }
         .hero-overlay {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(180deg, rgba(27, 32, 40, 0.65) 0%, rgba(27, 32, 40, 0.95) 100%);
+            background: linear-gradient(180deg, rgba(26, 30, 38, 0.45) 0%, rgba(35, 40, 50, 0.9) 100%);
             z-index: 1;
         }
         .button-light {
@@ -137,7 +146,7 @@
             transition: all 0.3s;
             margin-top: 20px;
         }
-        .button-light:hover { background: var(--primary); color: #1b2028; font-weight: bold; }
+        .button-light:hover { background: var(--primary); color: #1a1e26; font-weight: bold; }
 
         .slider-dots {
             position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%);
@@ -152,79 +161,126 @@
         /* Hakkımızda */
         .states ul { list-style: none; padding: 0; margin: 25px 0 0 0; }
         .states li { display: flex; align-items: center; gap: 20px; }
-        .states h1 { font-size: 3.5rem; color: var(--primary); margin: 0; line-height: 1; font-weight: 700; }
-        .states p { margin: 0; text-transform: uppercase; font-family: 'Oswald', sans-serif; font-size: 0.9rem; letter-spacing: 1px; color: #cbd5e1; }
+        .states h1 { font-size: 3.5rem; color: var(--primary) !important; margin: 0; line-height: 1; font-weight: 700; }
+        .states p { margin: 0; text-transform: uppercase; font-family: 'Oswald', sans-serif; font-size: 0.9rem; letter-spacing: 1px; color: #e2e8f0; }
 
         .about-box {
-            background: var(--card-dark); border: 1px solid var(--border-color);
-            padding: 30px 20px; text-align: center; border-radius: 4px;
+            background: var(--card-dark) !important; border: 1px solid var(--border-color);
+            padding: 30px 20px; text-align: center; border-radius: 6px;
             transition: transform 0.3s, border-color 0.3s;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
         }
         .about-box:hover { transform: translateY(-5px); border-color: var(--primary); }
         .about-box h5 { margin-top: 15px; margin-bottom: 0; font-size: 1.1rem; }
 
         /* Hizmetler */
         .service-card {
-            background: var(--card-dark);
+            background: var(--card-dark) !important;
             border: 1px solid var(--card-border);
             position: relative;
-            border-radius: 6px;
+            border-radius: 8px;
             overflow: hidden;
             height: 100%;
             cursor: pointer;
             transition: 0.4s;
             display: flex;
             flex-direction: column;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.18);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
         .service-card:hover { 
             border-color: var(--primary); 
             transform: translateY(-6px);
-            box-shadow: 0 18px 35px rgba(0,0,0,0.3);
+            box-shadow: 0 18px 40px rgba(0,0,0,0.35);
         }
         .service-img { 
-            height: 220px; width: 100%; object-fit: cover; opacity: 0.9; transition: transform 0.5s;
+            height: 220px; width: 100%; object-fit: cover; opacity: 0.95; transition: transform 0.5s;
         }
-        .service-card:hover .service-img { transform: scale(1.05); opacity: 1; }
+        .service-card:hover .service-img { transform: scale(1.05); }
         .service-con { 
             padding: 25px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between;
         }
         .service-numb { 
-            font-family: 'Oswald', sans-serif; font-size: 1.8rem; color: var(--primary); font-weight: 700; margin-bottom: 8px; 
+            font-family: 'Oswald', sans-serif; font-size: 1.8rem; color: var(--primary) !important; font-weight: 700; margin-bottom: 8px; 
         }
         .service-more-link {
-            color: var(--primary); font-family: 'Oswald', sans-serif; font-size: 0.85rem; letter-spacing: 1px; text-transform: uppercase; margin-top: 15px; display: inline-block;
+            color: var(--primary) !important; font-family: 'Oswald', sans-serif; font-size: 0.85rem; letter-spacing: 1px; text-transform: uppercase; margin-top: 15px; display: inline-block;
         }
 
         /* Projeler */
         .project-featured-card {
-            background: var(--card-dark); border: 1px solid var(--card-border);
-            border-radius: 6px; overflow: hidden; cursor: pointer; transition: 0.3s; height: 100%;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.18);
+            background: var(--card-dark) !important; border: 1px solid var(--card-border);
+            border-radius: 8px; overflow: hidden; cursor: pointer; transition: 0.3s; height: 100%;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
         .project-featured-card:hover { border-color: var(--primary); transform: translateY(-6px); }
-        .proj-img-wrap { height: 280px; overflow: hidden; position: relative; background: #000; }
+        .proj-img-wrap { height: 280px; overflow: hidden; position: relative; background: #1a1e26; }
         .proj-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: 0.6s; opacity: 0.95; }
-        .project-featured-card:hover .proj-img-wrap img { transform: scale(1.06); opacity: 1; }
+        .project-featured-card:hover .proj-img-wrap img { transform: scale(1.06); }
         .status-badge {
-            position: absolute; top: 12px; right: 12px; background: rgba(27, 32, 40, 0.9);
-            border: 1px solid var(--primary); color: var(--primary); font-family: 'Oswald', sans-serif;
-            font-size: 0.75rem; padding: 4px 10px; text-transform: uppercase; border-radius: 3px;
+            position: absolute; top: 12px; right: 12px; background: rgba(26, 30, 38, 0.9);
+            border: 1px solid var(--primary); color: var(--primary) !important; font-family: 'Oswald', sans-serif;
+            font-size: 0.75rem; padding: 4px 10px; text-transform: uppercase; border-radius: 4px;
         }
 
         /* Harita */
         .map-frame-box {
-            height: 380px; width: 100%; border-radius: 4px; overflow: hidden;
+            height: 380px; width: 100%; border-radius: 6px; overflow: hidden;
             border: 1px solid var(--border-color);
         }
         .map-frame-box iframe { width: 100%; height: 100%; border: 0; }
 
+        /* Form */
+        .custom-form-card {
+            background: var(--card-dark) !important;
+            border: 1px solid var(--card-border);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        .form-control, .form-select {
+            background-color: #1f242d !important;
+            border: 1px solid rgba(255,255,255,0.15) !important;
+            color: #f8fafc !important;
+        }
+        .form-control:focus, .form-select:focus {
+            border-color: var(--primary) !important;
+            box-shadow: 0 0 0 0.25rem rgba(212, 175, 55, 0.25) !important;
+        }
+
         /* Footer */
-        .footer { background: #13171e; border-top: 1px solid var(--border-color); }
+        .footer { 
+            background: #12151b !important; 
+            border-top: 1px solid rgba(212, 175, 55, 0.25); 
+        }
         .footer .top { padding: 60px 0 40px; }
-        .footer .bottom { padding: 25px 0; border-top: 1px solid rgba(255,255,255,0.06); font-size: 0.85rem; }
-        .footer h3 { font-size: 1.15rem; margin-bottom: 20px; }
+        .footer .bottom { padding: 25px 0; border-top: 1px solid rgba(255,255,255,0.08); font-size: 0.85rem; }
+        .footer h3 { font-size: 1.15rem; margin-bottom: 20px; color: #ffffff !important; }
         .footer h3 span { color: var(--primary); }
+
+        .footer-logo-box {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 4px 10px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+        }
+        .footer-logo-img {
+            max-height: 42px;
+            width: auto;
+            object-fit: contain;
+            display: block;
+        }
+
+        .footer p, .footer span, .footer a {
+            color: #e2e8f0 !important;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+        .footer a:hover {
+            color: var(--primary) !important;
+        }
+        .footer .sub-title {
+            margin-bottom: 12px;
+        }
 
         .wa-float {
             position: fixed; bottom: 25px; right: 25px; background: #25d366;
@@ -233,13 +289,12 @@
             z-index: 999; text-decoration: none; box-shadow: 0 4px 20px rgba(0,0,0,0.4);
         }
 
-        .modal-content { background: #222832; border: 1px solid var(--card-border); color: #fff; }
+        .modal-content { background: #232832 !important; border: 1px solid var(--card-border); color: #fff; }
         .detail-carousel-img { width: 100%; height: 460px; object-fit: cover; }
         .thumbnail-gallery img { width: 75px; height: 50px; object-fit: cover; border-radius: 3px; cursor: pointer; border: 2px solid transparent; opacity: 0.6; }
         .thumbnail-gallery img.active { border-color: var(--primary); opacity: 1; }
 
-        /* Panel Kartları */
-        .admin-img-preview-card { position: relative; display: inline-block; margin: 6px; border: 2px solid #475569; background: #000; border-radius: 4px; overflow: hidden; }
+        .admin-img-preview-card { position: relative; display: inline-block; margin: 6px; border: 2px solid #475569; background: #1a1e26; border-radius: 4px; overflow: hidden; }
         .admin-img-preview-card.is-cover { border-color: var(--primary); }
         .admin-img-preview-card img { width: 110px; height: 75px; object-fit: cover; display: block; }
         .remove-single-photo-btn { position: absolute; top: 3px; right: 3px; background: #dc2626; color: #fff; border: none; width: 20px; height: 20px; border-radius: 50%; font-size: 11px; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 2; }
@@ -251,7 +306,7 @@
     <div class="content-lines-wrapper"><div class="content-lines"></div></div>
     <a id="waLink" href="#" target="_blank" class="wa-float" title="WhatsApp"><i class="bi bi-whatsapp"></i></a>
 
-    <!-- Navbar: Sadece Logo Kalan Alan -->
+    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg sticky-top">
         <div class="container position-relative" style="z-index: 2;">
             <a class="navbar-brand d-flex align-items-center" href="#anasayfa">
@@ -288,7 +343,7 @@
                 <div class="col-lg-8 col-md-12">
                     <span class="sub-title mb-2">MİMARLIK &amp; İNŞAAT</span>
                     <h1 class="display-3 fw-bold mb-3" id="heroTitle">Cebeci Royal Homes Davutlar</h1>
-                    <p class="lead text-light opacity-75 mb-4" id="heroSubtitle" style="max-width: 650px;">Zarif çizgiler ve doğal dokuların uyumuyla şekillenen modern yaşam alanları. Doğru planlama, titiz işçilik ve güvenli yapılar.</p>
+                    <p class="lead text-light opacity-90 mb-4" id="heroSubtitle" style="max-width: 650px;">Zarif çizgiler ve doğal dokuların uyumuyla şekillenen modern yaşam alanları. Doğru planlama, titiz işçilik ve güvenli yapılar.</p>
                     <a href="#projeler" class="button-light">Projelerimizi İncele</a>
                 </div>
             </div>
@@ -297,7 +352,7 @@
     </header>
 
     <!-- Hakkımızda -->
-    <section id="hakkimizda" class="py-5" style="background: var(--bg-section-alt); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
+    <section id="hakkimizda" class="py-5" style="background: var(--bg-section-alt) !important; border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
         <div class="container py-4 position-relative" style="z-index: 2;">
             <div class="row g-5">
                 <div class="col-md-4">
@@ -347,7 +402,7 @@
     </section>
 
     <!-- Sunduğumuz Hizmetler -->
-    <section id="hizmetler" class="py-5" style="background: var(--bg-dark);">
+    <section id="hizmetler" class="py-5" style="background: var(--bg-dark) !important;">
         <div class="container py-4 position-relative" style="z-index: 2;">
             <div class="row mb-5">
                 <div class="col-md-4">
@@ -355,7 +410,7 @@
                 </div>
                 <div class="col-md-8">
                     <div class="section-title"><span>Sunduğumuz</span> Hizmetler</div>
-                    <p class="text-secondary">Hizmetlerimize tıklayarak uygulama standartlarımız, proje süreçlerimiz ve detaylar hakkında bilgi alabilirsiniz.</p>
+                    <p style="color: #cbd5e1 !important;">Hizmetlerimize tıklayarak uygulama standartlarımız, proje süreçlerimiz ve detaylar hakkında bilgi alabilirsiniz.</p>
                 </div>
             </div>
             <div class="row g-4" id="servicesGridContainer"></div>
@@ -363,13 +418,13 @@
     </section>
 
     <!-- Projelerimiz -->
-    <section id="projeler" class="py-5" style="background: var(--bg-section-alt); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
+    <section id="projeler" class="py-5" style="background: var(--bg-section-alt) !important; border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
         <div class="container py-4 position-relative" style="z-index: 2;">
             <div class="row mb-5">
                 <div class="col-md-4"><div class="sub-title">Keşfet</div></div>
                 <div class="col-md-8">
                     <div class="section-title"><span>Yaratıcı</span> Projeler</div>
-                    <p class="text-secondary">Her proje, müşterilerimizin vizyonunu ve işlevselliği bir araya getiren özgün bir tasarım anlayışıyla hayata geçirilmektedir.</p>
+                    <p style="color: #cbd5e1 !important;">Her proje, müşterilerimizin vizyonunu ve işlevselliği bir araya getiren özgün bir tasarım anlayışıyla hayata geçirilmektedir.</p>
                 </div>
             </div>
             <div class="row g-4" id="projectList">
@@ -379,36 +434,36 @@
     </section>
 
     <!-- İletişim & Konum -->
-    <section id="iletisim" class="py-5" style="background: var(--bg-dark);">
+    <section id="iletisim" class="py-5" style="background: var(--bg-dark) !important;">
         <div class="container py-4 position-relative" style="z-index: 2;">
             <div class="row mb-4">
                 <div class="col-md-4"><div class="sub-title">Bize Ulaşın</div></div>
                 <div class="col-md-8">
                     <div class="section-title"><span>Projenizi</span> Konuşalım</div>
-                    <p class="text-secondary">Formu doldurun, uzmanlarımız sizi arayarak bilgi versin. Ya da bizi hemen arayın: <a id="callDirectLink" href="tel:05432303107" class="text-white text-decoration-underline ms-1">05432303107</a></p>
+                    <p style="color: #cbd5e1 !important;">Formu doldurun, uzmanlarımız sizi arayarak bilgi versin. Ya da bizi hemen arayın: <a id="callDirectLink" href="tel:05347343000" class="text-white text-decoration-underline ms-1">+90 (534) 734 30 00</a></p>
                 </div>
             </div>
 
             <div class="row g-5">
                 <div class="col-lg-6">
-                    <form action="https://formspree.io/f/ornek" method="POST" class="p-4 rounded" style="background: var(--card-dark); border: 1px solid var(--card-border);">
+                    <form action="https://formspree.io/f/ornek" method="POST" class="p-4 rounded custom-form-card">
                         <div class="row g-3">
-                            <div class="col-md-6"><input type="text" class="form-control bg-dark text-light border-secondary" placeholder="Ad Soyad *" required></div>
-                            <div class="col-md-6"><input type="email" class="form-control bg-dark text-light border-secondary" placeholder="E-posta *" required></div>
-                            <div class="col-12"><input type="tel" class="form-control bg-dark text-light border-secondary" placeholder="Telefon Numaranız *" required></div>
-                            <div class="col-12"><textarea class="form-control bg-dark text-light border-secondary" rows="4" placeholder="Mesajınız *" required></textarea></div>
-                            <div class="col-12"><button type="submit" class="button-light w-100 mt-2 text-center" style="background: transparent; cursor: pointer;">Mesajı Gönder</button></div>
+                            <div class="col-md-6"><input type="text" class="form-control" placeholder="Ad Soyad *" required></div>
+                            <div class="col-md-6"><input type="email" class="form-control" placeholder="E-posta *" required></div>
+                            <div class="col-12"><input type="tel" class="form-control" placeholder="Telefon Numaranız *" required></div>
+                            <div class="col-12"><textarea class="form-control" rows="4" placeholder="Mesajınız *" required></textarea></div>
+                            <div class="col-12"><button type="submit" class="button-light w-100 mt-2 text-center" style="background: var(--primary); color: #1a1e26; font-weight: bold; cursor: pointer;">Mesajı Gönder</button></div>
                         </div>
                     </form>
                 </div>
 
                 <div class="col-lg-6" id="konum">
-                    <div class="p-4 rounded h-100 d-flex flex-column justify-content-between" style="background: var(--card-dark); border: 1px solid var(--card-border);">
+                    <div class="p-4 rounded h-100 d-flex flex-column justify-content-between custom-form-card">
                         <div>
                             <h5 class="mb-3"><i class="bi bi-geo-alt-fill me-2" style="color: var(--primary);"></i>OFİSİMİZ &amp; HARİTA</h5>
-                            <p class="text-secondary small mb-1"><strong>Açık Adres:</strong> <span id="displayAddress">İki Çeşmelik Mah. Süleyman Demirel Bulv. Melis Apartmanları B Blok No:21/B Daire:13 Kuşadası / Aydın</span></p>
-                            <p class="text-secondary small mb-1"><strong>Telefon:</strong> <span id="displayPhone">0543 230 31 07</span></p>
-                            <p class="text-secondary small mb-3"><strong>E-posta:</strong> <span id="displayEmail">emrah@kodsis.com.tr</span></p>
+                            <p class="small mb-2 text-light"><strong>Açık Adres:</strong> <span id="displayAddress" class="text-light opacity-90">Davutlar / Kuşadası / Aydın</span></p>
+                            <p class="small mb-2 text-light"><strong>Telefon:</strong> <span id="displayPhone" class="text-light opacity-90">+90 (534) 734 30 00</span></p>
+                            <p class="small mb-3 text-light"><strong>E-posta:</strong> <span id="displayEmail" class="text-light opacity-90">info@cebeciyapi.com</span></p>
                         </div>
                         <div class="map-frame-box mt-3" id="mapIframeContainer"></div>
                     </div>
@@ -423,22 +478,25 @@
             <div class="container position-relative" style="z-index: 2;">
                 <div class="row g-4">
                     <div class="col-md-4">
-                        <img src="https://cebeci.kodsis.com.tr/storage/1d40a011-2911-4d21-abab-44a62732ccb1.png" class="footer-logo-img mb-3" alt="Cebeci Yapı" style="max-height: 44px;">
-                        <div class="sub-title">Bize Ulaşın</div>
-                        <p class="small text-secondary">Cebeci İnşaat; konut projeleri, altyapı işleri ve ihale yoluyla üstlenilen kamu taahhütlerinde güvenilir ve planlı çözümler sunar.</p>
+                        <div class="footer-logo-box">
+                            <img src="https://cebeci.kodsis.com.tr/storage/1d40a011-2911-4d21-abab-44a62732ccb1.png" class="footer-logo-img" alt="Cebeci Yapı">
+                        </div>
+                        <div class="sub-title d-block">Bize Ulaşın</div>
+                        <p class="small">Cebeci İnşaat; konut projeleri, altyapı işleri ve ihale yoluyla üstlenilen kamu taahhütlerinde güvenilir ve planlı çözümler sunar.</p>
                     </div>
                     <div class="col-md-4">
                         <h3>İletişim <span>Bilgileri</span></h3>
-                        <p class="small text-secondary mb-2" id="footerAddress">İki Çeşmelik Mah. Süleyman Demirel Bulv. Melis Apartmanları B Blok No:21/B Daire:13 Kuşadası / Aydın</p>
-                        <p class="small text-secondary mb-1">Tel: <a id="footerPhone" href="tel:05432303107" class="text-secondary">05432303107</a></p>
-                        <p class="small text-secondary mb-3">Mail: <a id="footerEmail" href="mailto:emrah@kodsis.com.tr" class="text-secondary">emrah@kodsis.com.tr</a></p>
+                        <p class="small mb-2" id="footerAddress">Davutlar / Kuşadası / Aydın</p>
+                        <p class="small mb-1">Tel: <a id="footerPhone" href="tel:05347343000">+90 (534) 734 30 00</a></p>
+                        <p class="small mb-3">Mail: <a id="footerEmail" href="mailto:info@cebeciyapi.com">info@cebeciyapi.com</a></p>
                         <div class="social">
                             <a href="https://www.instagram.com/cebeciyapikusadasi/" target="_blank" class="text-white fs-5"><i class="bi bi-instagram"></i></a>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <h3>Çalışma <span>Saatleri</span></h3>
-                        <p class="small text-secondary">Pazartesi – Cuma: 09:00 – 18:00<br>Cumartesi: 09:00 – 14:00</p>
+                        <p class="small mb-1"><i class="bi bi-clock me-2" style="color: var(--primary);"></i><strong>Pazartesi – Cuma:</strong> 08:30 – 17:30</p>
+                        <p class="small"><i class="bi bi-clock me-2" style="color: var(--primary);"></i><strong>Cumartesi:</strong> 08:30 – 13:00</p>
                     </div>
                 </div>
             </div>
@@ -446,11 +504,8 @@
         <div class="bottom">
             <div class="container position-relative" style="z-index: 2;">
                 <div class="row align-items-center">
-                    <div class="col-md-6 text-center text-md-start">
-                        <p class="mb-0 text-muted">© 2026 <span id="footerCompanyName">Cebeci Yapı</span>. Tüm hakları saklıdır.</p>
-                    </div>
-                    <div class="col-md-6 text-center text-md-end mt-2 mt-md-0">
-                        <span class="text-muted small">Designed &amp; Developed for Cebeci Yapı</span>
+                    <div class="col-12 text-center">
+                        <p class="mb-0 text-white">© 2026 <span id="footerCompanyName">Cebeci Yapı</span>. Tüm hakları saklıdır.</p>
                     </div>
                 </div>
             </div>
@@ -473,10 +528,10 @@
                 <div class="modal-body">
                     <img id="serviceModalImg" src="" class="img-fluid rounded mb-4" style="width:100%; max-height:400px; object-fit:cover; border:1px solid var(--border-color);" alt="Hizmet Detay">
                     <h5 class="oswald-font mb-2">Hizmet Kapsamı &amp; Süreç</h5>
-                    <div class="text-secondary small" id="serviceModalContent" style="white-space: pre-line; line-height: 1.9; font-size: 0.95rem;"></div>
+                    <div class="small" id="serviceModalContent" style="white-space: pre-line; line-height: 1.9; font-size: 0.95rem; color: #cbd5e1;"></div>
                 </div>
                 <div class="modal-footer border-0 pt-0">
-                    <a id="serviceWhatsappBtn" href="#" target="_blank" class="button-light m-0 px-4" style="background: var(--primary); color:#1b2028; font-weight:bold; border:none;">
+                    <a id="serviceWhatsappBtn" href="#" target="_blank" class="button-light m-0 px-4" style="background: var(--primary); color:#1a1e26; font-weight:bold; border:none;">
                         <i class="bi bi-whatsapp me-1"></i> Bu Hizmet İçin Teklif Alın
                     </a>
                 </div>
@@ -504,7 +559,7 @@
                     </div>
                     <div class="d-flex gap-2 flex-wrap mb-4 thumbnail-gallery" id="thumbnailBox"></div>
                     <h5 class="oswald-font">Proje Detayları &amp; Özellikleri</h5>
-                    <p class="text-secondary small" id="detailDescription" style="white-space: pre-line; line-height: 1.8;"></p>
+                    <p class="small" id="detailDescription" style="white-space: pre-line; line-height: 1.8; color: #cbd5e1;"></p>
                 </div>
                 <div class="modal-footer border-0 pt-0">
                     <a id="detailWhatsappBtn" href="#" target="_blank" class="btn btn-success fw-bold px-4">
@@ -524,9 +579,9 @@
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
-                    <input type="password" id="adminPasswordInput" class="form-control bg-dark text-light border-secondary mb-2" placeholder="Şifrenizi Girin">
+                    <input type="password" id="adminPasswordInput" class="form-control mb-2" placeholder="Şifrenizi Girin">
                     <small class="text-muted d-block mb-3">Şifre: <strong>admin123</strong></small>
-                    <button class="button-light w-100 text-center" style="background: var(--primary); color:#1b2028; font-weight:bold; border:none;" onclick="checkAdminPassword()">Giriş Yap</button>
+                    <button class="button-light w-100 text-center" style="background: var(--primary); color:#1a1e26; font-weight:bold; border:none;" onclick="checkAdminPassword()">Giriş Yap</button>
                 </div>
             </div>
         </div>
@@ -565,37 +620,37 @@
                     <div class="tab-content">
                         <!-- 1. HERO SLIDER -->
                         <div class="tab-pane fade show active" id="tab-slides">
-                            <div class="p-4 rounded" style="background: #1b2028;">
+                            <div class="p-4 rounded custom-form-card">
                                 <h5 class="text-white mb-2 oswald-font"><i class="bi bi-collection-play text-warning me-2"></i>Arka Planda Akan Resimler</h5>
-                                <p class="text-secondary small mb-3">Eklediğiniz her resim otomatik olarak bağımsız bulut belgesi olarak kaydedilir. F5 yapıldığında kaybolmaz.</p>
+                                <p class="small mb-3" style="color: #cbd5e1;">Eklediğiniz her resim otomatik olarak bağımsız bulut belgesi olarak kaydedilir. F5 yapıldığında kaybolmaz.</p>
 
                                 <div class="row g-3 align-items-end mb-4">
                                     <div class="col-md-6">
                                         <label class="form-label small fw-bold">Yeni Resimler Yükle</label>
-                                        <input type="file" id="newSlideFiles" class="form-control bg-dark text-light border-secondary" accept="image/*" multiple>
+                                        <input type="file" id="newSlideFiles" class="form-control" accept="image/*" multiple>
                                     </div>
                                     <div class="col-md-4">
                                         <label class="form-label small fw-bold">veya Resim URL Linki</label>
-                                        <input type="url" id="newSlideUrl" class="form-control bg-dark text-light border-secondary" placeholder="https://...">
+                                        <input type="url" id="newSlideUrl" class="form-control" placeholder="https://...">
                                     </div>
                                     <div class="col-md-2">
-                                        <button class="button-light w-100 text-center m-0" style="background: var(--primary); color:#1b2028; font-weight:bold; border:none;" onclick="addSlideUrlAction()">URL Ekle</button>
+                                        <button class="button-light w-100 text-center m-0" style="background: var(--primary); color:#1a1e26; font-weight:bold; border:none;" onclick="addSlideUrlAction()">URL Ekle</button>
                                     </div>
                                 </div>
 
                                 <h6 class="text-white oswald-font mb-2">Buluttaki Aktif Slaytlar (<span id="totalSlideCount">0</span>)</h6>
-                                <div id="adminSlidesPreview" class="d-flex flex-wrap p-3 rounded bg-dark border border-secondary"></div>
+                                <div id="adminSlidesPreview" class="d-flex flex-wrap p-3 rounded border border-secondary" style="background: #1f242d;"></div>
                             </div>
                         </div>
 
                         <!-- 2. Hizmetler -->
                         <div class="tab-pane fade" id="tab-services">
-                            <div class="p-4 rounded" style="background: #1b2028;">
+                            <div class="p-4 rounded custom-form-card">
                                 <h5 class="text-white mb-2 oswald-font">Sunduğumuz Hizmetlerin Sayfalarını Düzenleyin</h5>
-                                <p class="text-secondary small mb-4">3 hizmetin başlığını, kart açıklamasını, tıklandığında açılacak detay sayfasını ve görselini güncelleyebilirsiniz.</p>
+                                <p class="small mb-4" style="color: #cbd5e1;">3 hizmetin başlığını, kart açıklamasını, tıklandığında açılacak detay sayfasını ve görselini güncelleyebilirsiniz.</p>
                                 <div class="row g-4" id="adminServicesFormContainer"></div>
                                 <div class="mt-4 text-end">
-                                    <button class="button-light px-4" style="background: var(--primary); color:#1b2028; font-weight:bold; border:none;" onclick="saveServicesAction()">Hizmetleri Buluta Kaydet</button>
+                                    <button class="button-light px-4" style="background: var(--primary); color:#1a1e26; font-weight:bold; border:none;" onclick="saveServicesAction()">Hizmetleri Buluta Kaydet</button>
                                 </div>
                             </div>
                         </div>
@@ -604,7 +659,7 @@
                         <div class="tab-pane fade" id="tab-projects">
                             <div class="row">
                                 <div class="col-lg-5 mb-4">
-                                    <div class="p-3 rounded" style="background: #1b2028;">
+                                    <div class="p-3 rounded custom-form-card">
                                         <div class="d-flex justify-content-between align-items-center mb-3">
                                             <h6 class="fw-bold mb-0 text-warning" id="projectFormHeader">Yeni Proje Ekle</h6>
                                             <button id="cancelEditBtn" class="btn btn-sm btn-outline-secondary d-none" onclick="cancelProjectEdit()">Vazgeç</button>
@@ -612,33 +667,33 @@
                                         <input type="hidden" id="editingProjectId" value="">
                                         <div class="mb-2">
                                             <label class="form-label small fw-bold">Proje Adı</label>
-                                            <input type="text" id="pTitle" class="form-control bg-dark text-light border-secondary" placeholder="Örn: Cebeci Royal Homes Davutlar">
+                                            <input type="text" id="pTitle" class="form-control" placeholder="Örn: Cebeci Royal Homes Davutlar">
                                         </div>
                                         <div class="mb-2">
                                             <label class="form-label small fw-bold">Durumu</label>
-                                            <select id="pStatus" class="form-select bg-dark text-light border-secondary">
+                                            <select id="pStatus" class="form-select">
                                                 <option value="devam-eden">Devam Eden Proje</option>
                                                 <option value="tamamlanan">Tamamlanan Proje</option>
                                             </select>
                                         </div>
                                         <div class="mb-2">
                                             <label class="form-label small fw-bold">Konum</label>
-                                            <input type="text" id="pLocation" class="form-control bg-dark text-light border-secondary" placeholder="Örn: Davutlar, Kuşadası">
+                                            <input type="text" id="pLocation" class="form-control" placeholder="Örn: Davutlar, Kuşadası">
                                         </div>
                                         <div class="mb-2">
                                             <label class="form-label small fw-bold">Detaylı Açıklama</label>
-                                            <textarea id="pDesc" class="form-control bg-dark text-light border-secondary" rows="3"></textarea>
+                                            <textarea id="pDesc" class="form-control" rows="3"></textarea>
                                         </div>
                                         <div class="mb-2">
                                             <label class="form-label small fw-bold">Fotoğraflar Yükle (1MB Korumalı)</label>
-                                            <input type="file" id="pImageFiles" class="form-control bg-dark text-light border-secondary mb-1" accept="image/*" multiple>
-                                            <input type="url" id="pImageUrl" class="form-control bg-dark text-light border-secondary form-control-sm" placeholder="veya görsel url linki">
+                                            <input type="file" id="pImageFiles" class="form-control mb-1" accept="image/*" multiple>
+                                            <input type="url" id="pImageUrl" class="form-control form-control-sm" placeholder="veya görsel url linki">
                                         </div>
                                         <div class="mb-3" id="photoSelectorArea" style="display:none;">
                                             <small class="text-success d-block mb-1">Fotoğraflar (<span id="previewPhotoCount">0</span>):</small>
-                                            <div id="projectPhotosPreview" class="d-flex flex-wrap p-2 bg-dark rounded"></div>
+                                            <div id="projectPhotosPreview" class="d-flex flex-wrap p-2 rounded" style="background: #1f242d;"></div>
                                         </div>
-                                        <button class="button-light w-100 mt-2 text-center" style="background: var(--primary); color:#1b2028; font-weight:bold; border:none;" id="saveProjectBtn" onclick="saveProjectAction()">Buluta Kaydet</button>
+                                        <button class="button-light w-100 mt-2 text-center" style="background: var(--primary); color:#1a1e26; font-weight:bold; border:none;" id="saveProjectBtn" onclick="saveProjectAction()">Buluta Kaydet</button>
                                     </div>
                                 </div>
                                 <div class="col-lg-7">
@@ -659,25 +714,25 @@
                         <div class="tab-pane fade" id="tab-about">
                             <div class="row justify-content-center">
                                 <div class="col-md-9">
-                                    <div class="p-4 rounded" style="background: #1b2028;">
+                                    <div class="p-4 rounded custom-form-card">
                                         <h5 class="text-white mb-3 oswald-font">Hakkımızda İçerikleri</h5>
                                         <div class="mb-3">
                                             <label class="form-label small">Üst Başlık</label>
-                                            <input type="text" id="setAboutSub" class="form-control bg-dark text-light border-secondary">
+                                            <input type="text" id="setAboutSub" class="form-control">
                                         </div>
                                         <div class="mb-3">
                                             <label class="form-label small">Ana Başlık</label>
-                                            <input type="text" id="setAboutTitle" class="form-control bg-dark text-light border-secondary">
+                                            <input type="text" id="setAboutTitle" class="form-control">
                                         </div>
                                         <div class="mb-3">
                                             <label class="form-label small">Deneyim Yılı</label>
-                                            <input type="text" id="setAboutExp" class="form-control bg-dark text-light border-secondary">
+                                            <input type="text" id="setAboutExp" class="form-control">
                                         </div>
                                         <div class="mb-3">
                                             <label class="form-label small">Metin</label>
-                                            <textarea id="setAboutText" class="form-control bg-dark text-light border-secondary" rows="6"></textarea>
+                                            <textarea id="setAboutText" class="form-control" rows="6"></textarea>
                                         </div>
-                                        <button class="button-light px-4" style="background: var(--primary); color:#1b2028; font-weight:bold; border:none;" onclick="saveAboutSettings()">Bilgileri Kaydet</button>
+                                        <button class="button-light px-4" style="background: var(--primary); color:#1a1e26; font-weight:bold; border:none;" onclick="saveAboutSettings()">Bilgileri Kaydet</button>
                                     </div>
                                 </div>
                             </div>
@@ -687,25 +742,25 @@
                         <div class="tab-pane fade" id="tab-design">
                             <div class="row g-4">
                                 <div class="col-md-6">
-                                    <div class="p-3 rounded" style="background: #1b2028;">
+                                    <div class="p-3 rounded custom-form-card">
                                         <h6 class="fw-bold mb-3 text-white">Firma Logosu</h6>
                                         <div class="d-flex align-items-center mb-3">
-                                            <div id="currentLogoPreview" class="p-2 bg-dark rounded me-3 text-center" style="min-width: 90px; min-height: 50px;"></div>
+                                            <div id="currentLogoPreview" class="p-2 rounded me-3 text-center" style="min-width: 90px; min-height: 50px; background: #1f242d;"></div>
                                             <button class="btn btn-sm btn-outline-danger" onclick="removeLogo()">Logoyu Sıfırla</button>
                                         </div>
-                                        <input type="file" id="siteLogoFile" class="form-control bg-dark text-light border-secondary mb-1" accept="image/*">
-                                        <input type="url" id="siteLogoUrl" class="form-control bg-dark text-light border-secondary form-control-sm" placeholder="veya logo linki">
+                                        <input type="file" id="siteLogoFile" class="form-control mb-1" accept="image/*">
+                                        <input type="url" id="siteLogoUrl" class="form-control form-control-sm" placeholder="veya logo linki">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <div class="p-3 rounded" style="background: #1b2028;">
+                                    <div class="p-3 rounded custom-form-card">
                                         <h6 class="fw-bold mb-3 text-white">Giriş Alanı Yazıları</h6>
-                                        <input type="text" id="setHeroTitle" class="form-control bg-dark text-light border-secondary mb-2" placeholder="Başlık">
-                                        <textarea id="setHeroSubtitle" class="form-control bg-dark text-light border-secondary mb-2" rows="3" placeholder="Açıklama"></textarea>
+                                        <input type="text" id="setHeroTitle" class="form-control mb-2" placeholder="Başlık">
+                                        <textarea id="setHeroSubtitle" class="form-control mb-2" rows="3" placeholder="Açıklama"></textarea>
                                     </div>
                                 </div>
                                 <div class="col-12 text-end">
-                                    <button class="button-light px-4" style="background: var(--primary); color:#1b2028; font-weight:bold; border:none;" onclick="saveDesignSettings()">Kaydet</button>
+                                    <button class="button-light px-4" style="background: var(--primary); color:#1a1e26; font-weight:bold; border:none;" onclick="saveDesignSettings()">Kaydet</button>
                                 </div>
                             </div>
                         </div>
@@ -714,17 +769,17 @@
                         <div class="tab-pane fade" id="tab-info">
                             <div class="row justify-content-center">
                                 <div class="col-md-9">
-                                    <div class="p-4 rounded" style="background: #1b2028;">
+                                    <div class="p-4 rounded custom-form-card">
                                         <h5 class="text-white mb-3 oswald-font">İletişim &amp; Harita Konumu</h5>
                                         <div class="row g-3">
-                                            <div class="col-md-6"><label class="form-label small">Firma Adı</label><input type="text" id="setCompanyName" class="form-control bg-dark text-light border-secondary"></div>
-                                            <div class="col-md-6"><label class="form-label small">Telefon</label><input type="text" id="setCompanyPhone" class="form-control bg-dark text-light border-secondary"></div>
-                                            <div class="col-md-6"><label class="form-label small">WhatsApp (0 olmadan)</label><input type="text" id="setCompanyWhatsapp" class="form-control bg-dark text-light border-secondary"></div>
-                                            <div class="col-md-6"><label class="form-label small">E-Posta</label><input type="email" id="setCompanyEmail" class="form-control bg-dark text-light border-secondary"></div>
-                                            <div class="col-12"><label class="form-label small">Adres</label><input type="text" id="setCompanyAddress" class="form-control bg-dark text-light border-secondary"></div>
-                                            <div class="col-12"><label class="form-label small text-warning fw-bold">Google Maps Iframe Embed Linki</label><textarea id="setCompanyMapEmbed" class="form-control bg-dark text-light border-secondary" rows="3"></textarea></div>
+                                            <div class="col-md-6"><label class="form-label small">Firma Adı</label><input type="text" id="setCompanyName" class="form-control"></div>
+                                            <div class="col-md-6"><label class="form-label small">Telefon</label><input type="text" id="setCompanyPhone" class="form-control"></div>
+                                            <div class="col-md-6"><label class="form-label small">WhatsApp (0 olmadan)</label><input type="text" id="setCompanyWhatsapp" class="form-control"></div>
+                                            <div class="col-md-6"><label class="form-label small">E-Posta</label><input type="email" id="setCompanyEmail" class="form-control"></div>
+                                            <div class="col-12"><label class="form-label small">Adres</label><input type="text" id="setCompanyAddress" class="form-control"></div>
+                                            <div class="col-12"><label class="form-label small text-warning fw-bold">Google Maps Iframe Embed Linki</label><textarea id="setCompanyMapEmbed" class="form-control" rows="3"></textarea></div>
                                         </div>
-                                        <button class="button-light px-4 mt-3" style="background: var(--primary); color:#1b2028; font-weight:bold; border:none;" onclick="saveCompanyInfo()">İletişim Bilgilerini Kaydet</button>
+                                        <button class="button-light px-4 mt-3" style="background: var(--primary); color:#1a1e26; font-weight:bold; border:none;" onclick="saveCompanyInfo()">İletişim Bilgilerini Kaydet</button>
                                     </div>
                                 </div>
                             </div>
@@ -805,10 +860,10 @@
 
         let defaultInfo = {
             name: "Cebeci Yapı",
-            phone: "0543 230 31 07",
-            whatsapp: "905432303107",
-            email: "emrah@kodsis.com.tr",
-            address: "İki Çeşmelik Mah. Süleyman Demirel Bulv. Melis Apartmanları B Blok No:21/B Daire:13 Kuşadası / Aydın",
+            phone: "+90 (534) 734 30 00",
+            whatsapp: "905347343000",
+            email: "info@cebeciyapi.com",
+            address: "Davutlar / Kuşadası / Aydın",
             mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d100800!2d27.2!3d37.85!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14be735f11111111%3A0x1111111111111111!2zS3XFn2FkYXPEsSwgQXlkxLFu!5e0!3m2!1str!2str!4v1"
         };
 
@@ -1012,7 +1067,7 @@
                                 <div>
                                     <div class="service-numb">${srv.numb}</div>
                                     <h5 class="oswald-font text-white">${srv.title}</h5>
-                                    <p class="small text-secondary mb-0">${srv.shortDesc}</p>
+                                    <p class="small mb-0" style="color: #cbd5e1 !important;">${srv.shortDesc}</p>
                                 </div>
                                 <span class="service-more-link">Detaylı İncele <i class="bi bi-arrow-right ms-1"></i></span>
                             </div>
@@ -1042,24 +1097,24 @@
             services.forEach((srv, idx) => {
                 container.innerHTML += `
                     <div class="col-md-4">
-                        <div class="p-3 bg-dark rounded border border-secondary h-100">
+                        <div class="p-3 rounded border border-secondary h-100" style="background: #1f242d;">
                             <span class="badge bg-warning text-dark mb-2">Hizmet ${srv.numb}</span>
                             <div class="mb-2">
                                 <label class="form-label small text-muted">Başlık</label>
-                                <input type="text" id="srvTitle_${idx}" class="form-control bg-black text-light border-secondary form-control-sm" value="${srv.title}">
+                                <input type="text" id="srvTitle_${idx}" class="form-control form-control-sm" value="${srv.title}">
                             </div>
                             <div class="mb-2">
                                 <label class="form-label small text-muted">Kart Kısa Açıklaması</label>
-                                <textarea id="srvShort_${idx}" class="form-control bg-black text-light border-secondary form-control-sm" rows="2">${srv.shortDesc}</textarea>
+                                <textarea id="srvShort_${idx}" class="form-control form-control-sm" rows="2">${srv.shortDesc}</textarea>
                             </div>
                             <div class="mb-2">
                                 <label class="form-label small text-muted">Tıklanınca Açılacak Geniş Detay Metni</label>
-                                <textarea id="srvDetail_${idx}" class="form-control bg-black text-light border-secondary form-control-sm" rows="4">${srv.detailContent || ''}</textarea>
+                                <textarea id="srvDetail_${idx}" class="form-control form-control-sm" rows="4">${srv.detailContent || ''}</textarea>
                             </div>
                             <div class="mb-2">
                                 <label class="form-label small text-muted">Mevcut Görsel</label>
                                 <img src="${srv.img}" class="img-fluid rounded mb-2" style="height:70px; width:100%; object-fit:cover;">
-                                <input type="file" id="srvFile_${idx}" class="form-control bg-black text-light border-secondary form-control-sm" accept="image/*">
+                                <input type="file" id="srvFile_${idx}" class="form-control form-control-sm" accept="image/*">
                             </div>
                         </div>
                     </div>
@@ -1133,10 +1188,10 @@
             document.getElementById('displayEmail').innerText = companyInfo.email;
             document.getElementById('displayAddress').innerText = companyInfo.address;
             document.getElementById('callDirectLink').innerText = companyInfo.phone;
-            document.getElementById('callDirectLink').href = `tel:${companyInfo.phone.replace(/\s+/g, '')}`;
+            document.getElementById('callDirectLink').href = `tel:${companyInfo.phone.replace(/[^0-9+]/g, '')}`;
 
             document.getElementById('footerPhone').innerText = companyInfo.phone;
-            document.getElementById('footerPhone').href = `tel:${companyInfo.phone.replace(/\s+/g, '')}`;
+            document.getElementById('footerPhone').href = `tel:${companyInfo.phone.replace(/[^0-9+]/g, '')}`;
             document.getElementById('footerEmail').innerText = companyInfo.email;
             document.getElementById('footerEmail').href = `mailto:${companyInfo.email}`;
             document.getElementById('footerAddress').innerText = companyInfo.address;
@@ -1220,14 +1275,14 @@
             if (projects.length === 0) {
                 container.innerHTML = `
                     <div class="col-12">
-                        <div class="row align-items-center g-4 p-4 rounded" style="background: var(--card-dark); border: 1px solid var(--border-color);">
+                        <div class="row align-items-center g-4 p-4 rounded custom-form-card">
                             <div class="col-lg-8">
                                 <img src="https://cebeci.kodsis.com.tr/assets/images/slider/1.jpg" class="img-fluid rounded" alt="Cebeci Royal Homes">
                             </div>
                             <div class="col-lg-4">
                                 <span class="text-warning small text-uppercase">2024</span>
                                 <h3 class="mt-1">Cebeci Royal Homes Davutlar</h3>
-                                <p class="text-secondary small">Modern mimari, konfor ve prestiji bir araya getiren ayrıcalıklı bir yaşam.</p>
+                                <p class="small" style="color: #cbd5e1;">Modern mimari, konfor ve prestiji bir araya getiren ayrıcalıklı bir yaşam.</p>
                             </div>
                         </div>
                     </div>
@@ -1251,7 +1306,7 @@
                             <div class="p-4">
                                 <small style="color: var(--primary); font-family: 'Oswald', sans-serif;"><i class="bi bi-geo-alt me-1"></i>${p.location}</small>
                                 <h5 class="mt-1 mb-2">${p.title}</h5>
-                                <p class="text-secondary small mb-3" style="display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">${p.desc || ''}</p>
+                                <p class="small mb-3" style="display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden; color: #cbd5e1;">${p.desc || ''}</p>
                                 <div class="d-flex justify-content-between align-items-center pt-2 border-top border-secondary border-opacity-25">
                                     <span class="small text-muted"><i class="bi bi-images me-1"></i>${imgCount} Görsel</span>
                                     <span style="color: var(--primary); font-family: 'Oswald', sans-serif; font-size: 0.85rem;">İNCELE <i class="bi bi-arrow-right ms-1"></i></span>
@@ -1403,431 +1458,37 @@
         function selectCoverPhoto(idx) {
             currentCoverIndex = idx;
             renderPhotoCoverPicker();
-<!DOCTYPE html>
-<html lang="tr">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title id="siteTitleTag">Cebeci Yapı - Mimarlık &amp; İnşaat | Anasayfa</title>
-    
-    <!-- Orijinal Fontlar (Barlow & Oswald) -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Oswald:wght@300;400;500;600&display=swap">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    
-    <style>
-        :root {
-            --primary: #d4af37;              /* Sıcak Mimari Altın / Gold */
-            --primary-hover: #c29d2b;
-            --bg-dark: #232832;              /* Ferah ve Modern Antrasit Zemin */
-            --bg-section-alt: #1a1e26;       /* Derin Kül / Grafit Ayrım Rengi */
-            --card-dark: #2c3340;            /* Aydınlık Kart Rengi */
-            --card-border: rgba(212, 175, 55, 0.28);
-            --border-color: rgba(255, 255, 255, 0.12);
-            --text-main: #f8fafc;
-            --text-muted: #cbd5e1;
         }
 
-        body {
-            font-family: 'Barlow', sans-serif;
-            background-color: var(--bg-dark) !important;
-            color: var(--text-main) !important;
-            line-height: 1.7;
-            overflow-x: hidden;
-        }
+        document.getElementById('pImageFiles').addEventListener('change', async function(e) {
+            if (e.target.files && e.target.files.length > 0) {
+                for (let i = 0; i < e.target.files.length; i++) {
+                    const compressed = await compressImage(e.target.files[i], 800, 500, 0.45);
+                    currentEditingPhotos.push(compressed);
+                }
+                renderPhotoCoverPicker();
+                e.target.value = '';
+            }
+        });
 
-        h1, h2, h3, h4, h5, h6, .oswald-font {
-            font-family: 'Oswald', sans-serif;
-            letter-spacing: 1px;
-            color: #ffffff !important;
-            text-transform: uppercase;
-        }
+        function saveProjectAction() {
+            const title = document.getElementById('pTitle').value.trim();
+            const status = document.getElementById('pStatus').value;
+            const location = document.getElementById('pLocation').value.trim();
+            const desc = document.getElementById('pDesc').value.trim();
+            const editId = document.getElementById('editingProjectId').value;
 
-        .content-lines-wrapper {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            pointer-events: none; z-index: 1;
-        }
-        .content-lines {
-            position: absolute; left: 50%; transform: translateX(-50%);
-            width: 1140px; max-width: 90%; height: 100%;
-            border-left: 1px solid rgba(255, 255, 255, 0.06);
-            border-right: 1px solid rgba(255, 255, 255, 0.06);
-        }
+            if (!title) { alert('Lütfen proje adını girin.'); return; }
+            if (currentEditingPhotos.length === 0) {
+                currentEditingPhotos.push("https://cebeci.kodsis.com.tr/assets/images/slider/1.jpg");
+            }
 
-        /* Navbar */
-        .navbar {
-            background: rgba(26, 30, 38, 0.98) !important;
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--border-color);
-            padding: 14px 0;
-            z-index: 1000;
-        }
-        .nav-link {
-            font-family: 'Oswald', sans-serif;
-            font-size: 0.95rem;
-            color: #f1f5f9 !important;
-            letter-spacing: 1px;
-            margin: 0 10px;
-            transition: color 0.3s;
-        }
-        .nav-link:hover, .nav-link.active { color: var(--primary) !important; }
-        
-        /* Navbar Logo Beyaz Kutu Problemini Çözen Stil */
-        .logo-img { 
-            max-height: 48px; 
-            width: auto; 
-            object-fit: contain; 
-            border-radius: 4px;
-            background: rgba(255, 255, 255, 0.95);
-            padding: 3px 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.25);
-        }
-
-        .sub-title {
-            font-family: 'Oswald', sans-serif;
-            font-size: 0.85rem;
-            color: var(--primary) !important;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            display: inline-block;
-            margin-bottom: 15px;
-            position: relative;
-            padding-bottom: 5px;
-        }
-        .sub-title::after {
-            content: ''; position: absolute; left: 0; bottom: 0;
-            width: 35px; height: 2px; background: var(--primary);
-        }
-        .section-title {
-            font-size: clamp(1.8rem, 3.5vw, 2.5rem);
-            margin-bottom: 25px;
-            line-height: 1.2;
-            color: #ffffff !important;
-        }
-        .section-title span { color: var(--primary) !important; font-weight: 300; }
-
-        /* Hero */
-        .hero {
-            position: relative;
-            min-height: 90vh;
-            display: flex;
-            align-items: center;
-            overflow: hidden;
-        }
-        .hero-slides-container {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            z-index: 0;
-        }
-        .hero-slide-bg {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-size: cover;
-            background-position: center;
-            opacity: 0;
-            transition: opacity 1.5s ease-in-out, transform 8s ease-out;
-            transform: scale(1);
-        }
-        .hero-slide-bg.active {
-            opacity: 1;
-            transform: scale(1.05);
-        }
-        .hero-overlay {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(180deg, rgba(26, 30, 38, 0.45) 0%, rgba(35, 40, 50, 0.9) 100%);
-            z-index: 1;
-        }
-        .button-light {
-            font-family: 'Oswald', sans-serif;
-            display: inline-block;
-            padding: 12px 30px;
-            border: 1px solid var(--primary);
-            color: #ffffff;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            text-decoration: none;
-            font-size: 0.85rem;
-            transition: all 0.3s;
-            margin-top: 20px;
-        }
-        .button-light:hover { background: var(--primary); color: #1a1e26; font-weight: bold; }
-
-        .slider-dots {
-            position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%);
-            z-index: 2; display: flex; gap: 10px;
-        }
-        .slider-dot {
-            width: 32px; height: 3px; background: rgba(255, 255, 255, 0.3);
-            border: none; cursor: pointer; transition: all 0.3s;
-        }
-        .slider-dot.active { background: var(--primary); width: 48px; }
-
-        /* Hakkımızda */
-        .states ul { list-style: none; padding: 0; margin: 25px 0 0 0; }
-        .states li { display: flex; align-items: center; gap: 20px; }
-        .states h1 { font-size: 3.5rem; color: var(--primary) !important; margin: 0; line-height: 1; font-weight: 700; }
-        .states p { margin: 0; text-transform: uppercase; font-family: 'Oswald', sans-serif; font-size: 0.9rem; letter-spacing: 1px; color: #e2e8f0; }
-
-        .about-box {
-            background: var(--card-dark) !important; border: 1px solid var(--border-color);
-            padding: 30px 20px; text-align: center; border-radius: 6px;
-            transition: transform 0.3s, border-color 0.3s;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-        }
-        .about-box:hover { transform: translateY(-5px); border-color: var(--primary); }
-        .about-box h5 { margin-top: 15px; margin-bottom: 0; font-size: 1.1rem; }
-
-        /* Hizmetler */
-        .service-card {
-            background: var(--card-dark) !important;
-            border: 1px solid var(--card-border);
-            position: relative;
-            border-radius: 8px;
-            overflow: hidden;
-            height: 100%;
-            cursor: pointer;
-            transition: 0.4s;
-            display: flex;
-            flex-direction: column;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
-        .service-card:hover { 
-            border-color: var(--primary); 
-            transform: translateY(-6px);
-            box-shadow: 0 18px 40px rgba(0,0,0,0.35);
-        }
-        .service-img { 
-            height: 220px; width: 100%; object-fit: cover; opacity: 0.95; transition: transform 0.5s;
-        }
-        .service-card:hover .service-img { transform: scale(1.05); }
-        .service-con { 
-            padding: 25px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between;
-        }
-        .service-numb { 
-            font-family: 'Oswald', sans-serif; font-size: 1.8rem; color: var(--primary) !important; font-weight: 700; margin-bottom: 8px; 
-        }
-        .service-more-link {
-            color: var(--primary) !important; font-family: 'Oswald', sans-serif; font-size: 0.85rem; letter-spacing: 1px; text-transform: uppercase; margin-top: 15px; display: inline-block;
-        }
-
-        /* Projeler */
-        .project-featured-card {
-            background: var(--card-dark) !important; border: 1px solid var(--card-border);
-            border-radius: 8px; overflow: hidden; cursor: pointer; transition: 0.3s; height: 100%;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
-        .project-featured-card:hover { border-color: var(--primary); transform: translateY(-6px); }
-        .proj-img-wrap { height: 280px; overflow: hidden; position: relative; background: #1a1e26; }
-        .proj-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: 0.6s; opacity: 0.95; }
-        .project-featured-card:hover .proj-img-wrap img { transform: scale(1.06); }
-        .status-badge {
-            position: absolute; top: 12px; right: 12px; background: rgba(26, 30, 38, 0.9);
-            border: 1px solid var(--primary); color: var(--primary) !important; font-family: 'Oswald', sans-serif;
-            font-size: 0.75rem; padding: 4px 10px; text-transform: uppercase; border-radius: 4px;
-        }
-
-        /* Harita */
-        .map-frame-box {
-            height: 380px; width: 100%; border-radius: 6px; overflow: hidden;
-            border: 1px solid var(--border-color);
-        }
-        .map-frame-box iframe { width: 100%; height: 100%; border: 0; }
-
-        /* Form */
-        .custom-form-card {
-            background: var(--card-dark) !important;
-            border: 1px solid var(--card-border);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
-        .form-control, .form-select {
-            background-color: #1f242d !important;
-            border: 1px solid rgba(255,255,255,0.15) !important;
-            color: #f8fafc !important;
-        }
-        .form-control:focus, .form-select:focus {
-            border-color: var(--primary) !important;
-            box-shadow: 0 0 0 0.25rem rgba(212, 175, 55, 0.25) !important;
-        }
-
-        /* ================= FOOTER DÜZELTMELERİ ================= */
-        .footer { 
-            background: #12151b !important; 
-            border-top: 1px solid rgba(212, 175, 55, 0.25); 
-        }
-        .footer .top { padding: 60px 0 40px; }
-        .footer .bottom { padding: 25px 0; border-top: 1px solid rgba(255,255,255,0.08); font-size: 0.85rem; }
-        .footer h3 { font-size: 1.15rem; margin-bottom: 20px; color: #ffffff !important; }
-        .footer h3 span { color: var(--primary); }
-
-        /* Footer Logo Beyaz & Okunur Yapıldı */
-        .footer-logo-box {
-            display: inline-block;
-            background: rgba(255, 255, 255, 0.95);
-            padding: 4px 10px;
-            border-radius: 6px;
-            margin-bottom: 15px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.3);
-        }
-        .footer-logo-img {
-            max-height: 42px;
-            width: auto;
-            object-fit: contain;
-            display: block;
-        }
-
-        /* Footer'daki tüm açık metinler net beyaz & açık gümüş yapıldı */
-        .footer p, .footer span, .footer a {
-            color: #e2e8f0 !important;
-            font-size: 0.95rem;
-            line-height: 1.7;
-        }
-        .footer a:hover {
-            color: var(--primary) !important;
-        }
-        .footer .sub-title {
-            margin-bottom: 12px;
-        }
-
-        .wa-float {
-            position: fixed; bottom: 25px; right: 25px; background: #25d366;
-            color: #fff; width: 55px; height: 55px; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center; font-size: 28px;
-            z-index: 999; text-decoration: none; box-shadow: 0 4px 20px rgba(0,0,0,0.4);
-        }
-
-        .modal-content { background: #232832 !important; border: 1px solid var(--card-border); color: #fff; }
-        .detail-carousel-img { width: 100%; height: 460px; object-fit: cover; }
-        .thumbnail-gallery img { width: 75px; height: 50px; object-fit: cover; border-radius: 3px; cursor: pointer; border: 2px solid transparent; opacity: 0.6; }
-        .thumbnail-gallery img.active { border-color: var(--primary); opacity: 1; }
-
-        .admin-img-preview-card { position: relative; display: inline-block; margin: 6px; border: 2px solid #475569; background: #1a1e26; border-radius: 4px; overflow: hidden; }
-        .admin-img-preview-card.is-cover { border-color: var(--primary); }
-        .admin-img-preview-card img { width: 110px; height: 75px; object-fit: cover; display: block; }
-        .remove-single-photo-btn { position: absolute; top: 3px; right: 3px; background: #dc2626; color: #fff; border: none; width: 20px; height: 20px; border-radius: 50%; font-size: 11px; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 2; }
-        .set-cover-btn { position: absolute; bottom: 3px; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.85); color: #fff; border: none; font-size: 9px; padding: 2px 6px; border-radius: 2px; cursor: pointer; white-space: nowrap; }
-    </style>
-</head>
-<body>
-
-    <div class="content-lines-wrapper"><div class="content-lines"></div></div>
-    <a id="waLink" href="#" target="_blank" class="wa-float" title="WhatsApp"><i class="bi bi-whatsapp"></i></a>
-
-    <!-- Navbar: Temiz & Şık Logo Alanı -->
-    <nav class="navbar navbar-expand-lg sticky-top">
-        <div class="container position-relative" style="z-index: 2;">
-            <a class="navbar-brand d-flex align-items-center" href="#anasayfa">
-                <span id="navLogoWrapper"></span>
-            </a>
-            <button class="navbar-toggler border-0 text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbar">
-                <i class="bi bi-list fs-2 text-white"></i>
-            </button>
-            <div class="collapse navbar-collapse" id="navbar">
-                <ul class="navbar-nav ms-auto align-items-center">
-                    <li class="nav-item"><a class="nav-link active" href="#anasayfa">Anasayfa</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#hakkimizda">Hakkımızda</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#hizmetler">Hizmetler</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#projeler">Projeler</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#konum">Konum</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#iletisim">İletişim</a></li>
-                    <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
-                        <button class="btn btn-outline-light btn-sm px-3" style="font-family:'Oswald',sans-serif; letter-spacing: 1px; font-size: 0.8rem;" data-bs-toggle="modal" data-bs-target="#loginModal">
-                            <i class="bi bi-sliders me-1"></i> PANEL
-                        </button>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Header / Slider -->
-    <header id="anasayfa" class="hero">
-        <div class="hero-slides-container" id="heroSlidesContainer"></div>
-        <div class="hero-overlay"></div>
-
-        <div class="container position-relative" style="z-index: 2; padding: 100px 0;">
-            <div class="row">
-                <div class="col-lg-8 col-md-12">
-                    <span class="sub-title mb-2">MİMARLIK &amp; İNŞAAT</span>
-                    <h1 class="display-3 fw-bold mb-3" id="heroTitle">Cebeci Royal Homes Davutlar</h1>
-                    <p class="lead text-light opacity-90 mb-4" id="heroSubtitle" style="max-width: 650px;">Zarif çizgiler ve doğal dokuların uyumuyla şekillenen modern yaşam alanları. Doğru planlama, titiz işçilik ve güvenli yapılar.</p>
-                    <a href="#projeler" class="button-light">Projelerimizi İncele</a>
-                </div>
-            </div>
-        </div>
-        <div class="slider-dots" id="sliderDotsContainer"></div>
-    </header>
-
-    <!-- Hakkımızda -->
-    <section id="hakkimizda" class="py-5" style="background: var(--bg-section-alt) !important; border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
-        <div class="container py-4 position-relative" style="z-index: 2;">
-            <div class="row g-5">
-                <div class="col-md-4">
-                    <div class="sub-title" id="displayAboutSub">Biz Kimiz?</div>
-                </div>
-                <div class="col-md-8">
-                    <div class="section-title" id="displayAboutTitle"><span>Hakkında</span> CEBECİ YAPI</div>
-                    <div id="displayAboutText" style="white-space: pre-line; color: #cbd5e1;">
-                        <p><strong>Cebeci Yapı</strong>, yapı sektöründe kalite, güven ve doğru iş anlayışını ön planda tutarak yaşam alanları ve yapı projeleri geliştiren bir firmadır.</p>
-                        <p>Bizim için bir yapı yalnızca beton, çelik ve duvarlardan ibaret değildir. Her proje; doğru planlama, kaliteli malzeme, titiz işçilik ve uzun yıllar güvenle kullanılabilecek yaşam alanları oluşturma sorumluluğunu beraberinde getirir.</p>
-                        <p>Kuşadası ve çevresinde gerçekleştirdiğimiz çalışmalarımızda, bölgenin ihtiyaçlarını ve yaşam koşullarını dikkate alarak modern, kullanışlı ve estetik yapılar ortaya koymayı hedefliyoruz.</p>
-                        <p><strong>Cebeci Yapı.<br>Güvenle yükselen, değer katan yapılar.</strong></p>
-                    </div>
-
-                    <div class="states my-4">
-                        <ul>
-                            <li>
-                                <div class="numb"><h1 id="displayExpYears">11</h1></div>
-                                <div class="text"><p>Yıldan fazla deneyim</p></div>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="row g-3 mt-4">
-                        <div class="col-md-4">
-                            <div class="about-box">
-                                <i class="bi bi-building fs-1" style="color: var(--primary);"></i>
-                                <h5>Mimarlık</h5>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="about-box">
-                                <i class="bi bi-house-door fs-1" style="color: var(--primary);"></i>
-                                <h5>İç Mimari</h5>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="about-box">
-                                <i class="bi bi-rulers fs-1" style="color: var(--primary);"></i>
-                                <h5>Planlama</h5>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Sunduğumuz Hizmetler -->
-    <section id="hizmetler" class="py-5" style="background: var(--bg-dark) !important;">
-        <div class="container py-4 position-relative" style="z-index: 2;">
-            <div class="row mb-5">
-                <div class="col-md-4">
-                    <div class="sub-title">Neler Yapıyoruz</div>
-                </div>
-                <div class="col-md-8">
-                    <div class="section-title"><span>Sunduğumuz</span> Hizmetler</div>
-                    <p style="color: #cbd5e1 !important;">Hizmetlerimize tıklayarak uygulama standartlarımız, proje süreçlerimiz ve detaylar hakkında bilgi alabilirsiniz.</p>
-                </div>
-            </div>
-            <div class="row g-4" id="servicesGridContainer"></div>
-        </div>
-    </section>
-
-    <!-- Projelerimiz -->
-    <section id="projeler" class="py-5" style="background: var(--bg-section-alt) !
-gPhotos],
+            const projectData = {
+                title: title,
+                status: status,
+                location: location || "Davutlar / Kuşadası / Aydın",
+                desc: desc || "",
+                images: [...currentEditingPhotos],
                 coverIndex: currentCoverIndex,
                 updatedAt: Date.now()
             };
